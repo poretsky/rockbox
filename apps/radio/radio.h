@@ -55,7 +55,7 @@ const struct fmstation *radio_get_preset(int preset);
 void set_radio_region(int region);
 void toggle_mono_mode(bool mono);
 
-#define MAX_FMPRESET_LEN 27
+#define MAX_FMPRESET_LEN 100
 
 struct fmstation
 {
