@@ -47,9 +47,17 @@
 
 struct event_queue button_queue SHAREDBSS_ATTR;
 
+/* Button state stabilizing threshold for debouncing.
+   The new button state is accepted only if it repeats
+   at least DEBOUNCING_THRESHOLD + 2 times sequentially. */
+#define DEBOUNCING_THRESHOLD 3
+
 static long lastbtn;   /* Last valid button status */
 static long last_read; /* Last button status, for debouncing/filtering */
 static intptr_t button_data; /* data value from last message dequeued */
+#ifndef HAVE_TOUCHSCREEN
+static int debounce_count = DEBOUNCING_THRESHOLD;
+#endif
 static bool flipped;  /* buttons can be flipped to match the LCD flip */
 
 #ifdef HAVE_BACKLIGHT /* Filter first keypress function pointer */
@@ -697,10 +705,18 @@ static int button_read(int *data)
         last_touchscreen_touch = current_tick;
 #endif
     /* Filter the button status. It is only accepted if we get the same
-       status twice in a row. */
+       status DEBOUNCING_THRESHOLD + 2 times in a row. */
 #ifndef HAVE_TOUCHSCREEN
     if (btn != last_read)
+    {
+        debounce_count = DEBOUNCING_THRESHOLD;
         retval = lastbtn;
+    }
+    else if (debounce_count)
+    {
+        debounce_count--;
+        retval = lastbtn;
+    }
     else
 #endif
         retval = btn;
