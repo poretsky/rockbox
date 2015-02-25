@@ -243,9 +243,11 @@ static struct filetype_unknown unknown_file = {
 
 /* index array to filetypes used in open with list. */
 static int viewers[MAX_VIEWERS];
+static int viewers_selection[MAX_VIEWERS];
 static int filetype_count = 0;
 static unsigned char highest_attr = 0;
 static int viewer_count = 0;
+static int viewer_selection_count = 0;
 
 static int strdup_handle, strdup_cur_idx;
 static size_t strdup_bufsize;
@@ -650,17 +652,17 @@ struct cb_data {
 static enum themable_icons openwith_get_icon(int selected_item, void * data)
 {
     (void)data;
-    return filetypes[viewers[selected_item]].icon;
+    return filetypes[viewers_selection[selected_item]].icon;
 }
 
 static const char* openwith_get_name(int selected_item, void * data,
                                      char * buffer, size_t buffer_len)
 {
     (void)data; (void)buffer; (void)buffer_len;
-    const char *s = strrchr(filetypes[viewers[selected_item]].plugin, '/');
+    const char *s = strrchr(filetypes[viewers_selection[selected_item]].plugin, '/');
     if (s)
         return s+1;
-    else return filetypes[viewers[selected_item]].plugin;
+    else return filetypes[viewers_selection[selected_item]].plugin;
 }
 
 static int openwith_get_talk(int selected_item, void * data)
@@ -668,7 +670,7 @@ static int openwith_get_talk(int selected_item, void * data)
     (void)data;
     char viewer_filename[MAX_FILENAME];
     snprintf(viewer_filename, MAX_FILENAME, "%s." ROCK_EXTENSION,
-             filetypes[viewers[selected_item]].plugin);
+             filetypes[viewers_selection[selected_item]].plugin);
     talk_file_or_spell(PLUGIN_DIR, viewer_filename,
                        NULL, false);
     return 0;
@@ -677,7 +679,34 @@ static int openwith_get_talk(int selected_item, void * data)
 int filetype_list_viewers(const char* current_file)
 {
     struct simplelist_info info;
-    simplelist_info_init(&info, str(LANG_ONPLAY_OPEN_WITH), viewer_count, NULL);
+    int i;
+
+    viewer_selection_count = 0;
+
+    /* do not show unrelated plugins, unless 'show files' is 'all' */
+    if (global_settings.dirfilter != 0)
+    {
+        char *extension = strrchr(current_file, '.');
+        if (extension)
+            extension++;
+        for (i = 1; i < filetype_count; i++)
+            if (filetypes[i].plugin && (viewer_selection_count < MAX_VIEWERS) &&
+                ((!strcmp(filetypes[i].extension, "*")) ||
+                 (!strcasecmp(filetypes[i].extension, extension))))
+            {
+                int j;
+                for (j = 0; j < viewer_selection_count; j++)
+                    if (!strcmp(filetypes[viewers_selection[j]].plugin, filetypes[i].plugin))
+                        break;
+                if (j == viewer_selection_count)
+                    viewers_selection[viewer_selection_count++] = i;
+            }
+    }
+    else
+        for (i = 0; i < viewer_count; i++)
+            viewers_selection[viewer_selection_count++] = viewers[i];
+
+    simplelist_info_init(&info, str(LANG_ONPLAY_OPEN_WITH), viewer_selection_count, NULL);
     info.get_name = openwith_get_name;
     info.get_icon = global_settings.show_icons?openwith_get_icon:NULL;
     info.get_talk = openwith_get_talk;
@@ -687,7 +716,7 @@ int filetype_list_viewers(const char* current_file)
     if (info.selection >= 0) /* run user selected viewer */
     {
         char plugin[MAX_PATH];
-        int i = viewers[info.selection];
+        int i = viewers_selection[info.selection];
         snprintf(plugin, MAX_PATH, "%s/%s." ROCK_EXTENSION,
                     PLUGIN_DIR, filetypes[i].plugin);
         ret = plugin_load(plugin, current_file);
