@@ -2204,19 +2204,19 @@ const struct settings_list settings[] = {
 #ifdef HAVE_HOTKEY
     TABLE_SETTING(F_ALLOW_ARBITRARY_VALS, hotkey_wps,
         LANG_HOTKEY_WPS, HOTKEY_VIEW_PLAYLIST, "hotkey wps",
-        "off,view playlist,show track info,pitchscreen,open with,delete,voiceinfo"
+        "off,view playlist,show track info,pitchscreen,open with,delete,voiceinfo,bookmark"
 #ifdef HAVE_PICTUREFLOW_INTEGRATION
         ",pictureflow"
 #endif
         ,UNIT_INT, hotkey_formatter, hotkey_getlang, NULL,
 #ifdef HAVE_PICTUREFLOW_INTEGRATION
-        8,
+        9,
 #else
-        7,
+        8,
 #endif
         HOTKEY_OFF,
         HOTKEY_VIEW_PLAYLIST, HOTKEY_SHOW_TRACK_INFO, HOTKEY_PITCHSCREEN,
-        HOTKEY_OPEN_WITH, HOTKEY_DELETE, HOTKEY_VOICEINFO
+        HOTKEY_OPEN_WITH, HOTKEY_DELETE, HOTKEY_VOICEINFO, HOTKEY_BOOKMARK
 #ifdef HAVE_PICTUREFLOW_INTEGRATION
         , HOTKEY_PICTUREFLOW
 #endif
