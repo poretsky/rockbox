@@ -148,8 +148,8 @@ void audiohw_preinit(void)
     /* Select Line 2 for FM radio */
     as3514_set(AS3514_LINE_IN1_R, LINE_IN_R_LINE_SELECT);
 #endif
-    /* Set LINEOUT to minimize pop-click noise in headphone on init stage  */
-    as3514_write(AS3514_HPH_OUT_R, HPH_OUT_R_LINEOUT | HPH_OUT_R_HP_OUT_DAC);
+    /* Output SUM of microphone/line/DAC */
+    as3514_write(AS3514_HPH_OUT_R, HPH_OUT_R_HEADPHONES | HPH_OUT_R_HP_OUT_SUM);
 
 #else
     /* as3514/as3515 */
