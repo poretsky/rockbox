@@ -91,11 +91,11 @@ static inline void get_hash(const char *key, uint32_t *hash, int len)
     *hash = crc_32(key, len, *hash); /* this is probably sufficient */
 }
 
-static const char* skip_tokens(const char* s, int ntokens)
+static const char* skip_tokens(const char* s, int ntokens, int delimiter)
 {
     for (int i = 0; i < ntokens; i++)
     {
-        while (*s && *s != ';')
+        while (*s && *s != delimiter)
         {
             s++;
         }
@@ -108,17 +108,17 @@ static const char* skip_tokens(const char* s, int ntokens)
     return s;
 }
 
-static int int_token(const char **s)
+static int int_token(const char **s, int delimiter)
 {
     int ret = atoi(*s);
-    *s = skip_tokens(*s, 1);
+    *s = skip_tokens(*s, 1, delimiter);
     return ret;
 }
 
-static long long_token(const char **s)
+static long long_token(const char **s, int delimiter)
 {
     /* Should be atol, but we don't have it. */
-    return int_token(s);
+    return int_token(s, delimiter);
 }
 
 /*-------------------------------------------------------------------------*/
@@ -140,7 +140,10 @@ static bool bookmark_get_playlist_and_track_hash(const char *bookmark,
     if (!(pl_start))
         return false;
 
-    pl_end = skip_tokens(pl_start, 1) - 1;
+    pl_end = skip_tokens(pl_start, 1, '|');
+    if (!pl_end)
+        pl_end = skip_tokens(pl_start, 1, ';') - 1;
+    else pl_end--;
     pl_len = pl_end - pl_start;
 
     track = pl_end + 1;
@@ -169,10 +172,11 @@ static bool parse_bookmark(char *filenamebuf,
 {
     const char* s = bookmark;
     const char* end;
+    int delimiter = strchr(bookmark, '|') ? '|' : ';';
 
-#define GET_INT_TOKEN(var)   var = int_token(&s)
-#define GET_LONG_TOKEN(var)  var = long_token(&s)
-#define GET_BOOL_TOKEN(var) var = (int_token(&s) != 0)
+#define GET_INT_TOKEN(var)   var = int_token(&s, delimiter)
+#define GET_LONG_TOKEN(var)  var = long_token(&s, delimiter)
+#define GET_BOOL_TOKEN(var) var = (int_token(&s, delimiter) != 0)
 
     /* if new format bookmark, extract the optional content flags,
        otherwise treat as an original format bookmark */
@@ -195,7 +199,7 @@ static bool parse_bookmark(char *filenamebuf,
         GET_LONG_TOKEN(resume_info->resume_offset);
         GET_INT_TOKEN(resume_info->resume_seed);
 
-        s = skip_tokens(s, old_format); /* skip deprecated token */
+        s = skip_tokens(s, old_format, delimiter); /* skip deprecated token */
 
         GET_LONG_TOKEN(resume_info->resume_elapsed);
         GET_INT_TOKEN(resume_info->repeat_mode);
@@ -211,7 +215,7 @@ static bool parse_bookmark(char *filenamebuf,
     {
         #define DEFAULT_BM_TOKENS 6
         int skipct = DEFAULT_BM_TOKENS + old_format + opt_pitch + opt_speed;
-        s = skip_tokens(s, skipct);
+        s = skip_tokens(s, skipct, delimiter);
         #undef DEFAULT_BM_TOKENS
     }
 
@@ -220,7 +224,7 @@ static bool parse_bookmark(char *filenamebuf,
         return false;
     }
 
-    end = strchr(s, ';');
+    end = strchr(s, delimiter);
 
     /* extract file names */
     if(filenamebuf)
@@ -446,11 +450,11 @@ static char* create_bookmark(char **name,
 
     size_t bmarksz= snprintf(buf, bufsz,
                              /* new optional bookmark token descriptors should
-                                be inserted just after ';"' in this line... */
+                                be inserted just after '|"' in this line... */
 #if defined(HAVE_PITCHCONTROL)
-                             ">%d;%d;%ld;%d;%ld;%d;%d;%ld;%ld;",
+                             ">%d|%d|%ld|%d|%ld|%d|%d|%ld|%ld|",
 #else
-                             ">%d;%d;%ld;%d;%ld;%d;%d;",
+                             ">%d|%d|%ld|%d|%ld|%d|%d|",
 #endif
                              /* ... their flags should go here ... */
 #if defined(HAVE_PITCHCONTROL)
@@ -498,7 +502,7 @@ static char* create_bookmark(char **name,
 
     buf += bmarksz;
     bufsz -= (bmarksz + 1);
-    buf[0] = ';';
+    buf[0] = '|';
     buf[1] = '\0';
 
     strlcat(buf, file, bufsz);
