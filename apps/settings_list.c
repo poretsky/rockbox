@@ -1204,6 +1204,9 @@ const struct settings_list settings[] = {
                    "seek acceleration", "very fast,fast,normal,slow,very slow", NULL, 5,
                    ID2P(LANG_VERY_FAST), ID2P(LANG_FAST), ID2P(LANG_NORMAL),
                    ID2P(LANG_SLOW) , ID2P(LANG_VERY_SLOW)),
+    INT_SETTING(0, btn_long_press_duration, LANG_BTN_LONG_PRESS_DURATION, 30,
+                  "button long press duration", UNIT_INT, 20, 50, 1, NULL, NULL,
+                  set_button_long_press_duration),
 #if (CONFIG_CODEC == SWCODEC) && defined(HAVE_DISK_STORAGE)
     STRINGCHOICE_SETTING(0, buffer_margin, LANG_MP3BUFFER_MARGIN, 0,"antiskip",
                          "5s,15s,30s,1min,2min,3min,5min,10min", NULL, 8,
