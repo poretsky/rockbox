@@ -192,7 +192,7 @@ void audiohw_preinit(void)
 #if (CONFIG_CPU == AS3525)
     /* Set HPCM on, ZCU off, reduce bias current, settings taken from c200v2 OF
      */
-    as3514_write(AS3514_AUDIOSET3, AUDIOSET3_IBR_HPH | AUDIOSET3_ZCU_off);
+    as3514_write(AS3514_AUDIOSET3, AUDIOSET3_ZCU_off);
 #else
     /* TODO: check if AS3525 settings save power on e200v1 or as3525v2 */
     /* Set HPCM off, ZCU on */
