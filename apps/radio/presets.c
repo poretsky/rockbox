@@ -43,6 +43,8 @@
 #include "dir.h"
 #include "presets.h"
 
+#define FMJINGLE_DIR FMPRESET_PATH "/jingles"
+
 static int curr_preset = -1;
 
 extern int curr_freq; /* from radio.c.. naughty but meh */
@@ -173,7 +175,11 @@ void preset_talk(int preset, bool fallback, bool enqueue)
     else
     { /* spell */
         if(presets[preset].name[0])
-            talk_spell(presets[preset].name, enqueue);
+        {
+            if (talk_file(FMJINGLE_DIR, NULL, presets[preset].name,
+                          file_thumbnail_ext, NULL, enqueue) <= 0)
+                talk_spell(presets[preset].name, enqueue);
+        }
         else if(fallback)
             talk_value_decimal(presets[preset].frequency, UNIT_INT, 6, enqueue);
     }
