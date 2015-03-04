@@ -15362,3 +15362,20 @@ id: VOICE_BAT_BENCH_KEYS
     recording: "Recording Directory"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_ALARM_TIMER
+  desc: in alarm menu setting
+  user: core
+  <source>
+    *: none
+    alarm: "Alarm Timer"
+  </source>
+  <dest>
+    *: none
+    alarm: "Alarm Timer"
+  </dest>
+  <voice>
+    *: none
+    alarm: "Alarm Timer"
+  </voice>
+</phrase>
