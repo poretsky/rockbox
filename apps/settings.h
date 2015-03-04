@@ -516,9 +516,11 @@ struct user_settings
     bool car_adapter_mode; /* 0=off 1=on */
     int car_adapter_mode_delay; /* delay before resume,  in seconds*/
     int start_in_screen;
-#if defined(HAVE_RTC_ALARM) && \
-    (defined(HAVE_RECORDING) || CONFIG_TUNER)
+#ifdef HAVE_RTC_ALARM
+    int alarm_timer;
+#if defined(HAVE_RECORDING) || CONFIG_TUNER
     int alarm_wake_up_screen;
+#endif
 #endif
     int ff_rewind_min_step; /* FF/Rewind minimum step size */
     int ff_rewind_accel; /* FF/Rewind acceleration (in seconds per doubling) */
