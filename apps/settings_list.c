@@ -429,6 +429,33 @@ static int32_t backlight_getlang(int value, int unit)
 }
 #endif
 
+#ifdef HAVE_RTC_ALARM
+static int32_t alarm_timer_getlang(int value, int unit)
+{
+    (void) unit;
+
+    if (value == 0)
+        return LANG_OFF;
+    return TALK_ID(value*60, UNIT_TIME);
+}
+
+static const char *alarm_timer_formatter(char *buffer, size_t buffer_size,
+                                         int value, const char *unit)
+{
+    int minutes, hours;
+    (void) unit;
+
+    if (value)
+    {
+        hours = value / 60;
+        minutes = value - (hours * 60);
+        snprintf(buffer, buffer_size, "%d:%02d", hours, minutes);
+    }
+    else snprintf(buffer, buffer_size, "%s", str(LANG_OFF));
+    return buffer;
+}
+#endif
+
 #ifndef HAVE_WHEEL_ACCELERATION
 static const char* scanaccel_formatter(char *buffer, size_t buffer_size,
         int val, const char *unit)
@@ -2036,10 +2063,14 @@ const struct settings_list settings[] = {
 #endif
                   ),
     SYSTEM_SETTING(NVRAM(1),last_screen,-1),
-#if defined(HAVE_RTC_ALARM) && \
-    (defined(HAVE_RECORDING) || CONFIG_TUNER)
+#ifdef HAVE_RTC_ALARM
+    INT_SETTING(0, alarm_timer, LANG_ALARM_TIMER, 0,
+                "alarm timer", UNIT_MIN, 300, 0, -5,
+                alarm_timer_formatter, alarm_timer_getlang, NULL),
+#if defined(HAVE_RECORDING) || CONFIG_TUNER
     {F_T_INT, &global_settings.alarm_wake_up_screen, LANG_ALARM_WAKEUP_SCREEN,
         INT(ALARM_START_WPS), "alarm wakeup screen", ALARM_SETTING_TEXT,UNUSED},
+#endif
 #endif /* HAVE_RTC_ALARM */
 
     /* Customizable icons */
