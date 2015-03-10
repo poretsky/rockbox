@@ -24,6 +24,7 @@
  ****************************************************************************/
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <stddef.h>
 #include "string-extra.h"
 #include "file.h"
@@ -796,27 +797,6 @@ static int talk_spell_basename(const char *path,
     return _talk_spell(basename, len, enqueue);
 }
 
-/* Say year like "nineteen ninety nine" instead of "one thousand 9
-   hundred ninety nine". */
-static int talk_year(long year, bool enqueue)
-{
-    int rem;
-    if(year < 1100 || (year >=2000 && year < 2100))
-        /* just say it as a regular number */
-        return talk_number(year, enqueue);
-    /* Say century */
-    talk_number(year/100, enqueue);
-    rem = year%100;
-    if(rem == 0)
-        /* as in 1900 */
-        return talk_id(VOICE_HUNDRED, true);
-    if(rem <10)
-        /* as in 1905 */
-        talk_id(VOICE_ZERO, true);
-    /* sub-century year */
-    return talk_number(rem, true);
-}
-
 /***************** Public routines *****************/
 
 /* stop the playback and the pending clips */
@@ -1248,10 +1228,7 @@ int talk_number(long n, bool enqueue)
             int ones = segment % 100;
 
             if (hundreds)
-            {
-                talk_id(VOICE_ZERO + hundreds, true);
-                talk_id(VOICE_HUNDRED, true);
-            }
+                talk_id(VOICE_ONE_HUNDRED + hundreds - 1, true);
 
             struct queue_entry tens_swap;
             if (get_clip(VOICE_NUMERIC_TENS_SWAP_SEPARATOR, &tens_swap) >= 0)
@@ -1319,8 +1296,11 @@ void talk_fractional(char *tbuf, int value, int unit)
     talk_number(value, true);
     if (tbuf[0] != 0)
     {
+        char *ptr;
         talk_id(LANG_POINT, true);
-        talk_spell(tbuf, true);
+        for (ptr = tbuf; (*ptr) == '0'; ptr++)
+            talk_id(VOICE_ZERO, true);
+        talk_number(atoi(ptr), true);
     }
     talk_id(unit, true);
 }
@@ -1379,7 +1359,7 @@ int talk_value_decimal(long n, int unit, int decimals, bool enqueue)
 
     /* special pronounciation for year number */
     if (unit == UNIT_DATEYEAR)
-        return talk_year(n, enqueue);
+        return talk_number(n, enqueue);
     /* special case for time duration */
     if (unit == UNIT_TIME)
         return talk_time_unit(n, enqueue);
@@ -1560,9 +1540,8 @@ void talk_time(const struct tm *tm, bool enqueue)
             talk_id(VOICE_OH, true);
         talk_number(tm->tm_hour, enqueue);
         if (tm->tm_min == 0)
-        {
-            talk_ids(true, VOICE_HUNDRED, VOICE_HOURS);
-        }
+            /* Say o'clock if the minute is 0. */
+            talk_id(VOICE_OCLOCK, true);
         else
         {
             /* Pronounce the leading 0 */
