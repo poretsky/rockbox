@@ -251,7 +251,6 @@ static bool gui_quickscreen_do_button(struct gui_quickscreen * qs, int button)
     switch(button)
     {
         case ACTION_QS_TOP:
-            invert = true;
             item = QUICKSCREEN_TOP;
             break;
         case ACTION_QS_LEFT:
@@ -260,6 +259,7 @@ static bool gui_quickscreen_do_button(struct gui_quickscreen * qs, int button)
             break;
 
         case ACTION_QS_DOWN:
+            invert = true;
             item = QUICKSCREEN_BOTTOM;
             break;
 
