@@ -6182,16 +6182,16 @@
 </phrase>
 <phrase>
   id: LANG_DEBUG
-  desc: in the info menu
+  desc: deprecated
   user: core
   <source>
-    *: "Debug (Keep Out!)"
+    *: ""
   </source>
   <dest>
-    *: "Debug (Keep Out!)"
+    *: ""
   </dest>
   <voice>
-    *: "Debug, keep out!"
+    *: ""
   </voice>
 </phrase>
 <phrase>

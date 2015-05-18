@@ -8,7 +8,6 @@ alarm_menu.c
 abrepeat.c
 bookmark.c
 core_keymap.c
-debug_menu.c
 filetypes.c
 language.c
 main.c
