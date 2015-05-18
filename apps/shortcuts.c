@@ -28,7 +28,6 @@
 #include "power.h"
 #include "action.h"
 #include "ata_idle_notify.h"
-#include "debug_menu.h"
 #include "core_alloc.h"
 #include "list.h"
 #include "settings.h"
@@ -52,7 +51,6 @@
 static const char * const type_strings[SHORTCUT_TYPE_COUNT] = {
     [SHORTCUT_SETTING] = "setting",
     [SHORTCUT_FILE] = "file",
-    [SHORTCUT_DEBUGITEM] = "debug",
     [SHORTCUT_BROWSER] = "browse",
     [SHORTCUT_PLAYLISTMENU] = "playlist menu",
     [SHORTCUT_SEPARATOR] = "separator",
@@ -185,7 +183,6 @@ static bool verify_shortcut(struct shortcut* sc)
             return sc->u.setting != NULL;
         case SHORTCUT_TIME:
             return sc->name[0] != '\0';
-        case SHORTCUT_DEBUGITEM:
         case SHORTCUT_SEPARATOR:
         case SHORTCUT_SHUTDOWN:
         default:
@@ -310,7 +307,6 @@ static int readline_cb(int n, char *buf, void *parameters)
                     break;
                 case SHORTCUT_BROWSER:
                 case SHORTCUT_FILE:
-                case SHORTCUT_DEBUGITEM:
                 case SHORTCUT_PLAYLISTMENU:
                     strlcpy(sc->u.path, value, MAX_PATH);
                     break;
@@ -447,8 +443,6 @@ static enum themable_icons shortcut_menu_get_icon(int selected_item, void * data
                 return Icon_Folder;
             case SHORTCUT_SETTING:
                 return Icon_Menu_setting;
-            case SHORTCUT_DEBUGITEM:
-                return Icon_Menu_functioncall;
             case SHORTCUT_PLAYLISTMENU:
                 return Icon_Playlist;
             case SHORTCUT_SHUTDOWN:
@@ -613,9 +607,6 @@ int do_shortcut_menu(void *ignored)
                 case SHORTCUT_SETTING:
                     do_setting_screen(sc->u.setting,
                             sc->name[0] ? sc->name : P2STR(ID2P(sc->u.setting->lang_id)),NULL);
-                    break;
-                case SHORTCUT_DEBUGITEM:
-                    run_debug_screen(sc->u.path);
                     break;
                 case SHORTCUT_SHUTDOWN:
 #if CONFIG_CHARGING
