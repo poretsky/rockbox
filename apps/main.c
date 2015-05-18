@@ -27,7 +27,6 @@
 #include "file_internal.h"
 #include "lcd.h"
 #include "rtc.h"
-#include "debug.h"
 #include "led.h"
 #include "../kernel-internal.h"
 #include "button.h"
@@ -49,7 +48,6 @@
 #include "settings.h"
 #include "backlight.h"
 #include "status.h"
-#include "debug_menu.h"
 #include "font.h"
 #include "language.h"
 #include "wps.h"
@@ -550,17 +548,7 @@ static void init(void)
     rc = storage_init();
     CHART("<storage_init");
     if(rc)
-    {
-#ifdef HAVE_LCD_BITMAP
-        lcd_clear_display();
-        lcd_putsf(0, 1, "ATA error: %d", rc);
-        lcd_puts(0, 3, "Press ON to debug");
-        lcd_update();
-        while(!(button_get(true) & BUTTON_REL)); /* DO NOT CHANGE TO ACTION SYSTEM */
-        dbg_ports();
-#endif
         panicf("ata: %d", rc);
-    }
 
 #if defined(NEED_ATA_POWER_BATT_MEASURE) && \
     (CONFIG_CHARGING <= CHARGING_MONITOR)
