@@ -224,14 +224,6 @@ pages of information.}
         last manually reset this item. A manual reset is done through pressing 
         any button, followed by pressing \ActionStdOk{}.
   \end{description}
-
-\item[Debug (Keep Out!):]
-  This sub menu is intended to be used \emph{only} by Rockbox developers.
-  It shows hardware, disk, battery status and other technical information.  
-  \warn{It is not recommended that users access this menu unless instructed to
-  do so in the course of fixing a problem with Rockbox. If you think you have 
-  messed up your settings by use of this menu please try to reset \emph{all} 
-  settings before asking for help.}
 \end{description}
 
 \opt{player}{
@@ -279,7 +271,6 @@ settings. With a shortcut,
         be displayed
   \item A setting can be configured (any which can be added to the
         \setting{Quick Screen})
-  \item A debug menu item can be displayed (useful for developers mostly)
 \opt{rtc}{
   \item The current time can be spoken
 }
@@ -312,7 +303,6 @@ Available types are:
   ``Current Playlist'' context menu item on
 \item[setting] \config{data} is the config name of the setting you want to change
   (see \reference{ref:config_file_options} for the list of the possible settings)
-\item[debug] \config{data} is the name of the debug menu item to display
 \item[separator] \config{data} is ignored; \config{name} can be used to display text,
   or left blank to make the list more accessible with visual gaps
 \item[time] \config{data} needs to be \opt{rtc}{either ``talk'' to talk the time, or }``sleep X''
