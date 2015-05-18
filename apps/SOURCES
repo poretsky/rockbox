@@ -7,7 +7,6 @@ alarm_menu.c
 #endif
 abrepeat.c
 bookmark.c
-debug_menu.c
 filetypes.c
 language.c
 main.c
