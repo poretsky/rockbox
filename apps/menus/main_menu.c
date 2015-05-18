@@ -43,7 +43,6 @@
 #include "plugin.h"
 #include "talk.h"
 #include "splash.h"
-#include "debug_menu.h"
 #include "version.h"
 #include "time.h"
 #include "wps.h"
@@ -531,12 +530,10 @@ MENUITEM_FUNCTION(show_credits_item, 0, ID2P(LANG_CREDITS),
                    (menu_function)show_credits, NULL, NULL, Icon_NOICON);
 MENUITEM_FUNCTION(show_runtime_item, 0, ID2P(LANG_RUNNING_TIME),
                    (menu_function)view_runtime, NULL, NULL, Icon_NOICON);
-MENUITEM_FUNCTION(debug_menu_item, 0, ID2P(LANG_DEBUG),
-                   (menu_function)debug_menu, NULL, NULL, Icon_NOICON);
 
 MAKE_MENU(info_menu, ID2P(LANG_SYSTEM), 0, Icon_System_menu,
           &show_info_item, &show_credits_item,
-          &show_runtime_item, &debug_menu_item);
+          &show_runtime_item);
 /*      INFO MENU                  */
 /***********************************/
 
