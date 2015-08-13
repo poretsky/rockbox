@@ -30,6 +30,8 @@
 #include "exported_menus.h"
 #include "sound_menu.h" /* recording_menu()   */
 #include "talk.h"
+#include "action.h"
+#include "tuner.h"
 
 #ifdef HAVE_RECORDING
 #include "recording.h"  /* recording_screen() */
@@ -105,8 +107,8 @@ static char* get_mode_text(int selected_item, void * data, char *buffer)
     (void)selected_item;
     (void)data;
     snprintf(buffer, MAX_PATH, "%s %s", str(LANG_MODE),
-             radio_mode ? str(LANG_PRESET) :
-                          str(LANG_RADIO_SCAN_MODE));
+             radio_scan_mode() ? str(LANG_RADIO_SCAN_MODE) :
+                          str(LANG_PRESET));
     return buffer;
 }
 static int mode_speak_item(int selected_item, void * data)
@@ -115,14 +117,14 @@ static int mode_speak_item(int selected_item, void * data)
     (void)data;
     long talk_ids[4];
     talk_ids[0] = LANG_MODE;
-    talk_ids[1] = radio_mode ? LANG_PRESET : LANG_RADIO_SCAN_MODE;
+    talk_ids[1] = radio_scan_mode() ? LANG_RADIO_SCAN_MODE : LANG_PRESET;
     talk_ids[2] = TALK_FINAL_ID;
     talk_idarray(talk_ids, true);
     return 0;
 }
 static int toggle_radio_mode(void)
 {
-    radio_mode = (radio_mode == RADIO_SCAN_MODE) ?
+    radio_mode = radio_scan_mode() ?
                  RADIO_PRESET_MODE : RADIO_SCAN_MODE;
     return 0;
 }
@@ -130,13 +132,34 @@ MENUITEM_FUNCTION_DYNTEXT(radio_mode_item, 0,
                                  toggle_radio_mode, NULL, 
                                  get_mode_text, mode_speak_item,
                                  NULL, NULL, Icon_NOICON);
+static int radio_settings_menu_callback(int action,const struct menu_item_ex *this_item)
+{
+    (void)this_item;
+    const struct fm_region_data *fmr = &fm_region_data[global_settings.fm_region];
+    switch (action)
+    {
+        case ACTION_ENTER_MENUITEM:
+            if (radio_scan_mode() &&
+                radio_preset_count() <= 0 &&
+                (radio_current_frequency() < fmr->freq_min || radio_current_frequency() > fmr->freq_max))
+            {
+                radio_load_presets(global_settings.fmr_file);
+                if (preset_find(global_status.last_frequency * fmr->freq_step + fmr->freq_min) >= 0)
+                    toggle_radio_mode();
+            }
+            break;
+    }
+    return action;
+}
+#else
+#define radio_settings_menu_callback NULL
 #endif
 
 MENUITEM_FUNCTION(scan_presets_item, MENU_FUNC_USEPARAM,
                     ID2P(LANG_FM_SCAN_PRESETS),
                     presets_scan, NULL, NULL, Icon_NOICON);
 
-MAKE_MENU(radio_settings_menu, ID2P(LANG_FM_MENU), NULL,
+MAKE_MENU(radio_settings_menu, ID2P(LANG_FM_MENU), radio_settings_menu_callback,
             Icon_Radio_screen,
 #ifndef FM_PRESET
             &radio_presets_item,
