@@ -359,6 +359,7 @@ void radio_screen(void)
     bool screen_freeze = false;
     bool keep_playing = false;
     bool talk = false;
+    bool adjust_mode = false;
 #ifdef FM_RECORD_DBLPRE
     int lastbutton = BUTTON_NONE;
     unsigned long rec_lastclick = 0;
@@ -382,6 +383,7 @@ void radio_screen(void)
     if(radio_preset_count() <= 0)
     {
         radio_load_presets(global_settings.fmr_file);
+        adjust_mode = true;
     }
     skin_get_global_state()->id3 = NULL;
 #ifdef HAVE_ALBUMART
@@ -432,8 +434,8 @@ void radio_screen(void)
         presets_scan(NULL);
 
     preset_set_current(preset_find(curr_freq));
-    if(radio_current_preset() != -1)
-         radio_mode = RADIO_PRESET_MODE;
+    if(adjust_mode && radio_current_preset() != -1)
+        radio_mode = RADIO_PRESET_MODE;
 
     /* Load/update the skin at last, when fully initialzed, so that it can
      * display the right content from the beginning */
