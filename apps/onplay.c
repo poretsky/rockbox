@@ -1519,7 +1519,20 @@ MENUITEM_FUNCTION(properties_item, MENU_FUNC_USEPARAM, ID2P(LANG_PROPERTIES),
                   clipboard_callback, Icon_NOICON);
 static bool onplay_add_to_shortcuts(void)
 {
-    shortcuts_add(SHORTCUT_BROWSER, selected_file);
+    if (selected_file_attr & ATTR_DIRECTORY)
+    {
+        size_t pathlen = strlen(selected_file);
+        if (selected_file[pathlen - 1] != PATH_SEPCH)
+        {
+            char dirpath[MAX_PATH];
+            strcpy(dirpath, selected_file);
+            dirpath[pathlen] = PATH_SEPCH;
+            dirpath[pathlen + 1] = '\0';
+            shortcuts_add(SHORTCUT_BROWSER, dirpath);
+        }
+        else shortcuts_add(SHORTCUT_BROWSER, selected_file);
+    }
+    else shortcuts_add(SHORTCUT_FILE, selected_file);
     return false;
 }
 MENUITEM_FUNCTION(add_to_faves_item, 0, ID2P(LANG_ADD_TO_FAVES),
