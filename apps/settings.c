@@ -94,7 +94,12 @@ struct system_status global_status;
 #endif
 #endif /* CONFIG_CODEC == SWCODEC */
 
+#define NVRAM_DATA_START 8
+#ifdef HAVE_RTC_RAM
 #define NVRAM_BLOCK_SIZE 44
+#else
+#define NVRAM_BLOCK_SIZE (sizeof(struct system_status) + NVRAM_DATA_START)
+#endif
 
 #ifdef HAVE_LCD_BITMAP
 #define MAX_LINES 10
@@ -123,7 +128,6 @@ long lasttime = 0;
 [4-7] crc32 checksum
 [8-NVRAM_BLOCK_SIZE] data
 */
-#define NVRAM_DATA_START 8
 static char nvram_buffer[NVRAM_BLOCK_SIZE];
 
 static bool read_nvram_data(char* buf, int max_len)
