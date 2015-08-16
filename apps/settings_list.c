@@ -1031,7 +1031,12 @@ const struct settings_list settings[] = {
 #endif
 #ifdef HAVE_LINEOUT_POWEROFF
     OFFON_SETTING(0, lineout_active, LANG_LINEOUT_ONOFF,
-                  true, "lineout", lineout_set),
+#if defined(SANSA_FUZEV2)
+                  false,
+#else
+                  true,
+#endif
+                  "lineout", lineout_set),
 #endif
     /* tuner */
 #if CONFIG_TUNER
