@@ -742,29 +742,37 @@ void settings_apply_play_freq(int value, bool playback)
     static const unsigned long play_sampr[] = { SAMPR_44, SAMPR_48 };
     static int prev_setting = 0;
 
-    if ((unsigned)value >= ARRAYLEN(play_sampr))
+    if ((unsigned)value > ARRAYLEN(play_sampr))
         value = 0;
 
     bool changed = value != prev_setting;
     prev_setting = value;
 
+    unsigned long suggested_frequency = value ? play_sampr[value - 1] : mixer_get_frequency();
     unsigned long elapsed = 0;
     unsigned long offset = 0;
-    bool playing = changed && !playback &&
+    bool playing = (!value || (changed && !playback)) &&
                    audio_status() == AUDIO_STATUS_PLAY;
 
     if (playing)
     {
         struct mp3entry *id3 = audio_current_track();
+        if (!value)
+            suggested_frequency = (id3->frequency % 4000) ? SAMPR_44 : SAMPR_48;
         elapsed = id3->elapsed;
         offset = id3->offset;
     }
+
+    changed = mixer_get_frequency() != suggested_frequency;
+    playing = changed && !playback &&
+                   audio_status() == AUDIO_STATUS_PLAY;
 
     if (changed && !playback)
         audio_hard_stop();
 
     /* Other sub-areas of playback pick it up from the mixer */
-    mixer_set_frequency(play_sampr[value]);
+    if (changed)
+        mixer_set_frequency(suggested_frequency);
 
     if (playing)
         audio_play(elapsed, offset);
