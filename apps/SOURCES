@@ -315,4 +315,6 @@ keymaps/keymap-ihifi.c
 keymaps/keymap-ypr1.c
 #elif CONFIG_KEYPAD == DX50_PAD
 keymaps/keymap-dx50.c
+#elif CONFIG_KEYPAD == XDUOO_X3_PAD
+keymaps/keymap-xduoox3.c
 #endif
