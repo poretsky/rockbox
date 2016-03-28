@@ -515,6 +515,13 @@
 #define UI_LCD_POSX                 78
 #define UI_LCD_POSY                 92
 
+#elif defined(XDUOO_X3)
+#define UI_TITLE                    "xDuoo X3"
+#define UI_WIDTH                    192 /* width of GUI window */
+#define UI_HEIGHT                   457 /* height of GUI window */
+#define UI_LCD_POSX                 34
+#define UI_LCD_POSY                 73
+
 #elif defined(SIMULATOR)
 #error no UI defines
 #endif

@@ -443,6 +443,18 @@
 #elif (CONFIG_KEYPAD == DX50_PAD)
 #define  GBN_BUTTON_MENU               (BUTTON_POWER|BUTTON_REL)
 
+#elif (CONFIG_KEYPAD == XDUOO_X3_PAD)
+#define  GBN_BUTTON_UP                 BUTTON_HOME
+#define  GBN_BUTTON_DOWN               BUTTON_OPTION
+#define  GBN_BUTTON_LEFT               BUTTON_PREV
+#define  GBN_BUTTON_RIGHT              BUTTON_NEXT
+#define  GBN_BUTTON_RETREAT            BUTTON_VOL_DOWN
+#define  GBN_BUTTON_ADVANCE            BUTTON_VOL_UP
+#define  GBN_BUTTON_MENU               BUTTON_POWER
+#define  GBN_BUTTON_PLAY               BUTTON_PLAY | BUTTON_REL
+#define  GBN_BUTTON_CONTEXT            BUTTON_PLAY | BUTTON_REPEAT
+#define  GBN_BUTTON_NEXT_VAR           BUTTON_HOME | BUTTON_POWER
+
 #else
 #error Unsupported keypad
 #endif
