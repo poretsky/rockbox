@@ -205,6 +205,14 @@
 #define BTN_FIRE       BUTTON_BOTTOMLEFT
 #define BTN_PAUSE      BUTTON_TOPLEFT
 
+#elif (CONFIG_KEYPAD == XDUOO_X3_PAD)
+#define BTN_UP         BUTTON_VOL_UP
+#define BTN_DOWN       BUTTON_VOL_DOWN
+#define BTN_LEFT       BUTTON_PREV
+#define BTN_RIGHT      BUTTON_NEXT
+#define BTN_FIRE       BUTTON_PLAY
+#define BTN_PAUSE      BUTTON_OPTION
+
 #else
 #error Unsupported keypad
 #endif
