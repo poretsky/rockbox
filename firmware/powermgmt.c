@@ -65,6 +65,8 @@ void send_battery_level_event(void);
 static void set_sleep_timer(int seconds);
 
 static bool sleeptimer_active = false;
+static bool sleeptimer_active_sleeping = false;
+
 static long sleeptimer_endtick;
 /* Whether an active sleep timer should be restarted when a key is pressed */
 static bool sleeptimer_key_restarts = false;
@@ -806,7 +808,7 @@ void set_poweroff_timeout(int timeout)
 void reset_poweroff_timer(void)
 {
     last_event_tick = current_tick;
-    if (sleeptimer_active && sleeptimer_key_restarts)
+    if ((sleeptimer_active || sleeptimer_active_sleeping) && sleeptimer_key_restarts)
         set_sleep_timer(sleeptimer_duration);
 }
 
@@ -884,6 +886,7 @@ static void set_sleep_timer(int seconds)
         sleeptimer_endtick = 0;
     }
     sleeptimer_duration = seconds;
+    sleeptimer_active_sleeping = false;
 }
 
 int get_sleep_timer(void)
@@ -911,11 +914,16 @@ static void handle_sleep_timer(void)
 #if CONFIG_CHARGING && !defined(HAVE_POWEROFF_WHILE_CHARGING)
             || charger_input_state != NO_CHARGER
 #endif
+            || (poweroff_timeout && (audio_status() & AUDIO_STATUS_PLAY))
         ) {
             DEBUGF("Sleep timer timeout. Stopping...\n");
             audio_pause();
-            set_sleep_timer(0);
-            backlight_off(); /* Nighty, nighty... */
+            /*
+             * setting sleeptimer_active to false
+             * to be not blocky for power off
+             */
+            sleeptimer_active = false;
+            sleeptimer_active_sleeping = true;
         }
         else {
             DEBUGF("Sleep timer timeout. Shutting off...\n");
@@ -967,8 +975,7 @@ void handle_auto_poweroff(void)
 #endif
         !usb_inserted() &&
         (audio_stat == 0 ||
-         (audio_stat == (AUDIO_STATUS_PLAY | AUDIO_STATUS_PAUSE) &&
-          !sleeptimer_active))) {
+         (audio_stat == (AUDIO_STATUS_PLAY | AUDIO_STATUS_PAUSE)))) {
 
         if (TIME_AFTER(tick, last_event_tick + timeout)
 #if !(CONFIG_PLATFORM & PLATFORM_HOSTED)
