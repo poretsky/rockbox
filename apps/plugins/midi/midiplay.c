@@ -290,6 +290,14 @@
 #define BTN_DOWN         BUTTON_VOL_DOWN
 #define BTN_PLAY         BUTTON_PLAY
 
+#elif CONFIG_KEYPAD == IHIFI2_PAD
+#define BTN_QUIT         BUTTON_POWER
+#define BTN_RIGHT        BUTTON_VOL_DOWN
+#define BTN_LEFT         BUTTON_HOME
+#define BTN_UP           BUTTON_PREV
+#define BTN_DOWN         BUTTON_NEXT
+#define BTN_PLAY         BUTTON_PLAY
+
 #else
 #error No keymap defined!
 #endif
