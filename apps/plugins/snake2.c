@@ -414,6 +414,15 @@ CONFIG_KEYPAD == MROBE500_PAD
 #define SNAKE2_PLAYPAUSE    BUTTON_PLAY
 #define SNAKE2_PLAYPAUSE_TEXT    "PLAY"
 
+#elif (CONFIG_KEYPAD == IHIFI2_PAD)
+#define SNAKE2_LEFT         BUTTON_HOME
+#define SNAKE2_RIGHT        BUTTON_VOL_DOWN
+#define SNAKE2_UP           BUTTON_PREV
+#define SNAKE2_DOWN         BUTTON_NEXT
+#define SNAKE2_QUIT         BUTTON_POWER
+#define SNAKE2_PLAYPAUSE    BUTTON_PLAY
+#define SNAKE2_PLAYPAUSE_TEXT    "PLAY"
+
 #else
 #error No keymap defined!
 #endif
