@@ -340,6 +340,15 @@
 #elif CONFIG_KEYPAD == DX50_PAD
 #define PACMAN_MENU     BUTTON_POWER
 
+#elif CONFIG_KEYPAD == IHIFI2_PAD
+#define PACMAN_UP       BUTTON_PREV
+#define PACMAN_DOWN     BUTTON_NEXT
+#define PACMAN_LEFT     BUTTON_HOME
+#define PACMAN_RIGHT    BUTTON_VOL_DOWN
+#define PACMAN_MENU     BUTTON_POWER
+#define PACMAN_1UP      BUTTON_VOL_UP
+#define PACMAN_COIN     BUTTON_PLAY
+
 #else
 
 #error Keymap not defined!
