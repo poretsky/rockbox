@@ -70,6 +70,9 @@
 
 #define IRAM_LCDFRAMEBUFFER IDATA_ATTR /* put the lcd frame buffer in IRAM */
 
+/* Define this if you can detect headphones */
+#define HAVE_HEADPHONE_DETECTION
+
 #define CONFIG_KEYPAD XDUOO_X3_PAD
 
 /* Define this if a programmable hotkey is mapped */
@@ -95,8 +98,8 @@
 /* The number of bytes reserved for loadable plugins */
 #define PLUGIN_BUFFER_SIZE 0x100000
 
-/* Define this if you have the Jz47XX internal codec */
-#define HAVE_CS4398_CODEC
+#define HAVE_CS4398
+#define CODEC_SLAVE
 
 /* has no tone controls, so we use the software ones */
 #define HAVE_SW_TONE_CONTROLS
@@ -106,9 +109,9 @@
 
 #define AB_REPEAT_ENABLE
 
-#define BATTERY_CAPACITY_DEFAULT 1250 /* default battery capacity */
+#define BATTERY_CAPACITY_DEFAULT 2000 /* default battery capacity */
 #define BATTERY_CAPACITY_MIN 500      /* min. capacity selectable */
-#define BATTERY_CAPACITY_MAX 2500     /* max. capacity selectable */
+#define BATTERY_CAPACITY_MAX 2000     /* max. capacity selectable */
 #define BATTERY_CAPACITY_INC 100      /* capacity increment */
 #define BATTERY_TYPES_COUNT  1        /* only one type */
 
@@ -152,7 +155,7 @@
 #define NEED_ADC_CLOSE 1
 
 /* define this if the hardware can be powered off while charging */
-#define HAVE_POWEROFF_WHILE_CHARGING
+/* #define HAVE_POWEROFF_WHILE_CHARGING */
 
 /* Type of LCD */
 #define CONFIG_LCD LCD_XDUOOX3

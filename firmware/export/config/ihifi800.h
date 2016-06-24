@@ -3,7 +3,7 @@
  */
 
 /* For Rolo and boot loader */
-#define MODEL_NUMBER 98
+#define MODEL_NUMBER 99
 
 #define MODEL_NAME   "IHIFI 800"
 
@@ -16,8 +16,9 @@
                          SAMPR_CAP_32 | SAMPR_CAP_24 | SAMPR_CAP_22 | \
                          SAMPR_CAP_16 | SAMPR_CAP_12 | SAMPR_CAP_11 | SAMPR_CAP_8)
 
-#define HAVE_DUMMY_CODEC
+#define HAVE_ES9018
 #define CODEC_SLAVE
+
 /* define this if you have a bitmap LCD display */
 #define HAVE_LCD_BITMAP
 
@@ -82,7 +83,7 @@
 /* TODO: #define HAVE_LCD_SLEEP_SETTING */
 #endif
 
-#define CONFIG_KEYPAD IHIFI2_PAD
+#define CONFIG_KEYPAD IHIFI_800_PAD
 
 /* define this if the target has volume keys which can be used in the lists */
 #define HAVE_VOLUME_IN_LIST
@@ -109,7 +110,7 @@
 #define HAVE_BACKLIGHT_BRIGHTNESS
 #define MIN_BRIGHTNESS_SETTING      0
 #define MAX_BRIGHTNESS_SETTING      31
-#define DEFAULT_BRIGHTNESS_SETTING   20
+#define DEFAULT_BRIGHTNESS_SETTING  31
 #define CONFIG_BACKLIGHT_FADING BACKLIGHT_FADING_SW_HW_REG
 
 /* Define this if you have a software controlled poweroff */
@@ -122,11 +123,11 @@
 #define PLUGIN_BUFFER_SIZE 0x80000
 
 /* TODO: Figure out real values */
-#define BATTERY_CAPACITY_DEFAULT 600 /* default battery capacity */
-#define BATTERY_CAPACITY_MIN     300 /* min. capacity selectable */
-#define BATTERY_CAPACITY_MAX     600 /* max. capacity selectable */
-#define BATTERY_CAPACITY_INC      10 /* capacity increment */
-#define BATTERY_TYPES_COUNT        1 /* only one type */
+#define BATTERY_CAPACITY_DEFAULT 1400 /* default battery capacity */
+#define BATTERY_CAPACITY_MIN      700 /* min. capacity selectable */
+#define BATTERY_CAPACITY_MAX     1400 /* max. capacity selectable */
+#define BATTERY_CAPACITY_INC       10 /* capacity increment */
+#define BATTERY_TYPES_COUNT         1 /* only one type */
 
 #define CONFIG_BATTERY_MEASURE VOLTAGE_MEASURE
 
@@ -174,7 +175,7 @@
 /* #define HAVE_POWEROFF_WHILE_CHARGING */
 
 /* Type of LCD */
-#define CONFIG_LCD LCD_IHIFI2
+#define CONFIG_LCD LCD_IHIFI800
 
 /* USB On-the-go */
 #define CONFIG_USBOTG USBOTG_RK27XX
