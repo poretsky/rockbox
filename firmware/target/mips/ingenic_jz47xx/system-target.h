@@ -35,6 +35,8 @@
 /* no optimized byteswap functions implemented for mips, yet */
 #define NEED_GENERIC_BYTESWAPS
 
+#define STORAGE_WANTS_ALIGN
+
 /* This one returns the old status */
 static inline int set_interrupt_status(int status, int mask)
 {
