@@ -56,9 +56,6 @@ static int                sd2_0[NUM_DRIVES];
 
 #define SD_DMA_ENABLE 1
 
-#define UNALIGNED_NUM_SECTORS 256
-static unsigned char aligned_buffer[UNALIGNED_NUM_SECTORS*SD_BLOCK_SIZE] __attribute__((aligned(4)));   /* align on word */
-
 //#define DEBUG(x...)         logf(x)
 #define DEBUG(x, ...)
 
@@ -423,125 +420,6 @@ static void jz_sd_get_response(const int drive, struct sd_request *request)
     }
 }
 
-#if SD_DMA_ENABLE
-static void jz_sd_receive_data_dma(const int drive, struct sd_request *req)
-{
-    unsigned int waligned = (((unsigned int)req->buffer & 0x3) == 0);    /* word aligned ? */
-    unsigned int size = req->block_len * req->nob;
-
-    if (!waligned)
-    {
-        if (size > UNALIGNED_NUM_SECTORS*SD_BLOCK_SIZE)
-            size = UNALIGNED_NUM_SECTORS*SD_BLOCK_SIZE;
-    }
-
-    /* flush dcache */
-    dma_cache_wback_inv((unsigned long) req->buffer, size);
-    /* setup dma channel */
-    REG_DMAC_DCCSR(DMA_SD_RX_CHANNEL) = 0;
-    REG_DMAC_DSAR(DMA_SD_RX_CHANNEL) = PHYSADDR(MSC_RXFIFO(MSC_CHN(drive)));    /* DMA source addr */
-    if (waligned)
-        REG_DMAC_DTAR(DMA_SD_RX_CHANNEL) = PHYSADDR((unsigned long)req->buffer);    /* DMA dest addr */
-    else
-        REG_DMAC_DTAR(DMA_SD_RX_CHANNEL) = PHYSADDR((unsigned long)&aligned_buffer);    /* DMA dest addr */
-    REG_DMAC_DTCR(DMA_SD_RX_CHANNEL) = (size + 3) / 4;    /* DMA transfer count */
-    REG_DMAC_DRSR(DMA_SD_RX_CHANNEL) = (drive == SD_SLOT_1) ? DMAC_DRSR_RS_MSC2IN : DMAC_DRSR_RS_MSC1IN;    /* DMA request type */
-
-    REG_DMAC_DCMD(DMA_SD_RX_CHANNEL) =
-        DMAC_DCMD_DAI | DMAC_DCMD_SWDH_32 | DMAC_DCMD_DWDH_32 |
-        DMAC_DCMD_DS_32BIT;
-    REG_DMAC_DCCSR(DMA_SD_RX_CHANNEL) = DMAC_DCCSR_EN | DMAC_DCCSR_NDES;
-
-    /* wait for dma completion */
-    while (REG_DMAC_DTCR(DMA_SD_RX_CHANNEL));
-
-    /* clear status and disable channel */
-    REG_DMAC_DCCSR(DMA_SD_RX_CHANNEL) = 0;
-
-    if (!waligned)
-        memcpy_dma(req->buffer, &aligned_buffer, size, 8);
-}
-
-static void jz_sd_transmit_data_dma(const int drive, struct sd_request *req)
-{
-    unsigned int waligned = (((unsigned int)req->buffer & 0x3) == 0);    /* word aligned ? */
-    unsigned int size = req->block_len * req->nob;
-
-    if (!waligned)
-    {
-        if (size > UNALIGNED_NUM_SECTORS*SD_BLOCK_SIZE)
-            size = UNALIGNED_NUM_SECTORS*SD_BLOCK_SIZE;
-        memcpy_dma(&aligned_buffer, req->buffer, size, 8);
-    }
-
-    /* flush dcache */
-    dma_cache_wback_inv((unsigned long) req->buffer, size);
-    /* setup dma channel */
-    REG_DMAC_DCCSR(DMA_SD_RX_CHANNEL) = 0;
-    if (waligned)
-        REG_DMAC_DSAR(DMA_SD_TX_CHANNEL) = PHYSADDR((unsigned long) req->buffer);    /* DMA source addr */
-    else
-        REG_DMAC_DSAR(DMA_SD_RX_CHANNEL) = PHYSADDR((unsigned long)&aligned_buffer);    /* DMA source addr */
-    REG_DMAC_DTAR(DMA_SD_TX_CHANNEL) = PHYSADDR(MSC_TXFIFO(MSC_CHN(drive)));    /* DMA dest addr */
-    REG_DMAC_DTCR(DMA_SD_TX_CHANNEL) = (size + 3) / 4;    /* DMA transfer count */
-    REG_DMAC_DRSR(DMA_SD_TX_CHANNEL) = (drive == SD_SLOT_1) ? DMAC_DRSR_RS_MSC2OUT : DMAC_DRSR_RS_MSC1OUT;    /* DMA request type */
-
-    REG_DMAC_DCMD(DMA_SD_TX_CHANNEL) =
-        DMAC_DCMD_SAI | DMAC_DCMD_SWDH_32 | DMAC_DCMD_DWDH_32 |
-        DMAC_DCMD_DS_32BIT;
-    REG_DMAC_DCCSR(DMA_SD_TX_CHANNEL) = DMAC_DCCSR_EN | DMAC_DCCSR_NDES;
-
-    /* wait for dma completion */
-    while (REG_DMAC_DTCR(DMA_SD_TX_CHANNEL));
-
-    /* clear status and disable channel */
-    REG_DMAC_DCCSR(DMA_SD_TX_CHANNEL) = 0;
-}
-
-void DMA_CALLBACK(DMA_SD_RX_CHANNEL)(void)
-{
-    if (REG_DMAC_DCCSR(DMA_SD_RX_CHANNEL) & DMAC_DCCSR_AR)
-    {
-        logf("SD RX DMA address error");
-        REG_DMAC_DCCSR(DMA_SD_RX_CHANNEL) &= ~DMAC_DCCSR_AR;
-    }
-
-    if (REG_DMAC_DCCSR(DMA_SD_RX_CHANNEL) & DMAC_DCCSR_HLT)
-    {
-        logf("SD RX DMA halt");
-        REG_DMAC_DCCSR(DMA_SD_RX_CHANNEL) &= ~DMAC_DCCSR_HLT;
-    }
-
-    if (REG_DMAC_DCCSR(DMA_SD_RX_CHANNEL) & DMAC_DCCSR_TT)
-    {
-        REG_DMAC_DCCSR(DMA_SD_RX_CHANNEL) &= ~DMAC_DCCSR_TT;
-        //sd_rx_dma_callback();
-    }
-}
-
-void DMA_CALLBACK(DMA_SD_TX_CHANNEL)(void)
-{
-    if (REG_DMAC_DCCSR(DMA_SD_TX_CHANNEL) & DMAC_DCCSR_AR)
-    {
-        logf("SD TX DMA address error: %x, %x, %x", var1, var2, var3);
-        REG_DMAC_DCCSR(DMA_SD_TX_CHANNEL) &= ~DMAC_DCCSR_AR;
-    }
-
-    if (REG_DMAC_DCCSR(DMA_SD_TX_CHANNEL) & DMAC_DCCSR_HLT)
-    {
-        logf("SD TX DMA halt");
-        REG_DMAC_DCCSR(DMA_SD_TX_CHANNEL) &= ~DMAC_DCCSR_HLT;
-    }
-
-    if (REG_DMAC_DCCSR(DMA_SD_TX_CHANNEL) & DMAC_DCCSR_TT)
-    {
-        REG_DMAC_DCCSR(DMA_SD_TX_CHANNEL) &= ~DMAC_DCCSR_TT;
-        //sd_tx_dma_callback();
-    }
-}
-
-#else                /* SD_DMA_ENABLE */
-
 static int jz_sd_receive_data(const int drive, struct sd_request *req)
 {
     unsigned int nob = req->nob;
@@ -655,7 +533,116 @@ static int jz_sd_transmit_data(const int drive, struct sd_request *req)
 
     return SD_NO_ERROR;
 }
-#endif
+
+#if SD_DMA_ENABLE
+static void jz_sd_receive_data_dma(const int drive, struct sd_request *req)
+{
+    unsigned int waligned = (((unsigned int)req->buffer & 0x3) == 0);    /* word aligned ? */
+    unsigned int size = req->block_len * req->nob;
+
+    if (!waligned)
+    {
+        jz_sd_receive_data(drive, req);
+        return;
+    }
+
+    /* flush dcache */
+    dma_cache_wback_inv((unsigned long) req->buffer, size);
+
+    /* setup dma channel */
+    REG_DMAC_DCCSR(DMA_SD_RX_CHANNEL) = 0;
+    REG_DMAC_DSAR(DMA_SD_RX_CHANNEL) = PHYSADDR(MSC_RXFIFO(MSC_CHN(drive))); /* DMA source addr */
+    REG_DMAC_DTAR(DMA_SD_RX_CHANNEL) = PHYSADDR((unsigned long)req->buffer); /* DMA dest addr */
+    REG_DMAC_DTCR(DMA_SD_RX_CHANNEL) = (size + 3) >> 2;                      /* DMA transfer count */
+    REG_DMAC_DRSR(DMA_SD_RX_CHANNEL) = (drive == SD_SLOT_1) ? DMAC_DRSR_RS_MSC2IN : DMAC_DRSR_RS_MSC1IN;    /* DMA request type */
+
+    REG_DMAC_DCMD(DMA_SD_RX_CHANNEL) =
+        DMAC_DCMD_DAI | DMAC_DCMD_SWDH_32 | DMAC_DCMD_DWDH_32 |
+        DMAC_DCMD_DS_32BIT;
+    REG_DMAC_DCCSR(DMA_SD_RX_CHANNEL) = DMAC_DCCSR_EN | DMAC_DCCSR_NDES;
+
+    /* wait for dma completion */
+    while (REG_DMAC_DTCR(DMA_SD_RX_CHANNEL));
+
+    /* clear status and disable channel */
+    REG_DMAC_DCCSR(DMA_SD_RX_CHANNEL) = 0;
+}
+
+static void jz_sd_transmit_data_dma(const int drive, struct sd_request *req)
+{
+    unsigned int waligned = (((unsigned int)req->buffer & 0x3) == 0);    /* word aligned ? */
+    unsigned int size = req->block_len * req->nob;
+
+    if (!waligned)
+    {
+        jz_sd_transmit_data(drive, req);
+        return;
+    }
+
+    /* flush dcache */
+    dma_cache_wback_inv((unsigned long) req->buffer, size);
+
+    /* setup dma channel */
+    REG_DMAC_DCCSR(DMA_SD_RX_CHANNEL) = 0;
+    REG_DMAC_DSAR(DMA_SD_TX_CHANNEL) = PHYSADDR((unsigned long) req->buffer); /* DMA source addr */
+    REG_DMAC_DTAR(DMA_SD_TX_CHANNEL) = PHYSADDR(MSC_TXFIFO(MSC_CHN(drive)));  /* DMA dest addr */
+    REG_DMAC_DTCR(DMA_SD_TX_CHANNEL) = (size + 3) >> 2;                       /* DMA transfer count */
+    REG_DMAC_DRSR(DMA_SD_TX_CHANNEL) = (drive == SD_SLOT_1) ? DMAC_DRSR_RS_MSC2OUT : DMAC_DRSR_RS_MSC1OUT;    /* DMA request type */
+
+    REG_DMAC_DCMD(DMA_SD_TX_CHANNEL) =
+        DMAC_DCMD_SAI | DMAC_DCMD_SWDH_32 | DMAC_DCMD_DWDH_32 |
+        DMAC_DCMD_DS_32BIT;
+    REG_DMAC_DCCSR(DMA_SD_TX_CHANNEL) = DMAC_DCCSR_EN | DMAC_DCCSR_NDES;
+
+    /* wait for dma completion */
+    while (REG_DMAC_DTCR(DMA_SD_TX_CHANNEL));
+
+    /* clear status and disable channel */
+    REG_DMAC_DCCSR(DMA_SD_TX_CHANNEL) = 0;
+}
+
+void DMA_CALLBACK(DMA_SD_RX_CHANNEL)(void)
+{
+    if (REG_DMAC_DCCSR(DMA_SD_RX_CHANNEL) & DMAC_DCCSR_AR)
+    {
+        logf("SD RX DMA address error");
+        REG_DMAC_DCCSR(DMA_SD_RX_CHANNEL) &= ~DMAC_DCCSR_AR;
+    }
+
+    if (REG_DMAC_DCCSR(DMA_SD_RX_CHANNEL) & DMAC_DCCSR_HLT)
+    {
+        logf("SD RX DMA halt");
+        REG_DMAC_DCCSR(DMA_SD_RX_CHANNEL) &= ~DMAC_DCCSR_HLT;
+    }
+
+    if (REG_DMAC_DCCSR(DMA_SD_RX_CHANNEL) & DMAC_DCCSR_TT)
+    {
+        REG_DMAC_DCCSR(DMA_SD_RX_CHANNEL) &= ~DMAC_DCCSR_TT;
+        //sd_rx_dma_callback();
+    }
+}
+
+void DMA_CALLBACK(DMA_SD_TX_CHANNEL)(void)
+{
+    if (REG_DMAC_DCCSR(DMA_SD_TX_CHANNEL) & DMAC_DCCSR_AR)
+    {
+        logf("SD TX DMA address error: %x, %x, %x", var1, var2, var3);
+        REG_DMAC_DCCSR(DMA_SD_TX_CHANNEL) &= ~DMAC_DCCSR_AR;
+    }
+
+    if (REG_DMAC_DCCSR(DMA_SD_TX_CHANNEL) & DMAC_DCCSR_HLT)
+    {
+        logf("SD TX DMA halt");
+        REG_DMAC_DCCSR(DMA_SD_TX_CHANNEL) &= ~DMAC_DCCSR_HLT;
+    }
+
+    if (REG_DMAC_DCCSR(DMA_SD_TX_CHANNEL) & DMAC_DCCSR_TT)
+    {
+        REG_DMAC_DCCSR(DMA_SD_TX_CHANNEL) &= ~DMAC_DCCSR_TT;
+        //sd_tx_dma_callback();
+    }
+}
+#endif                /* SD_DMA_ENABLE */
 
 static inline unsigned int jz_sd_calc_clkrt(const int drive, unsigned int rate)
 {

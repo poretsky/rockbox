@@ -522,6 +522,13 @@
 #define UI_LCD_POSX                 34
 #define UI_LCD_POSY                 73
 
+#elif defined(IHIFI770)
+#define UI_TITLE                    "iHiFi 770"
+#define UI_WIDTH                    382 /* width of GUI window */
+#define UI_HEIGHT                   690 /* height of GUI window */
+#define UI_LCD_POSX                 32
+#define UI_LCD_POSY                 86
+
 #elif defined(IHIFI770C)
 #define UI_TITLE                    "iHiFi 770C"
 #define UI_WIDTH                    382 /* width of GUI window */

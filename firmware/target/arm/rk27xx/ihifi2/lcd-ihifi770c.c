@@ -32,8 +32,6 @@ void lcd_display_init(void)
 {
     unsigned int x, y;
 
-    mdelay(150);
-
     lcd_cmd(0x13);
 
     mdelay(120);

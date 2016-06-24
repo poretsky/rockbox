@@ -285,7 +285,15 @@ dir is the current direction of the snake - 0=up, 1=right, 2=down, 3=left;
 #define SNAKE_DOWN      BUTTON_OPTION
 #define SNAKE_PLAYPAUSE BUTTON_PLAY
 
-#elif CONFIG_KEYPAD == IHIFI2_PAD
+#elif CONFIG_KEYPAD == IHIFI_770_PAD
+#define SNAKE_QUIT      BUTTON_POWER
+#define SNAKE_LEFT      BUTTON_HOME
+#define SNAKE_RIGHT     BUTTON_VOL_DOWN
+#define SNAKE_UP        BUTTON_PREV
+#define SNAKE_DOWN      BUTTON_NEXT
+#define SNAKE_PLAYPAUSE BUTTON_PLAY
+
+#elif CONFIG_KEYPAD == IHIFI_800_PAD
 #define SNAKE_QUIT      BUTTON_POWER
 #define SNAKE_LEFT      BUTTON_HOME
 #define SNAKE_RIGHT     BUTTON_VOL_DOWN
