@@ -33,93 +33,6 @@
 #define PIN_AP_MUTE     (32*1+14)
 #define PIN_JD_CON      (32*1+16)
 
-#define PIN_PH_DECT   (32*1+11)
-#define IRQ_PH_DECT   GPIO_IRQ(PIN_PH_DECT)
-#define GPIO_PH_DECT  GPIO43
-
-#define PIN_LO_DECT   (32*1+12)
-#define IRQ_LO_DECT   GPIO_IRQ(PIN_LO_DECT)
-#define GPIO_LO_DECT  GPIO44
-
-static inline bool ph_detect(void)
-{
-    return (__gpio_get_pin(PIN_PH_DECT) == 0);
-}
-
-static inline bool lo_detect(void)
-{
-    return (__gpio_get_pin(PIN_LO_DECT) == 0);
-}
-
-static void ph_gpio_setup_irq(void)
-{
-    if(ph_detect())
-        __gpio_as_irq_rise_edge(PIN_PH_DECT);
-    else
-        __gpio_as_irq_fall_edge(PIN_PH_DECT);
-}
-
-static void lo_gpio_setup_irq(void)
-{
-    if(lo_detect())
-        __gpio_as_irq_rise_edge(PIN_LO_DECT);
-    else
-        __gpio_as_irq_fall_edge(PIN_LO_DECT);
-}
-
-static int ph_oneshot_callback(struct timeout *tmo)
-{
-    (void)tmo;
-    
-    /* This is called only if the state was stable for 500ms - check state
-     * and post appropriate event. */
-    if (ph_detect())
-    {
-        /* TODO */
-    }
-    else
-    {
-        //audio_pause();
-    }
-
-    ph_gpio_setup_irq();
-
-    return 0;
-}
-
-static int lo_oneshot_callback(struct timeout *tmo)
-{
-    (void)tmo;
-
-    /* This is called only if the state was stable for 500ms - check state
-     * and post appropriate event. */
-    if (lo_detect())
-    {
-        /* TODO */
-    }
-    else
-    {
-        //audio_pause();
-    }
-
-    lo_gpio_setup_irq();
-
-    return 0;
-}
-
-/* called on insertion/removal interrupt */
-void GPIO_PH_DECT(void)
-{
-    static struct timeout ph_oneshot;
-    timeout_register(&ph_oneshot, ph_oneshot_callback, (HZ/2), 0);
-}
-
-void GPIO_LO_DECT(void)
-{
-    static struct timeout lo_oneshot;
-    timeout_register(&lo_oneshot, lo_oneshot_callback, (HZ/2), 0);
-}
-
 static void pop_ctrl(const int val)
 {
     if(val)
@@ -179,18 +92,6 @@ void audiohw_init(void)
     __gpio_as_func2(4*32+5);  // MCLK
     __gpio_as_func0(4*32+7);  // DO
 
-    __gpio_as_input(PIN_LO_DECT);
-    __gpio_as_input(PIN_PH_DECT);
-
-    __gpio_disable_pull(PIN_LO_DECT);
-    __gpio_disable_pull(PIN_PH_DECT);
-
-    ph_gpio_setup_irq();
-    lo_gpio_setup_irq();
-
-    system_enable_irq(IRQ_PH_DECT);
-    system_enable_irq(IRQ_LO_DECT);
-
     pop_ctrl(0);
     ap_mute(true);
     amp_enable(0);
@@ -244,6 +145,17 @@ void audiohw_set_volume(int vol_l, int vol_r)
 {
     cs4398_write_reg(0x05, vol_tenthdb2hw(vol_l));
     cs4398_write_reg(0x06, vol_tenthdb2hw(vol_r));
+}
+
+void audiohw_set_lineout_volume(int vol_l, int vol_r)
+{
+#if 0 /* unused */
+    cs4398_write_reg(0x05, vol_tenthdb2hw(vol_l));
+    cs4398_write_reg(0x06, vol_tenthdb2hw(vol_r));
+#else
+    (void)vol_l;
+    (void)vol_r;
+#endif
 }
 
 void audiohw_set_filter_roll_off(int value)

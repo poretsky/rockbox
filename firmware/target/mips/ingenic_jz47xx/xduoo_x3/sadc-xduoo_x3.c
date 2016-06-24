@@ -38,12 +38,25 @@
 
 #define PIN_CHARGE_CON (32*1+7)
 
+#define PIN_PH_DECT   (32*1+11)
+#define IRQ_PH_DECT   GPIO_IRQ(PIN_PH_DECT)
+#define GPIO_PH_DECT  GPIO43
+
+#define PIN_LO_DECT   (32*1+12)
+#define IRQ_LO_DECT   GPIO_IRQ(PIN_LO_DECT)
+#define GPIO_LO_DECT  GPIO44
+
 static volatile unsigned short bat_val,key_val;
+
+bool headphones_inserted(void)
+{
+    return (__gpio_get_pin(PIN_PH_DECT) != 0);
+}
 
 void button_init_device(void)
 {
     key_val = 0xfff;
-    
+
     __gpio_as_input(PIN_BTN_POWER);
     __gpio_as_input(PIN_BTN_HOLD);
 
@@ -53,8 +66,14 @@ void button_init_device(void)
     __gpio_as_irq_fall_edge(PIN_KEY_INT);
     system_enable_irq(GPIO_IRQ(PIN_KEY_INT));
 
-    __gpio_clear_pin(PIN_CHARGE_CON); /* 0.5 A */
+    __gpio_set_pin(PIN_CHARGE_CON); /* 0.7 A */
     __gpio_as_output(PIN_CHARGE_CON);
+
+    __gpio_as_input(PIN_LO_DECT);
+    __gpio_as_input(PIN_PH_DECT);
+
+    __gpio_disable_pull(PIN_LO_DECT);
+    __gpio_disable_pull(PIN_PH_DECT);
 }
 
 bool button_hold(void)
@@ -68,21 +87,24 @@ int button_read_device(void)
     bool hold_button_old;
     
     hold_button_old = hold_button;
-    hold_button = button_hold();
+    hold_button = (__gpio_get_pin(PIN_BTN_HOLD) ? true : false);
 
     int btn = BUTTON_NONE;
+    bool gpio_btn = (__gpio_get_pin(PIN_BTN_POWER) ? false : true);
+
+    REG_SADC_ADCFG = ADCFG_VBAT_SEL + ADCFG_CMD_AUX(1);
+    REG_SADC_ADENA = ADENA_VBATEN + ADENA_AUXEN;
 
 #ifndef BOOTLOADER
     if (hold_button != hold_button_old) {
         backlight_hold_changed(hold_button);
     }
+    if (hold_button) {
+        return BUTTON_NONE;
+    }
 #endif
 
-    if (hold_button) {
-        return 0;
-    }
-
-    if (__gpio_get_pin(PIN_BTN_POWER) == 0)
+    if (gpio_btn)
         btn |= BUTTON_POWER;
 
     if (key_val < 261)
@@ -105,10 +127,7 @@ int button_read_device(void)
     else
     if (key_val < 2600)
         btn |= BUTTON_HOME;
-
-    REG_SADC_ADCFG = ADCFG_VBAT_SEL + ADCFG_CMD_AUX(1);
-    REG_SADC_ADENA = ADENA_VBATEN + ADENA_AUXEN;
-        
+       
     return btn;
 }
 
@@ -119,13 +138,13 @@ void KEY_INT_IRQ(void)
 
 const unsigned short battery_level_dangerous[BATTERY_TYPES_COUNT] =
 {
-    /* TODO */
-    3400
+    /* 5% */
+    3634
 };
 
 const unsigned short battery_level_shutoff[BATTERY_TYPES_COUNT] =
 {
-    /* TODO */
+    /* 0% */
     3300
 };
 
@@ -133,20 +152,17 @@ const unsigned short battery_level_shutoff[BATTERY_TYPES_COUNT] =
 /* voltages (millivolt) of 0%, 10%, ... 100% when charging disabled */
 const unsigned short percent_to_volt_discharge[BATTERY_TYPES_COUNT][11] =
 {
-    /* TODO */
-    { 3300, 3653, 3701, 3735, 3768, 3790, 3833, 3900, 3966, 4056, 4140 }
+    { 3300, 3652, 3704, 3730, 3753, 3786, 3836, 3906, 3973, 4061, 4160 }
 };
 
 #if CONFIG_CHARGING
 /* voltages (millivolt) of 0%, 10%, ... 100% when charging enabled */
 const unsigned short percent_to_volt_charge[11] =
-{
-    3333, 3757, 3815, 3845, 3867, 3900, 3950, 4008, 4078, 4166, 4167
-};
+    { 3300, 3652, 3704, 3730, 3753, 3786, 3836, 3906, 3973, 4061, 4160 };
 #endif /* CONFIG_CHARGING */
 
 /* VBAT = (BDATA/1024) * 2.5V */
-#define BATTERY_SCALE_FACTOR 2500
+#define BATTERY_SCALE_FACTOR 2460
 
 /* Returns battery voltage from ADC [millivolts] */
 int _battery_voltage(void)

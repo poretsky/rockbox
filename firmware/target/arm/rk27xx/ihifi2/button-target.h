@@ -21,6 +21,8 @@
 #ifndef _BUTTON_TARGET_H_
 #define _BUTTON_TARGET_H_
 
+#define HAS_BUTTON_HOLD
+
 /* Main unit's buttons */
 #define BUTTON_POWER      0x00000001
 #define BUTTON_HOME       0x00000002
@@ -37,7 +39,12 @@
                       BUTTON_PLAY | BUTTON_VOL_UP | BUTTON_VOL_DOWN)
 
 /* Software power-off */
+#ifndef IHIFI800
 #define POWEROFF_BUTTON BUTTON_POWER
-#define POWEROFF_COUNT  10
+#define POWEROFF_COUNT  40
+#else
+#define POWEROFF_BUTTON BUTTON_HOME
+#define POWEROFF_COUNT  30
+#endif
 
 #endif /* _BUTTON_TARGET_H_ */

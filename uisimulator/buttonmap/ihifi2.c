@@ -63,7 +63,7 @@ int key_to_button(int keyboard_button)
     return new_btn;
 }
 
-#if defined(IHIFI770C)
+#if (CONFIG_KEYPAD == IHIFI_770_PAD)
 struct button_map bm[] = {
     { SDLK_KP8,     210,   0, 20, "Power" },
     { SDLK_KP4,      94, 430, 40, "Play" },
@@ -74,7 +74,7 @@ struct button_map bm[] = {
     { SDLK_KP3,     285, 508, 40, "Vol Down" },
     { 0, 0, 0, 0, "None" }
 };
-#elif defined(IHIFI800)
+#elif (CONFIG_KEYPAD == IHIFI_800_PAD)
 struct button_map bm[] = {
     { SDLK_KP8,     214, 468, 25, "Power" },
     { SDLK_KP4,     168, 580, 25, "Play" },
