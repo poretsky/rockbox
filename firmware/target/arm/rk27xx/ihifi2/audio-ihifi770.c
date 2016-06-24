@@ -60,10 +60,22 @@ void wm8740_set_ml(const int val)
         GPIO_PCDR &= ~(1<<4);
 }
 
+static void pop_ctrl(const int val)
+{
+    if (val)
+        GPIO_PADR |= (1<<7);
+    else
+        GPIO_PADR &= ~(1<<7);
+}
+
 void audiohw_postinit(void)
 {
+    pop_ctrl(0);
+    sleep(HZ/4);
     wm8740_hw_init();
     audiohw_init();
+    sleep(HZ/2);
+    pop_ctrl(1);
     sleep(HZ/4);
     audiohw_unmute();
 }
@@ -71,4 +83,6 @@ void audiohw_postinit(void)
 void audiohw_close(void)
 {
     audiohw_mute();
+    pop_ctrl(0);
+    sleep(HZ/4);
 }

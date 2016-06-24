@@ -18,6 +18,7 @@
  * KIND, either express or implied.
  *
  ****************************************************************************/
+
 /* Button Code Definitions for xDuoo X3 target */
 
 #include "config.h"
@@ -68,7 +69,7 @@ static const struct button_mapping button_context_wps[] = {
     LAST_ITEM_IN_LIST
 }; /* button_context_wps */
 
-static const struct button_mapping button_context_list[]  = {
+static const struct button_mapping button_context_list[] = {
     { ACTION_LIST_VOLUP,      BUTTON_VOL_UP,                    BUTTON_NONE },
     { ACTION_LIST_VOLUP,      BUTTON_VOL_UP|BUTTON_REPEAT,      BUTTON_NONE },
     { ACTION_LIST_VOLDOWN,    BUTTON_VOL_DOWN,                  BUTTON_NONE },
@@ -81,8 +82,8 @@ static const struct button_mapping button_context_list[]  = {
 static const struct button_mapping button_context_bmark[] = {
     { ACTION_BMS_DELETE,      BUTTON_PLAY|BUTTON_REPEAT,        BUTTON_PLAY },
 
-    LAST_ITEM_IN_LIST__NEXTLIST(CONTEXT_LIST),
-}; /* button_context_settings_bmark */
+    LAST_ITEM_IN_LIST__NEXTLIST(CONTEXT_LIST)
+}; /* button_context_bmark */
 
 /** Keyboard **/
 static const struct button_mapping button_context_keyboard[] = {
@@ -140,10 +141,6 @@ static const struct button_mapping button_context_quickscreen[] = {
 /** Settings - General Mappings **/
 static const struct button_mapping button_context_settings[] = {
     { ACTION_SETTINGS_RESET,  BUTTON_POWER|BUTTON_REL,          BUTTON_POWER },
-    { ACTION_SETTINGS_INC,    BUTTON_VOL_UP,                    BUTTON_NONE },
-    { ACTION_SETTINGS_INCREPEAT, BUTTON_VOL_UP|BUTTON_REPEAT,   BUTTON_NONE },
-    { ACTION_SETTINGS_DEC,    BUTTON_VOL_DOWN,                  BUTTON_NONE },
-    { ACTION_SETTINGS_DECREPEAT, BUTTON_VOL_DOWN|BUTTON_REPEAT, BUTTON_NONE },
     { ACTION_STD_PREV,        BUTTON_PREV,                      BUTTON_NONE },
     { ACTION_STD_PREVREPEAT,  BUTTON_PREV|BUTTON_REPEAT,        BUTTON_NONE },
     { ACTION_STD_NEXT,        BUTTON_NEXT,                      BUTTON_NONE },
@@ -154,20 +151,29 @@ static const struct button_mapping button_context_settings[] = {
     LAST_ITEM_IN_LIST__NEXTLIST(CONTEXT_STD)
 }; /* button_context_settings */
 
+static const struct button_mapping button_context_settings_vol_is_inc[] = {
+    { ACTION_SETTINGS_INC,    BUTTON_VOL_UP,                    BUTTON_NONE },
+    { ACTION_SETTINGS_INCREPEAT,BUTTON_VOL_UP|BUTTON_REPEAT,    BUTTON_NONE },
+    { ACTION_SETTINGS_DEC,    BUTTON_VOL_DOWN,                  BUTTON_NONE },
+    { ACTION_SETTINGS_DECREPEAT,BUTTON_VOL_DOWN|BUTTON_REPEAT,  BUTTON_NONE },
+
+    LAST_ITEM_IN_LIST__NEXTLIST(CONTEXT_STD)
+}; /* button_context_settings_right_is_inc */
+
 /** Tree **/
 static const struct button_mapping button_context_tree[] = {
     { ACTION_TREE_WPS,        BUTTON_HOME|BUTTON_REL,           BUTTON_HOME },
     { ACTION_TREE_STOP,       BUTTON_POWER|BUTTON_REL,          BUTTON_POWER },
     { ACTION_TREE_HOTKEY,     BUTTON_OPTION|BUTTON_REPEAT,      BUTTON_OPTION },
 
-    LAST_ITEM_IN_LIST__NEXTLIST(CONTEXT_STD)
+    LAST_ITEM_IN_LIST__NEXTLIST(CONTEXT_LIST)
 }; /* button_context_tree */
 
 /** Yes/No Screen **/
 static const struct button_mapping button_context_yesnoscreen[] = {
     { ACTION_YESNO_ACCEPT,    BUTTON_PLAY,                      BUTTON_NONE },
 
-    LAST_ITEM_IN_LIST
+    LAST_ITEM_IN_LIST__NEXTLIST(CONTEXT_STD)
 }; /* button_context_settings_yesnoscreen */
 
 /* get_context_mapping returns a pointer to one of the above defined arrays depending on the context */
@@ -178,24 +184,22 @@ const struct button_mapping* get_context_mapping(int context)
         case CONTEXT_LIST:
             return button_context_list;
         case CONTEXT_STD:
-        default:
             return button_context_standard;
-        /* contexts with special mapping */
         case CONTEXT_BOOKMARKSCREEN:
             return button_context_bmark;
         case CONTEXT_KEYBOARD:
-        case CONTEXT_MORSE_INPUT:
             return button_context_keyboard;
         case CONTEXT_PITCHSCREEN:
             return button_context_pitchscreen;
         case CONTEXT_QUICKSCREEN:
             return button_context_quickscreen;
         case CONTEXT_SETTINGS:
+            return button_context_settings;
         case CONTEXT_SETTINGS_TIME:
         case CONTEXT_SETTINGS_COLOURCHOOSER:
         case CONTEXT_SETTINGS_EQ:
         case CONTEXT_SETTINGS_RECTRIGGER:
-            return button_context_settings;
+            return button_context_settings_vol_is_inc;
         case CONTEXT_TREE:
         case CONTEXT_MAINMENU:
             return button_context_tree;

@@ -25,6 +25,7 @@
 #include "panic.h"
 #include "system.h"
 #include "usb_core.h"   /* for usb_charging_maxcurrent_change */
+#include "adc.h"
 
 void power_off(void)
 {
@@ -36,6 +37,9 @@ void power_init(void)
 {
     GPIO_PCDR |= (1<<0);
     GPIO_PCCON |= (1<<0);
+
+    GPIO_PADR &= ~(1<<7);  /* MUTE */
+    GPIO_PACON |= (1<<7);
 }
 
 unsigned int power_input_status(void)
@@ -45,5 +49,5 @@ unsigned int power_input_status(void)
 
 bool charging_state(void)
 {
-    return (usb_detect() == USB_INSERTED);
+    return (adc_read(ADC_EXTRA) < 512);
 }
