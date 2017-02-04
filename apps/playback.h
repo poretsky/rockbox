@@ -74,6 +74,7 @@ int audio_track_count(void);
 long audio_filebufused(void);
 void audio_pre_ff_rewind(void);
 void audio_skip(int direction);
+void audio_pause(void);
 
 void audio_set_cuesheet(bool enable);
 #ifdef HAVE_CROSSFADE
