@@ -3829,6 +3829,35 @@ unsigned int playback_status(void)
     return play_status;
 }
 
+void audio_pause_between_tracks_callback(unsigned short id, void *data)
+{
+    (void)data;
+    static bool starting_playback = false;
+
+    switch (id)
+    {
+    case PLAYBACK_EVENT_START_PLAYBACK:
+    case PLAYBACK_EVENT_TRACK_SKIP:
+        starting_playback = true;
+        break;
+
+    case PLAYBACK_EVENT_TRACK_CHANGE:
+        if(global_settings.pause_between_tracks
+           && !global_settings.party_mode && !starting_playback) {
+#if CONFIG_CODEC == SWCODEC
+            queue_post(&audio_queue, Q_AUDIO_PAUSE, true);
+#else
+            audio_pause();
+#endif
+        }
+        starting_playback = false;
+        break;
+
+    default:
+        break;
+    }
+}
+
 /** -- Startup -- **/
 void INIT_ATTR playback_init(void)
 {
@@ -3839,6 +3868,9 @@ void INIT_ATTR playback_init(void)
     track_list_init();
     buffering_init();
     pcmbuf_update_frequency();
+    add_event(PLAYBACK_EVENT_TRACK_CHANGE, audio_pause_between_tracks_callback);
+    add_event(PLAYBACK_EVENT_TRACK_SKIP, audio_pause_between_tracks_callback);
+    add_event(PLAYBACK_EVENT_START_PLAYBACK, audio_pause_between_tracks_callback);
 #ifdef HAVE_CROSSFADE
     /* Set crossfade setting for next buffer init which should be about... */
     pcmbuf_request_crossfade_enable(global_settings.crossfade);
