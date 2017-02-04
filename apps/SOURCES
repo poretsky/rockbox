@@ -160,6 +160,7 @@ gui/color_picker.c
 #ifdef HAVE_RECORDING
 recorder/recording.c
 #endif
+playback.c
 
 #if CONFIG_TUNER
 radio/radio.c
@@ -177,7 +178,6 @@ audio_path.c
 audio_thread.c
 pcmbuf.c
 codec_thread.c
-playback.c
 codecs.c
 #ifndef HAVE_HARDWARE_BEEP
 beep.c

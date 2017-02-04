@@ -474,6 +474,7 @@ struct user_settings
     int list_accel_start_delay; /* ms before we start increaseing step size */
     int list_accel_wait; /* ms between increases */
 #endif
+    bool pause_between_tracks; /* Pauses the playback on track changes */
 
 #ifdef HAVE_TOUCHPAD_SENSITIVITY_SETTING
     int touchpad_sensitivity;
