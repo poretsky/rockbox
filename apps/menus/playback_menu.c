@@ -66,6 +66,8 @@ static int playback_callback(int action,const struct menu_item_ex *this_item);
 MENUITEM_SETTING(shuffle_item, &global_settings.playlist_shuffle, playback_callback);
 MENUITEM_SETTING(repeat_mode, &global_settings.repeat_mode, playback_callback);
 MENUITEM_SETTING(play_selected, &global_settings.play_selected, NULL);
+MENUITEM_SETTING(pause_between_tracks, &global_settings.pause_between_tracks,
+                 NULL);
 
 MENUITEM_SETTING(ff_rewind_accel, &global_settings.ff_rewind_accel, NULL);
 MENUITEM_SETTING(ff_rewind_min_step, &global_settings.ff_rewind_min_step, NULL);
@@ -207,7 +209,7 @@ MENUITEM_SETTING(use_hold_buttons, &global_settings.use_hold_buttons, NULL);
 
 MAKE_MENU(playback_settings,ID2P(LANG_PLAYBACK),0,
           Icon_Playback_menu,
-          &shuffle_item, &repeat_mode, &play_selected,
+          &shuffle_item, &repeat_mode, &pause_between_tracks, &play_selected,
           &ff_rewind_settings_menu,
 #ifdef HAVE_DISK_STORAGE
           &buffer_margin,
