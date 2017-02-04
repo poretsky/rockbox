@@ -1389,6 +1389,7 @@ static void mpeg_thread(void)
                 play_pending_track_change = true;
 
                 update_playlist();
+                send_event(PLAYBACK_EVENT_START_PLAYBACK, NULL);
                 current_track_counter++;
                 break;
 

@@ -16526,3 +16526,17 @@ id: VOICE_BAT_BENCH_KEYS
     hotkey: "Date"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_PAUSE_BETWEEN_TRACKS
+  desc: in playback settings menu
+  user: core
+  <source>
+    *: "Pause between tracks"
+  </source>
+  <dest>
+    *: "Pause between tracks"
+  </dest>
+  <voice>
+    *: "Pause between tracks"
+  </voice>
+</phrase>
