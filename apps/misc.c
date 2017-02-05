@@ -444,6 +444,7 @@ bool list_stop_handler(void)
 
 #if CONFIG_CHARGING
 static bool waiting_to_resume_play = false;
+static bool paused_on_unplugged = false;
 static long play_resume_tick;
 
 static void car_adapter_mode_processing(bool inserted)
@@ -455,10 +456,10 @@ static void car_adapter_mode_processing(bool inserted)
             /*
              * Just got plugged in, delay & resume if we were playing
              */
-            if (audio_status() & AUDIO_STATUS_PAUSE)
+            if ((audio_status() & AUDIO_STATUS_PAUSE) && paused_on_unplugged)
             {
                 /* delay resume a bit while the engine is cranking */
-                play_resume_tick = current_tick + HZ*5;
+                play_resume_tick = current_tick + HZ*global_settings.car_adapter_mode_delay;
                 waiting_to_resume_play = true;
             }
         }
@@ -471,7 +472,10 @@ static void car_adapter_mode_processing(bool inserted)
                 !(audio_status() & AUDIO_STATUS_PAUSE))
             {
                 pause_action(true, true);
+                paused_on_unplugged = true;
             }
+            else if (!waiting_to_resume_play)
+                paused_on_unplugged = false;
             waiting_to_resume_play = false;
         }
     }
@@ -481,6 +485,9 @@ static void car_adapter_tick(void)
 {
     if (waiting_to_resume_play)
     {
+        if ((audio_status() & AUDIO_STATUS_PLAY) &&
+                !(audio_status() & AUDIO_STATUS_PAUSE))
+                waiting_to_resume_play = false;
         if (TIME_AFTER(current_tick, play_resume_tick))
         {
             if (audio_status() & AUDIO_STATUS_PAUSE)
