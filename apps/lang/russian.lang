@@ -13258,10 +13258,10 @@
   </source>
   <dest>
     *: none
-    usb_charging: "Только зарядка по USB"
+    usb_power: "Только зарядка по USB"
   </dest>
   <voice>
     *: none
-    usb_charging: "Только зарядка по Ю ЭС БИ"
+    usb_power: "Только зарядка по Ю ЭС БИ"
   </voice>
 </phrase>
