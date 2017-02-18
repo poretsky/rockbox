@@ -639,6 +639,7 @@ struct user_settings
     int sort_dir;   /* 0=alpha, 1=date (old first), 2=date (new first) */
     int sort_file;  /* 0=alpha, 1=date, 2=date (new first), 3=type */
     int interpret_numbers; /* true=strnatcmp, false=strcmp */
+    bool files_first; /* 0=directories first, 1=files first */
 
     /* power settings */
     int poweroff;   /* idle power off timer */
