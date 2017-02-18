@@ -16403,3 +16403,17 @@
     *: "900"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_FILES_FIRST
+  desc: in settings_menu
+  user: core
+  <source>
+    *: "Files First"
+  </source>
+  <dest>
+    *: "Сначала Файлы"
+  </dest>
+  <voice>
+    *: "Сначала Файлы"
+  </voice>
+</phrase>
