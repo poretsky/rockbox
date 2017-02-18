@@ -1265,6 +1265,7 @@ const struct settings_list settings[] = {
                     "sort interpret number", "digits,numbers",NULL, 2,
                     ID2P(LANG_SORT_INTERPRET_AS_DIGIT),
                     ID2P(LANG_SORT_INTERPRET_AS_NUMBERS)),
+    OFFON_SETTING(0, files_first, LANG_FILES_FIRST, false, "files first", NULL),
     CHOICE_SETTING(0, show_filename_ext, LANG_SHOW_FILENAME_EXT, 3,
                    "show filename exts", "off,on,unknown,view_all", NULL , 4 ,
                    ID2P(LANG_OFF), ID2P(LANG_ON), ID2P(LANG_UNKNOWN_TYPES),

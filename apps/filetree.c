@@ -212,8 +212,10 @@ static int compare(const void* p1, const void* p2)
     {   /* two files */
         criteria = global_settings.sort_file;
     }
-    else /* dir and file, dir goes first */
-        return (e2->attr & ATTR_DIRECTORY) - (e1->attr & ATTR_DIRECTORY);
+    else /* dir and file */
+        return global_settings.files_first ?
+            ((e1->attr & ATTR_DIRECTORY) - (e2->attr & ATTR_DIRECTORY)) :
+            ((e2->attr & ATTR_DIRECTORY) - (e1->attr & ATTR_DIRECTORY));
 
     switch(criteria)
     {

@@ -182,7 +182,7 @@ static int get_filename(struct playlist_info* playlist, int index, int seek,
 static int get_next_directory(char *dir);
 static int get_next_dir(char *dir, bool is_forward);
 static int get_previous_directory(char *dir);
-static int check_subdir_for_music(char *dir, const char *subdir, bool recurse);
+static int check_subdir_for_music(char *dir, const char *subdir, int recurse);
 static ssize_t format_track_path(char *dest, char *src, int buf_length,
                                  const char *dir);
 static void display_playlist_count(int count, const unsigned char *fmt,
@@ -1466,11 +1466,13 @@ static int get_next_dir(char *dir, bool is_forward)
 {
     struct playlist_info* playlist = &current_playlist;
     int result = -1;
+    int recurse = -1;
     char *start_dir = NULL;
     bool exit = false;
     struct tree_context* tc = tree_get_context();
     int saved_dirfilter = *(tc->dirfilter);
     unsigned int base_len;
+    unsigned int dirlen = playlist->dirlen - 1;
 
     if (global_settings.constrain_next_folder)
     {
@@ -1516,8 +1518,10 @@ static int get_next_dir(char *dir, bool is_forward)
                     lseek(fd, sizeof(int) + (MAX_PATH * i), SEEK_SET);
                     read(fd, buffer, MAX_PATH);
                     /* is the current dir within our base dir and has music? */
-                    if ((base_len == 0 || !strncmp(buffer, dir, base_len))
-                        && check_subdir_for_music(buffer, "", false) == 0)
+                    if (strlen(buffer) >= base_len
+                        && (buffer[base_len] == '/' || buffer[base_len] == '\0')
+                        && !strncmp(buffer, dir, base_len)
+                        && check_subdir_for_music(buffer, "", 0) == 0)
                             exit = true;
                 }
                 close(fd);
@@ -1534,10 +1538,6 @@ static int get_next_dir(char *dir, bool is_forward)
                 close(fd);
         }
     }
-
-    /* if the current file is within our base dir, use its dir instead */
-    if (base_len == 0 || !strncmp(playlist->filename, dir, base_len))
-        strlcpy(dir, playlist->filename, playlist->dirlen);
 
     /* use the tree browser dircache to load files */
     *(tc->dirfilter) = SHOW_ALL;
@@ -1558,59 +1558,93 @@ static int get_next_dir(char *dir, bool is_forward)
         
         if ((unsigned)tc->sort_dir < sizeof(sortpairs))
             tc->sort_dir = sortpairs[tc->sort_dir];
+        if (global_settings.files_first)
+            recurse = 1;
+    }
+    else if (!global_settings.files_first)
+        recurse = 1;
+
+    /* if the current file is within our base dir, use its dir instead */
+    if (dirlen > base_len && playlist->filename[base_len] == '/'
+        && !strncmp(playlist->filename, dir, base_len))
+    {
+        strlcpy(dir, playlist->filename, playlist->dirlen);
+        if (recurse > 0)
+        {
+            start_dir = strrchr(dir, '/');
+            if (start_dir)
+            {
+                *start_dir = '\0';
+                start_dir++;
+            }
+        }
     }
 
     while (!exit)
     {
-        struct entry *files;
-        int num_files = 0;
-        int i;
-
-        if (ft_load(tc, (dir[0]=='\0')?"/":dir) < 0)
+        if (start_dir || strlen(dir) > base_len
+            || (base_len == dirlen && !strncmp(dir, playlist->filename, dirlen)))
         {
-            exit = true;
-            result = -1;
-            break;
-        }
-        
-        files = tree_get_entries(tc);
-        num_files = tc->filesindir;
+            struct entry *files;
+            int num_files = 0;
+            int i;
 
-        tree_lock_cache(tc);
-        for (i=0; i<num_files; i++)
-        {
-            /* user abort */
-            if (action_userabort(TIMEOUT_NOBLOCK))
+            if (ft_load(tc, (dir[0] == '\0') ? PATH_ROOTSTR : dir) < 0)
             {
-                result = -1;
                 exit = true;
+                result = -1;
                 break;
             }
 
-            if (files[i].attr & ATTR_DIRECTORY)
+            files = tree_get_entries(tc);
+            num_files = tc->filesindir;
+
+            tree_lock_cache(tc);
+            for (i=0; i<num_files; i++)
             {
-                if (!start_dir)
+                /* user abort */
+                if (action_userabort(TIMEOUT_NOBLOCK))
                 {
-                    result = check_subdir_for_music(dir, files[i].name, true);
-                    if (result != -1)
-                    {
-                        exit = true;
-                        break;
-                    }
+                    result = -1;
+                    exit = true;
+                    break;
                 }
-                else if (!strcmp(start_dir, files[i].name))
-                    start_dir = NULL;
+
+                if (files[i].attr & ATTR_DIRECTORY)
+                {
+                    if (!start_dir)
+                    {
+                        result = check_subdir_for_music(dir, files[i].name, recurse);
+                        if (result != -1)
+                        {
+                            exit = true;
+                            break;
+                        }
+                    }
+                    else if (!strcmp(start_dir, files[i].name))
+                        start_dir = NULL;
+                }
+            }
+            tree_unlock_cache(tc);
+
+            if (!exit && recurse > 0)
+            {
+                result = check_subdir_for_music(dir, "", 0);
+                if (result != -1)
+                {
+                    exit = true;
+                    break;
+                }
             }
         }
-        tree_unlock_cache(tc);
 
         if (!exit)
         {
             /* we've already descended to the base dir with nothing found,
                check whether that contains music */
-            if (strlen(dir) <= base_len)
+            if ((strlen(dir) <= base_len) || !strcmp(dir, PATH_ROOTSTR))
             {
-                result = check_subdir_for_music(dir, "", true);
+                result = check_subdir_for_music(dir, "", recurse);
                 if (result == -1)
                     /* there's no music files in the base directory,
                        treat as a fatal error */
@@ -1644,10 +1678,10 @@ static int get_next_dir(char *dir, bool is_forward)
  * Checks if there are any music files in the dir or any of its
  * subdirectories.  May be called recursively.
  */
-static int check_subdir_for_music(char *dir, const char *subdir, bool recurse)
+static int check_subdir_for_music(char *dir, const char *subdir, int recurse)
 {
     int result = -1;
-    size_t dirlen = strlen(dir);
+    size_t dirlen = strcmp(dir, PATH_ROOTSTR) ? strlen(dir) : 0;
     int num_files = 0;
     int i;
     struct entry *files;
@@ -1655,8 +1689,7 @@ static int check_subdir_for_music(char *dir, const char *subdir, bool recurse)
     bool has_subdir = false;
     struct tree_context* tc = tree_get_context();
 
-    if (path_append(dir + dirlen, PA_SEP_HARD, subdir, MAX_PATH - dirlen) >=
-            MAX_PATH - dirlen)
+    if (path_append(dir, PA_SEP_HARD, subdir, MAX_PATH) >= MAX_PATH)
     {
         return 0;
     }
@@ -1672,15 +1705,20 @@ static int check_subdir_for_music(char *dir, const char *subdir, bool recurse)
     for (i=0; i<num_files; i++)
     {
         if (files[i].attr & ATTR_DIRECTORY)
+        {
             has_subdir = true;
+            if (global_settings.files_first)
+                break;
+        }
         else if ((files[i].attr & FILE_ATTR_MASK) == FILE_ATTR_AUDIO)
         {
             has_music = true;
-            break;
+            if (!global_settings.files_first)
+                break;
         }
     }
 
-    if (has_music)
+    if (has_music && (!has_subdir || recurse <= 0))
         return 0;
         
     tree_lock_cache(tc);
@@ -1696,13 +1734,16 @@ static int check_subdir_for_music(char *dir, const char *subdir, bool recurse)
 
             if (files[i].attr & ATTR_DIRECTORY)
             {
-                result = check_subdir_for_music(dir, files[i].name, true);
+                result = check_subdir_for_music(dir, files[i].name, recurse);
                 if (!result)
                     break;
             }
         }
     }
     tree_unlock_cache(tc);
+
+    if (result == -1 && has_music)
+        return 0;
 
     if (result < 0)
     {
@@ -1717,7 +1758,10 @@ static int check_subdir_for_music(char *dir, const char *subdir, bool recurse)
 
         /* we now need to reload our current directory */
         if(ft_load(tc, dir) < 0)
+        {
             splash(HZ*2, ID2P(LANG_PLAYLIST_DIRECTORY_ACCESS_ERROR));
+            result = -2;
+        }
     }
     return result;
 }
