@@ -14,7 +14,12 @@ ASM_DUMMY_SRC := $(notdir $(call preprocess, $(FIRMDIR)/asm/SOURCES))
 # strip arch_ prefix from $(ARCH)
 ASM_ARCH := $(subst arch_,,$(ARCH))
 ASM_C_SRC := $(addprefix $(FIRMDIR)/asm/$(ASM_ARCH)/,$(ASM_DUMMY_SRC))
+
+ifeq ($(MODELNAME),xduoox3)
+ASM_S_SRC := $(filter-out $(addprefix $(FIRMDIR)/asm/$(ASM_ARCH)/,memset.S),$(ASM_C_SRC:.c=.S))
+else
 ASM_S_SRC := $(ASM_C_SRC:.c=.S)
+endif
 
 # ASM_SRC now contains only files that exist under $ARCH
 ASM_SRC := $(wildcard $(ASM_C_SRC))
