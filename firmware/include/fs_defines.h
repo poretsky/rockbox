@@ -30,7 +30,7 @@
 #endif
 
 #ifndef MAX_PATH
-#define MAX_PATH        260
+#define MAX_PATH        520
 #endif
 
 #define MAX_COMPNAME    260

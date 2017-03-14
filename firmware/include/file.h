@@ -32,7 +32,7 @@
 #include "gcc_extensions.h"
 
 #undef MAX_PATH /* this avoids problems when building simulator */
-#define MAX_PATH 260
+#define MAX_PATH 520
 
 enum relate_result
 {

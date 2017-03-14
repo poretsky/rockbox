@@ -29,7 +29,7 @@
 // FIXME changing MAX_PATH is broken for now
 //#define MAX_PATH PATH_MAX
 // set same as rb to avoid dragons
-#define MAX_PATH 260
+#define MAX_PATH 520
 #endif
 
 #endif
