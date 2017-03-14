@@ -35,7 +35,7 @@
 
 /* can't include file.h here */
 #ifndef MAX_PATH
-#define MAX_PATH 260
+#define MAX_PATH 520
 #endif
 
 /* extern functions, needed for screendump() */
