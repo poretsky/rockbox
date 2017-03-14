@@ -1,5 +1,5 @@
 #undef MAX_PATH
-#define MAX_PATH 260
+#define MAX_PATH 520
 #include <unistd.h>
 #include <fcntl.h>
 
