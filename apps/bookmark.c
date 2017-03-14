@@ -47,7 +47,7 @@
 #include "logf.h"
 
 #define MAX_BOOKMARKS 10
-#define MAX_BOOKMARK_SIZE  350
+#define MAX_BOOKMARK_SIZE  (MAX_PATH + 100)
 #define RECENT_BOOKMARK_FILE ROCKBOX_DIR "/most-recent.bmark"
 
 /* Used to buffer bookmarks while displaying the bookmark list. */
