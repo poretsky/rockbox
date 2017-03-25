@@ -1172,7 +1172,6 @@ int talk_file_or_spell(const char *dirname, const char *filename,
     return 0;
 }
 
-#if CONFIG_CODEC == SWCODEC
 /* Play a directory's .talk thumbnail, fallback to spelling the filename, or
    go straight to spelling depending on settings. */
 int talk_dir_or_spell(const char* dirname,
@@ -1189,7 +1188,6 @@ int talk_dir_or_spell(const char* dirname,
         return talk_spell_basename(dirname, prefix_ids, enqueue);
     return 0;
 }
-#endif
 
 /* Speak thumbnail for each component of a full path, again falling
    back or going straight to spelling depending on settings. */
@@ -1503,7 +1501,6 @@ void talk_setting(const void *global_settings_variable)
 }
 
 
-#if CONFIG_RTC
 void talk_date(const struct tm *tm, bool enqueue)
 {
     talk_id(LANG_MONTH_JANUARY + tm->tm_mon, enqueue);
@@ -1557,8 +1554,6 @@ void talk_time(const struct tm *tm, bool enqueue)
         }
     }
 }
-
-#endif /* CONFIG_RTC */
 
 bool talk_get_debug_data(struct talk_debug_data *data)
 {
