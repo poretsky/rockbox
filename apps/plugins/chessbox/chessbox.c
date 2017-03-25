@@ -78,16 +78,16 @@ extern const fb_data chessbox_pieces[];
 short plugin_mode;
 
 /* level+1's string */
-const char *level_string[] = { "Level 1: 60 moves / 5 min" ,
-                        "Level 2: 60 moves / 15 min" ,
-                        "Level 3: 60 moves / 30 min" ,
-                        "Level 4: 40 moves / 30 min" ,
-                        "Level 5: 40 moves / 60 min" ,
-                        "Level 6: 40 moves / 120 min" ,
-                        "Level 7: 40 moves / 240 min" ,
-                        "Level 8: 1 move / 15 min" ,
-                        "Level 9: 1 move / 60 min" ,
-                        "Level 10: 1 move / 600 min" };
+const char *level_string[] = { ID2P(LANG_CHESSBOX_LEVEL_1) ,
+                        ID2P(LANG_CHESSBOX_LEVEL_2) ,
+                        ID2P(LANG_CHESSBOX_LEVEL_3) ,
+                        ID2P(LANG_CHESSBOX_LEVEL_4) ,
+                        ID2P(LANG_CHESSBOX_LEVEL_5) ,
+                        ID2P(LANG_CHESSBOX_LEVEL_6) ,
+                        ID2P(LANG_CHESSBOX_LEVEL_7) ,
+                        ID2P(LANG_CHESSBOX_LEVEL_8) ,
+                        ID2P(LANG_CHESSBOX_LEVEL_9) ,
+                        ID2P(LANG_CHESSBOX_LEVEL_10) };
 
 /* "While thinking" command */
 int wt_command = COMMAND_NOP;
@@ -172,8 +172,35 @@ static void cb_drawboard (void) {
     rb->lcd_update();
 }
 
+static short oldx, oldy = 0;
+void cb_talk(short x, short y)
+{
+    if (x != oldx || y != oldy) {
+        short c, r;
+        short l, piece, p_color;
+
+        rb->talk_shutup();
+        cr2xy(x, y, &c, &r);
+        l = locn[r][c];
+        piece = board[l];
+        p_color = color[l];
+        if (piece != no_piece) {
+            rb->talk_id (VOICE_WHITE + p_color, true);
+            if (piece >= pawn && piece <= king) {
+                rb->talk_id (VOICE_PAWN + piece - 1, true);
+            }
+        }
+        rb->talk_id (VOICE_CHAR_A + c, true);
+        rb->talk_id (VOICE_ONE + r, true);
+        oldx = x;
+        oldy = y;
+    }
+}
+
 /* ---- Switch mark on board ---- */
 static void cb_switch ( short x , short y ) {
+    if (rb->global_settings->talk_menu)
+        cb_talk(x, y);
     rb->lcd_set_drawmode ( DRMODE_COMPLEMENT );
     rb->lcd_drawrect ( XOFS + x*TILE_WIDTH + 1 ,
                        YOFS + ( 7 - y )*TILE_HEIGHT +1 ,
@@ -375,7 +402,7 @@ static void cb_saveposition ( void ) {
 #ifdef CHESSBOX_SAVE_FILE_DBG
     cb_saveposition_dbg();
 #endif
-    rb->splash ( 0 , "Saving position" );
+    rb->splash ( 0 , ID2P(LANG_CHESSBOX_SAVING_POSITION) );
 
     fd = rb->open(SAVE_FILE, O_WRONLY|O_CREAT, 0666);
 
@@ -429,7 +456,7 @@ static void cb_restoreposition ( void ) {
     unsigned short m;
 
     if ( (fd = rb->open(SAVE_FILE, O_RDONLY)) >= 0 ) {
-        rb->splash ( 0 , "Loading position" );
+        rb->splash ( 0 , ID2P(LANG_CHESSBOX_LOADING_POSITION) );
         rb->read(fd, &(computer), sizeof(computer));
         rb->read(fd, &(opponent), sizeof(opponent));
         rb->read(fd, &(Game50), sizeof(Game50));
@@ -498,8 +525,10 @@ static int cb_menu_viewer(void)
     int result = 0;
     bool menu_quit = false;
 
-    MENUITEM_STRINGLIST(menu,"Chessbox Menu",NULL,"Restart Game",
-                        "Select Other Game", "Quit");
+    MENUITEM_STRINGLIST(menu,"Chessbox Menu",NULL,
+                        ID2P(LANG_CHESSBOX_MENU_RESTART_GAME),
+                        ID2P(LANG_CHESSBOX_MENU_SELECT_OTHER_GAME),
+                        ID2P(LANG_MENU_QUIT));
 
     while(!menu_quit)
     {
@@ -565,7 +594,7 @@ static void cb_start_viewer(char* filename){
 
     first_game = pgn_list_games(filename);
     if (first_game == NULL){
-        rb->splash ( HZ*2 , "No games found !" );
+        rb->splash ( HZ*2 , ID2P(LANG_CHESSBOX_NO_GAMES) );
         return;
     }
 
@@ -595,7 +624,7 @@ static void cb_start_viewer(char* filename){
                         if (curr_ply->prev_node != NULL){
                             curr_ply = curr_ply->prev_node;
                         } else {
-                            rb->splash ( HZ*2 , "At the begining of the game" );
+                            rb->splash ( HZ*2 , ID2P(LANG_CHESSBOX_GAME_BEGINNING) );
                             break;
                         }
                         board[locn[curr_ply->row_from][curr_ply->column_from]]
@@ -641,8 +670,38 @@ static void cb_start_viewer(char* filename){
                     case COMMAND_NEXT:
                         /* apply the current move */
                         if (curr_ply->player == neutral){
-                            rb->splash ( HZ*2 , "At the end of the game" );
+                            rb->splash ( HZ*2 , ID2P(LANG_CHESSBOX_GAME_END) );
                             break;
+                        }
+                        if (rb->global_settings->talk_menu) {
+                            rb->talk_id (VOICE_WHITE + curr_ply->player, false);
+                            if (curr_ply->castle){
+                                rb->talk_id (VOICE_CHESSBOX_CASTLE, true);
+                                if (curr_ply->column_to == 6){
+                                    rb->talk_id (VOICE_CHESSBOX_KINGSIDE, true);
+                                } else {
+                                    rb->talk_id (VOICE_CHESSBOX_QUEENSIDE, true);
+                                }
+                            } else {
+                                rb->talk_id (VOICE_PAWN +
+                                             board[locn[curr_ply->row_from]
+                                                   [curr_ply->column_from]]
+                                             - 1, true);
+                                rb->talk_id (VOICE_CHAR_A + curr_ply->column_from,
+                                             true);
+                                rb->talk_id (VOICE_ONE + curr_ply->row_from, true);
+                                if (board[locn[curr_ply->row_to]
+                                          [curr_ply->column_to]] != no_piece) {
+                                    rb->talk_id (VOICE_CHESSBOX_CAPTURES, true);
+                                    rb->talk_id (VOICE_PAWN +
+                                                 board[locn[curr_ply->row_to]
+                                                       [curr_ply->column_to]]
+                                                 - 1, true);
+                                }
+                                rb->talk_id (VOICE_CHAR_A + curr_ply->column_to,
+                                             true);
+                                rb->talk_id (VOICE_ONE + curr_ply->row_to, true);
+                            }
                         }
                         board[locn[curr_ply->row_to][curr_ply->column_to]]
                             = board[locn[curr_ply->row_from][curr_ply->column_from]];
@@ -670,6 +729,10 @@ static void cb_start_viewer(char* filename){
                             color[locn[curr_ply->row_from][curr_ply->column_to]] = neutral;
                         }
                         if (curr_ply->promotion){
+                            if (rb->global_settings->talk_menu)
+                                rb->talk_id (VOICE_PAWN +
+                                             curr_ply->promotion_piece - 1,
+                                             true);
                             board[locn[curr_ply->row_to][curr_ply->column_to]]
                                 = curr_ply->promotion_piece;
                             color[locn[curr_ply->row_to][curr_ply->column_to]]
@@ -694,7 +757,7 @@ static void cb_start_viewer(char* filename){
                 }
             } while (!exit_game && !exit_viewer);
         } else {
-            rb->splash ( HZ*2 , "Error parsing game !");
+            rb->splash ( HZ*2 , ID2P(LANG_CHESSBOX_PGN_PARSE_ERROR));
         }
     } while (!exit_viewer);
 }
@@ -706,12 +769,15 @@ static int cb_menu(void)
     int result = 0;
     bool menu_quit = false;
 
-    MENUITEM_STRINGLIST(menu,"Chessbox Menu",NULL,"New Game","Resume Game",
-                        "Save Game", "Restore Game",
+    MENUITEM_STRINGLIST(menu,"Chessbox Menu",NULL,
+                        ID2P(LANG_CHESSBOX_MENU_NEW_GAME),
+                        ID2P(LANG_CHESSBOX_MENU_RESUME_GAME),
+                        ID2P(LANG_CHESSBOX_MENU_SAVE_GAME),
+                        ID2P(LANG_CHESSBOX_MENU_RESTORE_GAME),
 #ifdef HAVE_PLAYBACK_CONTROL
-                        "Playback Control",
+                        ID2P(LANG_PLAYBACK_CONTROL),
 #endif
-                                            "Quit");
+                        ID2P(LANG_MENU_QUIT));
 
     while(!menu_quit)
     {
@@ -804,6 +870,10 @@ static struct cb_command cb_getcommand (void) {
                 }
                 if ( marked && ( marked_x == x ) && ( marked_y == y ) ) {
                     from_marked = true ;
+                    if (rb->global_settings->talk_menu) {
+                        cb_talk(x, y);
+                        rb->talk_id(VOICE_MARKED, true);
+                    }
                 } else {
                     from_marked = false ;
                     cb_switch ( x , y );
@@ -822,6 +892,10 @@ static struct cb_command cb_getcommand (void) {
                 }
                 if ( marked && ( marked_x == x ) && ( marked_y == y ) ) {
                     from_marked = true ;
+                    if (rb->global_settings->talk_menu) {
+                        cb_talk(x, y);
+                        rb->talk_id(VOICE_MARKED, true);
+                    }
                 } else {
                     from_marked = false ;
                     cb_switch ( x , y );
@@ -840,6 +914,10 @@ static struct cb_command cb_getcommand (void) {
                 }
                 if ( marked && ( marked_x == x ) && ( marked_y == y ) ) {
                     from_marked = true ;
+                    if (rb->global_settings->talk_menu) {
+                        cb_talk(x, y);
+                        rb->talk_id(VOICE_MARKED, true);
+                    }
                 } else {
                     from_marked = false ;
                     cb_switch ( x , y );
@@ -858,6 +936,10 @@ static struct cb_command cb_getcommand (void) {
                 }
                 if ( marked && ( marked_x == x ) && ( marked_y == y ) ) {
                     from_marked = true ;
+                    if (rb->global_settings->talk_menu) {
+                        cb_talk(x, y);
+                        rb->talk_id(VOICE_MARKED, true);
+                    }
                 } else {
                     from_marked = false ;
                     cb_switch ( x , y );
@@ -876,11 +958,15 @@ static struct cb_command cb_getcommand (void) {
                         from_marked = true ;
                         marked_x = x;
                         marked_y = y;
+                        if (rb->global_settings->talk_menu)
+                            rb->talk_id(VOICE_MARKED, false);
                     }
                 } else {
                     if ( ( marked_x == x ) && ( marked_y == y ) ) {
                         marked = false;
                         from_marked = false;
+                        if (rb->global_settings->talk_menu)
+                            rb->talk_id(VOICE_UNMARKED, false);
                     } else {
                         xy2cr ( marked_x , marked_y , &c , &r );
                         result.mv_s[0] = 'a' + c;
@@ -901,6 +987,23 @@ static struct cb_command cb_getcommand (void) {
 #endif
     }
 
+}
+
+/* Talk a move */
+static void talk_move(char *move_buffer)
+{
+    if (rb->global_settings->talk_menu) {
+        rb->talk_id (VOICE_PAWN +
+                     board[locn[move_buffer[3]-'1'][move_buffer[2]-'a']] - 1,
+                     false);
+        rb->talk_id(VOICE_CHAR_A + move_buffer[0] - 'a', true);
+        rb->talk_id(VOICE_ONE + move_buffer[1] - '1', true);
+        rb->talk_id(VOICE_CHAR_A + move_buffer[2] - 'a', true);
+        rb->talk_id(VOICE_ONE + move_buffer[3] - '1', true);
+        if (move_buffer[4] == '+' && !mate) {
+            rb->talk_id(VOICE_CHESSBOX_CHECK, true);
+        }
+    }
 }
 
 /* ---- game main loop ---- */
@@ -930,7 +1033,8 @@ static void cb_play_game(void) {
 
     while (!exit) {
         if ( mate ) {
-            rb->splash ( HZ*3 , "Checkmate!" );
+            rb->talk_force_enqueue_next();
+            rb->splash ( HZ*3 , ID2P(LANG_CHESSBOX_CHECKMATE) );
             rb->button_get(true);
             pgn_store_game(game);
             GNUChess_Initialize();
@@ -941,7 +1045,7 @@ static void cb_play_game(void) {
         switch (command.type) {
             case COMMAND_MOVE:
                 if ( ! VerifyMove (opponent, command.mv_s , 0 , &command.mv, move_buffer ) ) {
-                    rb->splash ( HZ/2 , "Illegal move!" );
+                    rb->splash ( HZ/2 , ID2P(LANG_CHESSBOX_ILLEGAL_MOVE) );
                     cb_drawboard();
                 } else {
                     cb_drawboard();
@@ -949,7 +1053,8 @@ static void cb_play_game(void) {
                     /* Add the ply to the PGN history (in algebraic notation) */
                     pgn_append_ply(game, opponent, move_buffer, mate);
 
-                    rb->splash ( 0 , "Thinking..." );
+                    talk_move(move_buffer);
+                    rb->splash ( 0 , ID2P(LANG_CHESSBOX_THINKING) );
 #ifdef HAVE_ADJUSTABLE_CPU_FREQ
                     rb->cpu_boost ( true );
 #endif
@@ -962,6 +1067,7 @@ static void cb_play_game(void) {
                      */
                     if (move_buffer[0] != '\0'){
                         pgn_append_ply(game, computer, move_buffer, mate);
+                        talk_move(move_buffer);
                     } else {
                         pgn_set_result(game, mate);
                     }
@@ -1007,7 +1113,7 @@ static void cb_play_game(void) {
                     opponent = white;
                     computer = black;
                 }
-                rb->splash ( 0 , "Thinking..." );
+                rb->splash ( 0 , ID2P(LANG_CHESSBOX_THINKING) );
                 ElapsedTime(1);
 #ifdef HAVE_ADJUSTABLE_CPU_FREQ
                 rb->cpu_boost ( true );
@@ -1022,6 +1128,7 @@ static void cb_play_game(void) {
                  */
                 if (move_buffer[0] != '\0'){
                     pgn_append_ply(game, computer, move_buffer, mate);
+                    talk_move(move_buffer);
                 } else {
                     pgn_set_result(game, mate);
                 }
