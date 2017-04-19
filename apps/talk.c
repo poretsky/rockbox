@@ -1504,7 +1504,12 @@ void talk_setting(const void *global_settings_variable)
 
 void talk_date(const struct tm *tm, bool enqueue)
 {
-    talk_id(LANG_MONTH_JANUARY + tm->tm_mon, enqueue);
+    if (tm->tm_wday >= 0)
+    {
+        int rc = talk_id(LANG_WEEKDAY_SUNDAY + tm->tm_wday, enqueue);
+        talk_id(LANG_MONTH_JANUARY + tm->tm_mon, enqueue || !rc);
+    }
+    else talk_id(LANG_MONTH_JANUARY + tm->tm_mon, enqueue);
     talk_number(tm->tm_mday, true);
     talk_number(1900 + tm->tm_year, true);
 }

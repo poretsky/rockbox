@@ -1908,16 +1908,13 @@
   desc: select the time format of time in status bar
   user: core
   <source>
-    *: none
-    rtc: "Time Format"
+    *: "Time Format"
   </source>
   <dest>
-    *: none
-    rtc: "Zaman Biçimi"
+    *: "Zaman Biçimi"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -1925,16 +1922,13 @@
   desc: option for 12 hour clock
   user: core
   <source>
-    *: none
-    rtc: "12 Hour Clock"
+    *: "12 Hour Clock"
   </source>
   <dest>
-    *: none
-    rtc: "12 Saatlık Zaman"
+    *: "12 Saatlık Zaman"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -1942,16 +1936,13 @@
   desc: option for 24 hour clock
   user: core
   <source>
-    *: none
-    rtc: "24 Hour Clock"
+    *: "24 Hour Clock"
   </source>
   <dest>
-    *: none
-    rtc: "24 Saatlık Zaman"
+    *: "24 Saatlık Zaman"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -2027,16 +2018,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sun"
+    *: "Sun"
   </source>
   <dest>
-    *: none
-    rtc: "Paz"
+    *: "Paz"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -2044,16 +2032,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Mon"
+    *: "Mon"
   </source>
   <dest>
-    *: none
-    rtc: "Pzt"
+    *: "Pzt"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -2061,16 +2046,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Tue"
+    *: "Tue"
   </source>
   <dest>
-    *: none
-    rtc: "Sal"
+    *: "Sal"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -2078,16 +2060,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Wed"
+    *: "Wed"
   </source>
   <dest>
-    *: none
-    rtc: "Çar"
+    *: "Çar"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -2095,16 +2074,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Thu"
+    *: "Thu"
   </source>
   <dest>
-    *: none
-    rtc: "Per"
+    *: "Per"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -2112,16 +2088,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Fri"
+    *: "Fri"
   </source>
   <dest>
-    *: none
-    rtc: "Cum"
+    *: "Cum"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -2129,16 +2102,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sat"
+    *: "Sat"
   </source>
   <dest>
-    *: none
-    rtc: "Cmt"
+    *: "Cmt"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -2146,16 +2116,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Jan"
+    *: "Jan"
   </source>
   <dest>
-    *: none
-    rtc: "Oca"
+    *: "Oca"
   </dest>
   <voice>
-    *: none
-    rtc: "Ocak"
+    *: "Ocak"
   </voice>
 </phrase>
 <phrase>
@@ -2163,16 +2130,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Feb"
+    *: "Feb"
   </source>
   <dest>
-    *: none
-    rtc: "Şub"
+    *: "Şub"
   </dest>
   <voice>
-    *: none
-    rtc: "Şubat"
+    *: "Şubat"
   </voice>
 </phrase>
 <phrase>
@@ -2180,16 +2144,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Mar"
+    *: "Mar"
   </source>
   <dest>
-    *: none
-    rtc: "Mar"
+    *: "Mar"
   </dest>
   <voice>
-    *: none
-    rtc: "Mart"
+    *: "Mart"
   </voice>
 </phrase>
 <phrase>
@@ -2197,16 +2158,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Apr"
+    *: "Apr"
   </source>
   <dest>
-    *: none
-    rtc: "Nis"
+    *: "Nis"
   </dest>
   <voice>
-    *: none
-    rtc: "Nisan"
+    *: "Nisan"
   </voice>
 </phrase>
 <phrase>
@@ -2214,16 +2172,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "May"
+    *: "May"
   </source>
   <dest>
-    *: none
-    rtc: "May"
+    *: "May"
   </dest>
   <voice>
-    *: none
-    rtc: "Mayıs"
+    *: "Mayıs"
   </voice>
 </phrase>
 <phrase>
@@ -2231,16 +2186,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Jun"
+    *: "Jun"
   </source>
   <dest>
-    *: none
-    rtc: "Haz"
+    *: "Haz"
   </dest>
   <voice>
-    *: none
-    rtc: "Hazıran"
+    *: "Hazıran"
   </voice>
 </phrase>
 <phrase>
@@ -2248,16 +2200,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Jul"
+    *: "Jul"
   </source>
   <dest>
-    *: none
-    rtc: "Tem"
+    *: "Tem"
   </dest>
   <voice>
-    *: none
-    rtc: "Temmuz"
+    *: "Temmuz"
   </voice>
 </phrase>
 <phrase>
@@ -2265,16 +2214,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Aug"
+    *: "Aug"
   </source>
   <dest>
-    *: none
-    rtc: "Ağu"
+    *: "Ağu"
   </dest>
   <voice>
-    *: none
-    rtc: "Ağustos"
+    *: "Ağustos"
   </voice>
 </phrase>
 <phrase>
@@ -2282,16 +2228,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Sep"
+    *: "Sep"
   </source>
   <dest>
-    *: none
-    rtc: "Eyl"
+    *: "Eyl"
   </dest>
   <voice>
-    *: none
-    rtc: "Eylül"
+    *: "Eylül"
   </voice>
 </phrase>
 <phrase>
@@ -2299,16 +2242,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Oct"
+    *: "Oct"
   </source>
   <dest>
-    *: none
-    rtc: "Eki"
+    *: "Eki"
   </dest>
   <voice>
-    *: none
-    rtc: "Ekim"
+    *: "Ekim"
   </voice>
 </phrase>
 <phrase>
@@ -2316,16 +2256,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Nov"
+    *: "Nov"
   </source>
   <dest>
-    *: none
-    rtc: "Kas"
+    *: "Kas"
   </dest>
   <voice>
-    *: none
-    rtc: "Kasım"
+    *: "Kasım"
   </voice>
 </phrase>
 <phrase>
@@ -2333,16 +2270,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Dec"
+    *: "Dec"
   </source>
   <dest>
-    *: none
-    rtc: "Ara"
+    *: "Ara"
   </dest>
   <voice>
-    *: none
-    rtc: "Aralık"
+    *: "Aralık"
   </voice>
 </phrase>
 <phrase>
@@ -3121,16 +3055,13 @@
   desc: spoken only, for wall clock announce
   user: core
   <source>
-    *: none
-    rtc: ""
+    *: ""
   </source>
   <dest>
-    *: none
-    rtc: ""
+    *: ""
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -3138,16 +3069,13 @@
   desc: spoken only, for wall clock announce
   user: core
   <source>
-    *: none
-    rtc: ""
+    *: ""
   </source>
   <dest>
-    *: none
-    rtc: ""
+    *: ""
   </dest>
   <voice>
-    *: none
-    rtc: "akşam"
+    *: "akşam"
   </voice>
 </phrase>
 <phrase>
@@ -3155,16 +3083,13 @@
   desc: spoken only, for wall clock announce
   user: core
   <source>
-    *: none
-    rtc: ""
+    *: ""
   </source>
   <dest>
-    *: none
-    rtc: ""
+    *: ""
   </dest>
   <voice>
-    *: none
-    rtc: "sabah"
+    *: "sabah"
   </voice>
 </phrase>
 <phrase>
@@ -3172,16 +3097,13 @@
   desc: spoken only, for wall clock announce
   user: core
   <source>
-    *: none
-    rtc: ""
+    *: ""
   </source>
   <dest>
-    *: none
-    rtc: ""
+    *: ""
   </dest>
   <voice>
-    *: none
-    rtc: "sıfır"
+    *: "sıfır"
   </voice>
 </phrase>
 <phrase>
