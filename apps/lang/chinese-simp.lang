@@ -3569,37 +3569,43 @@
   </voice>
 </phrase>
 <phrase>
-  id: LANG_BATTERY_TYPE_ALKALINE
+  id: LANG_BATTERY_TYPE_1
   desc: in battery settings
   user: core
   <source>
     *: none
     battery_types: "Alkaline"
+    xduoox3: "Coke anode"
   </source>
   <dest>
     *: none
     battery_types: "碱性"
+    xduoox3: "Coke anode"
   </dest>
   <voice>
     *: none
     battery_types: "碱性"
+    xduoox3: "Coke anode"
   </voice>
 </phrase>
 <phrase>
-  id: LANG_BATTERY_TYPE_NIMH
+  id: LANG_BATTERY_TYPE_2
   desc: in battery settings
   user: core
   <source>
     *: none
     battery_types: "NiMH"
+    xduoox3: "Graphite anode"
   </source>
   <dest>
     *: none
     battery_types: "锂镁氢"
+    xduoox3: "Graphite anode"
   </dest>
   <voice>
     *: none
     battery_types: "锂镁氢"
+    xduoox3: "Graphite anode"
   </voice>
 </phrase>
 <phrase>
