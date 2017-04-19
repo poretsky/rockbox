@@ -13123,13 +13123,16 @@
   desc: in sound settings
   user: core
   <source>
-    *: "DAC's filter roll-off"
+    *: none
+    cs4398,es9018: "DAC's filter roll-off"
   </source>
   <dest>
-    *: "DAC's filter roll-off"
+    *: none
+    cs4398,es9018: "DAC's filter roll-off"
   </dest>
   <voice>
-    *: "DAC's filter roll-off"
+    *: none
+    cs4398,es9018: "DAC's filter roll-off"
   </voice>
 </phrase>
 <phrase>
@@ -13137,13 +13140,16 @@
   desc: in sound settings
   user: core
   <source>
-    *: "Sharp"
+    *: none
+    cs4398,es9018: "Sharp"
   </source>
   <dest>
-    *: "Sharp"
+    *: none
+    cs4398,es9018: "Sharp"
   </dest>
   <voice>
-    *: "Sharp"
+    *: none
+    cs4398,es9018: "Sharp"
   </voice>
 </phrase>
 <phrase>
@@ -13151,13 +13157,16 @@
   desc: in sound settings
   user: core
   <source>
-    *: "Slow"
+    *: none
+    cs4398,es9018: "Slow"
   </source>
   <dest>
-    *: "Slow"
+    *: none
+    cs4398,es9018: "Slow"
   </dest>
   <voice>
-    *: "Slow"
+    *: none
+    cs4398,es9018: "Slow"
   </voice>
 </phrase>
 <phrase>
@@ -13165,13 +13174,16 @@
   desc: in sound settings
   user: core
   <source>
-    *: "Short"
+    *: none
+    es9018: "Short"
   </source>
   <dest>
-    *: "Short"
+    *: none
+    es9018: "Short"
   </dest>
   <voice>
-    *: "Short"
+    *: none
+    es9018: "Short"
   </voice>
 </phrase>
 <phrase>
@@ -13179,13 +13191,16 @@
   desc: in sound settings
   user: core
   <source>
-    *: "Bypass"
+    *: none
+    es9018: "Bypass"
   </source>
   <dest>
-    *: "Bypass"
+    *: none
+    es9018: "Bypass"
   </dest>
   <voice>
-    *: "Bypass"
+    *: none
+    es9018: "Bypass"
   </voice>
 </phrase>
 <phrase>
@@ -13193,13 +13208,16 @@
   desc: in sound settings
   user: core
   <source>
-    *: "DAC's oversampling"
+    *: none
+    cs4398: "DAC's oversampling"
   </source>
   <dest>
-    *: "DAC's oversampling"
+    *: none
+    cs4398: "DAC's oversampling"
   </dest>
   <voice>
-    *: "DAC's oversampling"
+    *: none
+    cs4398: "DAC's oversampling"
   </voice>
 </phrase>
 <phrase>
@@ -13207,13 +13225,16 @@
   desc: in sound settings
   user: core
   <source>
-    *: "128x"
+    *: none
+    cs4398: "128x"
   </source>
   <dest>
-    *: "128x"
+    *: none
+    cs4398: "128x"
   </dest>
   <voice>
-    *: "128x"
+    *: none
+    cs4398: "128x"
   </voice>
 </phrase>
 <phrase>
@@ -13221,13 +13242,16 @@
   desc: in sound settings
   user: core
   <source>
-    *: "64x"
+    *: none
+    cs4398: "64x"
   </source>
   <dest>
-    *: "64x"
+    *: none
+    cs4398: "64x"
   </dest>
   <voice>
-    *: "64x"
+    *: none
+    cs4398: "64x"
   </voice>
 </phrase>
 <phrase>
@@ -13235,13 +13259,16 @@
   desc: in sound settings
   user: core
   <source>
-    *: "32x"
+    *: none
+    cs4398: "32x"
   </source>
   <dest>
-    *: "32x"
+    *: none
+    cs4398: "32x"
   </dest>
   <voice>
-    *: "32x"
+    *: none
+    cs4398: "32x"
   </voice>
 </phrase>
 <phrase>
