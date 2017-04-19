@@ -179,7 +179,8 @@ static void draw_timedate(struct viewport *vp, struct screen *display)
                             tm->tm_sec, 
                         global_settings.timeformat == 0 ? "" :
                                 tm->tm_hour>11 ? " P" : " A");
-        snprintf(date, sizeof(date), "%s %d %d", 
+        snprintf(date, sizeof(date), "%s %s %d %d",
+                str(LANG_WEEKDAY_SUNDAY + tm->tm_wday),
                 str(LANG_MONTH_JANUARY + tm->tm_mon),
                     tm->tm_mday,
                     tm->tm_year+1900);
