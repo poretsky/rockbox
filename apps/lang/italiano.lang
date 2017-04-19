@@ -3901,16 +3901,13 @@ desc: deprecated
   desc: select the time format of time in status bar
   user: core
   <source>
-    *: none
-    rtc: "Time Format"
+    *: "Time Format"
   </source>
   <dest>
-    *: none
-    rtc: "Formato ora"
+    *: "Formato ora"
   </dest>
   <voice>
-    *: none
-    rtc: "Formato ora"
+    *: "Formato ora"
   </voice>
 </phrase>
 <phrase>
@@ -3918,16 +3915,13 @@ desc: deprecated
   desc: option for 12 hour clock
   user: core
   <source>
-    *: none
-    rtc: "12 Hour Clock"
+    *: "12 Hour Clock"
   </source>
   <dest>
-    *: none
-    rtc: "Orologio 12 ore (AM/PM)"
+    *: "Orologio 12 ore (AM/PM)"
   </dest>
   <voice>
-    *: none
-    rtc: "Orologio 12 ore"
+    *: "Orologio 12 ore"
   </voice>
 </phrase>
 <phrase>
@@ -3935,16 +3929,13 @@ desc: deprecated
   desc: option for 24 hour clock
   user: core
   <source>
-    *: none
-    rtc: "24 Hour Clock"
+    *: "24 Hour Clock"
   </source>
   <dest>
-    *: none
-    rtc: "Orologio 24 ore"
+    *: "Orologio 24 ore"
   </dest>
   <voice>
-    *: none
-    rtc: "Orologio 24 ore"
+    *: "Orologio 24 ore"
   </voice>
 </phrase>
 <phrase>
@@ -4022,16 +4013,13 @@ desc: deprecated
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sun"
+    *: "Sun"
   </source>
   <dest>
-    *: none
-    rtc: "Dom"
+    *: "Dom"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Domenica"
   </voice>
 </phrase>
 <phrase>
@@ -4039,16 +4027,13 @@ desc: deprecated
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Mon"
+    *: "Mon"
   </source>
   <dest>
-    *: none
-    rtc: "Lun"
+    *: "Lun"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Lunedì"
   </voice>
 </phrase>
 <phrase>
@@ -4056,16 +4041,13 @@ desc: deprecated
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Tue"
+    *: "Tue"
   </source>
   <dest>
-    *: none
-    rtc: "Mar"
+    *: "Mar"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Martedì"
   </voice>
 </phrase>
 <phrase>
@@ -4073,16 +4055,13 @@ desc: deprecated
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Wed"
+    *: "Wed"
   </source>
   <dest>
-    *: none
-    rtc: "Mer"
+    *: "Mer"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Mercoledì"
   </voice>
 </phrase>
 <phrase>
@@ -4090,16 +4069,13 @@ desc: deprecated
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Thu"
+    *: "Thu"
   </source>
   <dest>
-    *: none
-    rtc: "Gio"
+    *: "Gio"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Giovedì"
   </voice>
 </phrase>
 <phrase>
@@ -4107,16 +4083,13 @@ desc: deprecated
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Fri"
+    *: "Fri"
   </source>
   <dest>
-    *: none
-    rtc: "Ven"
+    *: "Ven"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Venerdì"
   </voice>
 </phrase>
 <phrase>
@@ -4124,16 +4097,13 @@ desc: deprecated
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sat"
+    *: "Sat"
   </source>
   <dest>
-    *: none
-    rtc: "Sab"
+    *: "Sab"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Sabato"
   </voice>
 </phrase>
 <phrase>
@@ -4141,16 +4111,13 @@ desc: deprecated
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Jan"
+    *: "Jan"
   </source>
   <dest>
-    *: none
-    rtc: "Gen"
+    *: "Gen"
   </dest>
   <voice>
-    *: none
-    rtc: "Gennaio"
+    *: "Gennaio"
   </voice>
 </phrase>
 <phrase>
@@ -4158,16 +4125,13 @@ desc: deprecated
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Feb"
+    *: "Feb"
   </source>
   <dest>
-    *: none
-    rtc: "Feb"
+    *: "Feb"
   </dest>
   <voice>
-    *: none
-    rtc: "Febbraio"
+    *: "Febbraio"
   </voice>
 </phrase>
 <phrase>
@@ -4175,16 +4139,13 @@ desc: deprecated
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Mar"
+    *: "Mar"
   </source>
   <dest>
-    *: none
-    rtc: "Mar"
+    *: "Mar"
   </dest>
   <voice>
-    *: none
-    rtc: "Marzo"
+    *: "Marzo"
   </voice>
 </phrase>
 <phrase>
@@ -4192,16 +4153,13 @@ desc: deprecated
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Apr"
+    *: "Apr"
   </source>
   <dest>
-    *: none
-    rtc: "Apr"
+    *: "Apr"
   </dest>
   <voice>
-    *: none
-    rtc: "Aprile"
+    *: "Aprile"
   </voice>
 </phrase>
 <phrase>
@@ -4209,16 +4167,13 @@ desc: deprecated
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "May"
+    *: "May"
   </source>
   <dest>
-    *: none
-    rtc: "Mag"
+    *: "Mag"
   </dest>
   <voice>
-    *: none
-    rtc: "Maggio"
+    *: "Maggio"
   </voice>
 </phrase>
 <phrase>
@@ -4226,16 +4181,13 @@ desc: deprecated
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Jun"
+    *: "Jun"
   </source>
   <dest>
-    *: none
-    rtc: "Giu"
+    *: "Giu"
   </dest>
   <voice>
-    *: none
-    rtc: "Giugno"
+    *: "Giugno"
   </voice>
 </phrase>
 <phrase>
@@ -4243,16 +4195,13 @@ desc: deprecated
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Jul"
+    *: "Jul"
   </source>
   <dest>
-    *: none
-    rtc: "Lug"
+    *: "Lug"
   </dest>
   <voice>
-    *: none
-    rtc: "Luglio"
+    *: "Luglio"
   </voice>
 </phrase>
 <phrase>
@@ -4260,16 +4209,13 @@ desc: deprecated
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Aug"
+    *: "Aug"
   </source>
   <dest>
-    *: none
-    rtc: "Ago"
+    *: "Ago"
   </dest>
   <voice>
-    *: none
-    rtc: "Agosto"
+    *: "Agosto"
   </voice>
 </phrase>
 <phrase>
@@ -4277,16 +4223,13 @@ desc: deprecated
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Sep"
+    *: "Sep"
   </source>
   <dest>
-    *: none
-    rtc: "Set"
+    *: "Set"
   </dest>
   <voice>
-    *: none
-    rtc: "Settembre"
+    *: "Settembre"
   </voice>
 </phrase>
 <phrase>
@@ -4294,16 +4237,13 @@ desc: deprecated
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Oct"
+    *: "Oct"
   </source>
   <dest>
-    *: none
-    rtc: "Ott"
+    *: "Ott"
   </dest>
   <voice>
-    *: none
-    rtc: "Ottobre"
+    *: "Ottobre"
   </voice>
 </phrase>
 <phrase>
@@ -4311,16 +4251,13 @@ desc: deprecated
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Nov"
+    *: "Nov"
   </source>
   <dest>
-    *: none
-    rtc: "Nov"
+    *: "Nov"
   </dest>
   <voice>
-    *: none
-    rtc: "Novembre"
+    *: "Novembre"
   </voice>
 </phrase>
 <phrase>
@@ -4328,16 +4265,13 @@ desc: deprecated
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Dec"
+    *: "Dec"
   </source>
   <dest>
-    *: none
-    rtc: "Dic"
+    *: "Dic"
   </dest>
   <voice>
-    *: none
-    rtc: "Dicembre"
+    *: "Dicembre"
   </voice>
 </phrase>
 <phrase>
@@ -10117,16 +10051,13 @@ desc: deprecated
   desc: spoken only, for wall clock announce
   user: core
   <source>
-    *: none
-    rtc: ""
+    *: ""
   </source>
   <dest>
-    *: none
-    rtc: ""
+    *: ""
   </dest>
   <voice>
-    *: none
-    rtc: "In punto"
+    *: "In punto"
   </voice>
 </phrase>
 <phrase>
@@ -10134,16 +10065,13 @@ desc: deprecated
   desc: spoken only, for wall clock announce
   user: core
   <source>
-    *: none
-    rtc: ""
+    *: ""
   </source>
   <dest>
-    *: none
-    rtc: ""
+    *: ""
   </dest>
   <voice>
-    *: none
-    rtc: "P M"
+    *: "P M"
   </voice>
 </phrase>
 <phrase>
@@ -10151,16 +10079,13 @@ desc: deprecated
   desc: spoken only, for wall clock announce
   user: core
   <source>
-    *: none
-    rtc: ""
+    *: ""
   </source>
   <dest>
-    *: none
-    rtc: ""
+    *: ""
   </dest>
   <voice>
-    *: none
-    rtc: "A M"
+    *: "A M"
   </voice>
 </phrase>
 <phrase>
@@ -10168,16 +10093,13 @@ desc: deprecated
   desc: spoken only, for wall clock announce
   user: core
   <source>
-    *: none
-    rtc: ""
+    *: ""
   </source>
   <dest>
-    *: none
-    rtc: ""
+    *: ""
   </dest>
   <voice>
-    *: none
-    rtc: "e"
+    *: "e"
   </voice>
 </phrase>
 <phrase>
