@@ -3905,16 +3905,13 @@
   desc: select the time format of time in status bar
   user: core
   <source>
-    *: none
-    rtc: "Time Format"
+    *: "Time Format"
   </source>
   <dest>
-    *: none
-    rtc: "תבנית תצוגת זמן"
+    *: "תבנית תצוגת זמן"
   </dest>
   <voice>
-    *: none
-    rtc: "תבנית תצוגת זמן"
+    *: "תבנית תצוגת זמן"
   </voice>
 </phrase>
 <phrase>
@@ -3922,16 +3919,13 @@
   desc: option for 12 hour clock
   user: core
   <source>
-    *: none
-    rtc: "12 Hour Clock"
+    *: "12 Hour Clock"
   </source>
   <dest>
-    *: none
-    rtc: "שעות 12 שעון"
+    *: "שעות 12 שעון"
   </dest>
   <voice>
-    *: none
-    rtc: "שעות 12 שעון"
+    *: "שעות 12 שעון"
   </voice>
 </phrase>
 <phrase>
@@ -3939,16 +3933,13 @@
   desc: option for 24 hour clock
   user: core
   <source>
-    *: none
-    rtc: "24 Hour Clock"
+    *: "24 Hour Clock"
   </source>
   <dest>
-    *: none
-    rtc: "שעות 24 שעון"
+    *: "שעות 24 שעון"
   </dest>
   <voice>
-    *: none
-    rtc: "שעות 24 שעון"
+    *: "שעות 24 שעון"
   </voice>
 </phrase>
 <phrase>
@@ -4025,16 +4016,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sun"
+    *: "Sun"
   </source>
   <dest>
-    *: none
-    rtc: "'א"
+    *: "'א"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -4042,16 +4030,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Mon"
+    *: "Mon"
   </source>
   <dest>
-    *: none
-    rtc: "'ב"
+    *: "'ב"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -4059,16 +4044,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Tue"
+    *: "Tue"
   </source>
   <dest>
-    *: none
-    rtc: "'ג"
+    *: "'ג"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -4076,16 +4058,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Wed"
+    *: "Wed"
   </source>
   <dest>
-    *: none
-    rtc: "'ד"
+    *: "'ד"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -4093,16 +4072,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Thu"
+    *: "Thu"
   </source>
   <dest>
-    *: none
-    rtc: "'ה"
+    *: "'ה"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -4110,16 +4086,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Fri"
+    *: "Fri"
   </source>
   <dest>
-    *: none
-    rtc: "'ו"
+    *: "'ו"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -4127,16 +4100,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sat"
+    *: "Sat"
   </source>
   <dest>
-    *: none
-    rtc: "שבת"
+    *: "שבת"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -4144,16 +4114,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Jan"
+    *: "Jan"
   </source>
   <dest>
-    *: none
-    rtc: "ינו"
+    *: "ינו"
   </dest>
   <voice>
-    *: none
-    rtc: "ינואר"
+    *: "ינואר"
   </voice>
 </phrase>
 <phrase>
@@ -4161,16 +4128,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Feb"
+    *: "Feb"
   </source>
   <dest>
-    *: none
-    rtc: "פבר"
+    *: "פבר"
   </dest>
   <voice>
-    *: none
-    rtc: "פברואר"
+    *: "פברואר"
   </voice>
 </phrase>
 <phrase>
@@ -4178,16 +4142,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Mar"
+    *: "Mar"
   </source>
   <dest>
-    *: none
-    rtc: "מרץ"
+    *: "מרץ"
   </dest>
   <voice>
-    *: none
-    rtc: "מרץ"
+    *: "מרץ"
   </voice>
 </phrase>
 <phrase>
@@ -4195,16 +4156,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Apr"
+    *: "Apr"
   </source>
   <dest>
-    *: none
-    rtc: "אפר"
+    *: "אפר"
   </dest>
   <voice>
-    *: none
-    rtc: "אפריל"
+    *: "אפריל"
   </voice>
 </phrase>
 <phrase>
@@ -4212,16 +4170,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "May"
+    *: "May"
   </source>
   <dest>
-    *: none
-    rtc: "מאי"
+    *: "מאי"
   </dest>
   <voice>
-    *: none
-    rtc: "מאי"
+    *: "מאי"
   </voice>
 </phrase>
 <phrase>
@@ -4229,16 +4184,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Jun"
+    *: "Jun"
   </source>
   <dest>
-    *: none
-    rtc: "יונ"
+    *: "יונ"
   </dest>
   <voice>
-    *: none
-    rtc: "יוני"
+    *: "יוני"
   </voice>
 </phrase>
 <phrase>
@@ -4246,16 +4198,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Jul"
+    *: "Jul"
   </source>
   <dest>
-    *: none
-    rtc: "יול"
+    *: "יול"
   </dest>
   <voice>
-    *: none
-    rtc: "יולי"
+    *: "יולי"
   </voice>
 </phrase>
 <phrase>
@@ -4263,16 +4212,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Aug"
+    *: "Aug"
   </source>
   <dest>
-    *: none
-    rtc: "אוג"
+    *: "אוג"
   </dest>
   <voice>
-    *: none
-    rtc: "אוגוס"
+    *: "אוגוס"
   </voice>
 </phrase>
 <phrase>
@@ -4280,16 +4226,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Sep"
+    *: "Sep"
   </source>
   <dest>
-    *: none
-    rtc: "ספט"
+    *: "ספט"
   </dest>
   <voice>
-    *: none
-    rtc: "ספטמבר"
+    *: "ספטמבר"
   </voice>
 </phrase>
 <phrase>
@@ -4297,16 +4240,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Oct"
+    *: "Oct"
   </source>
   <dest>
-    *: none
-    rtc: "אוק"
+    *: "אוק"
   </dest>
   <voice>
-    *: none
-    rtc: "אוקטובר"
+    *: "אוקטובר"
   </voice>
 </phrase>
 <phrase>
@@ -4314,16 +4254,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Nov"
+    *: "Nov"
   </source>
   <dest>
-    *: none
-    rtc: "נוב"
+    *: "נוב"
   </dest>
   <voice>
-    *: none
-    rtc: "נובמבר"
+    *: "נובמבר"
   </voice>
 </phrase>
 <phrase>
@@ -4331,16 +4268,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Dec"
+    *: "Dec"
   </source>
   <dest>
-    *: none
-    rtc: "דצמ"
+    *: "דצמ"
   </dest>
   <voice>
-    *: none
-    rtc: "דצמבר"
+    *: "דצמבר"
   </voice>
 </phrase>
 <phrase>
@@ -10118,16 +10052,13 @@
   desc: spoken only, for wall clock announce
   user: core
   <source>
-    *: none
-    rtc: ""
+    *: ""
   </source>
   <dest>
-    *: none
-    rtc: ""
+    *: ""
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -10135,16 +10066,13 @@
   desc: spoken only, for wall clock announce
   user: core
   <source>
-    *: none
-    rtc: ""
+    *: ""
   </source>
   <dest>
-    *: none
-    rtc: ""
+    *: ""
   </dest>
   <voice>
-    *: none
-    rtc: "P M"
+    *: "P M"
   </voice>
 </phrase>
 <phrase>
@@ -10152,16 +10080,13 @@
   desc: spoken only, for wall clock announce
   user: core
   <source>
-    *: none
-    rtc: ""
+    *: ""
   </source>
   <dest>
-    *: none
-    rtc: ""
+    *: ""
   </dest>
   <voice>
-    *: none
-    rtc: "A M"
+    *: "A M"
   </voice>
 </phrase>
 <phrase>
@@ -10169,16 +10094,13 @@
   desc: spoken only, for wall clock announce
   user: core
   <source>
-    *: none
-    rtc: ""
+    *: ""
   </source>
   <dest>
-    *: none
-    rtc: ""
+    *: ""
   </dest>
   <voice>
-    *: none
-    rtc: "oh"
+    *: "oh"
   </voice>
 </phrase>
 <phrase>
