@@ -3499,31 +3499,43 @@
   </voice>
 </phrase>
 <phrase>
-  id: LANG_BATTERY_TYPE_ALKALINE
+  id: LANG_BATTERY_TYPE_1
   desc: in battery settings
   user: core
   <source>
-    *: "Alkaline"
+    *: none
+    battery_types: "Alkaline"
+    xduoox3: "Coke anode"
   </source>
   <dest>
-    *: "Alkala"
+    *: none
+    battery_types: "Alkala"
+    xduoox3: "Coke anode"
   </dest>
   <voice>
-    *: "Alkala"
+    *: none
+    battery_types: "Alkala"
+    xduoox3: "Coke anode"
   </voice>
 </phrase>
 <phrase>
-  id: LANG_BATTERY_TYPE_NIMH
+  id: LANG_BATTERY_TYPE_2
   desc: in battery settings
   user: core
   <source>
-    *: "NiMH"
+    *: none
+    battery_types: "NiMH"
+    xduoox3: "Graphite anode"
   </source>
   <dest>
-    *: "Nikelo Metalo Hidrido"
+    *: none
+    battery_types: "Nikelo Metalo Hidrido"
+    xduoox3: "Graphite anode"
   </dest>
   <voice>
-    *: "Nikelo Metalo Hidrido"
+    *: none
+    battery_types: "Nikelo Metalo Hidrido"
+    xduoox3: "Graphite anode"
   </voice>
 </phrase>
 <phrase>
