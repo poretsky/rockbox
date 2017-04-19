@@ -3743,20 +3743,23 @@
   </voice>
 </phrase>
 <phrase>
-  id: LANG_BATTERY_TYPE_ALKALINE
+  id: LANG_BATTERY_TYPE_1
   desc: in battery settings
   user: core
   <source>
     *: none
     battery_types: "Alkaline"
+    xduoox3: "Coke anode"
   </source>
   <dest>
     *: none
     battery_types: "قلوي"
+    xduoox3: "Coke anode"
   </dest>
   <voice>
     *: none
     battery_types: "Alkaline"
+    xduoox3: "Coke anode"
   </voice>
 </phrase>
 <phrase>
