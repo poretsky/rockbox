@@ -13045,13 +13045,16 @@
   desc: in sound settings
   user: core
   <source>
-    *: "Slow"
+    *: none
+    cs4398,es9018: "Slow"
   </source>
   <dest>
-    *: "Плавный"
+    *: none
+    cs4398,es9018: "Плавный"
   </dest>
   <voice>
-    *: "Плавный"
+    *: none
+    cs4398,es9018: "Плавный"
   </voice>
 </phrase>
 <phrase>
@@ -13059,13 +13062,16 @@
   desc: in sound settings
   user: core
   <source>
-    *: "Sharp"
+    *: none
+    cs4398,es9018: "Sharp"
   </source>
   <dest>
-    *: "Крутой"
+    *: none
+    cs4398,es9018: "Крутой"
   </dest>
   <voice>
-    *: "Крутой"
+    *: none
+    cs4398,es9018: "Крутой"
   </voice>
 </phrase>
 <phrase>
@@ -13073,13 +13079,16 @@
   desc: in sound settings
   user: core
   <source>
-    *: "Short"
+    *: none
+    es9018: "Short"
   </source>
   <dest>
-    *: "Короткий"
+    *: none
+    es9018: "Короткий"
   </dest>
   <voice>
-    *: "Короткий"
+    *: none
+    es9018: "Короткий"
   </voice>
 </phrase>
 <phrase>
@@ -13087,13 +13096,16 @@
   desc: in sound settings
   user: core
   <source>
-    *: "Bypass"
+    *: none
+    es9018: "Bypass"
   </source>
   <dest>
-    *: "Обойти"
+    *: none
+    es9018: "Обойти"
   </dest>
   <voice>
-    *: "Обойти"
+    *: none
+    es9018: "Обойти"
   </voice>
 </phrase>
 <phrase>
@@ -13118,13 +13130,16 @@
   desc: in sound settings
   user: core
   <source>
-    *: "DAC's filter roll-off"
+    *: none
+    cs4398,es9018: "DAC's filter roll-off"
   </source>
   <dest>
-    *: "Цифровой фильтр ЦАП"
+    *: none
+    cs4398,es9018: "Цифровой фильтр ЦАП"
   </dest>
   <voice>
-    *: "Цифровой фильтр ЦАП"
+    *: none
+    cs4398,es9018: "Цифровой фильтр ЦАП"
   </voice>
 </phrase>
 <phrase>
@@ -13132,13 +13147,16 @@
   desc: in sound settings
   user: core
   <source>
-    *: "DAC's oversampling"
+    *: none
+    cs4398: "DAC's oversampling"
   </source>
   <dest>
-    *: "Передискретизация ЦАП"
+    *: none
+    cs4398: "Передискретизация ЦАП"
   </dest>
   <voice>
-    *: "Передискретизация ЦАП"
+    *: none
+    cs4398: "Передискретизация ЦАП"
   </voice>
 </phrase>
 <phrase>
@@ -13146,13 +13164,16 @@
   desc: in sound settings
   user: core
   <source>
-    *: "128x"
+    *: none
+    cs4398: "128x"
   </source>
   <dest>
-    *: "128x"
+    *: none
+    cs4398: "128x"
   </dest>
   <voice>
-    *: "128 икс"
+    *: none
+    cs4398: "128 икс"
   </voice>
 </phrase>
 <phrase>
@@ -13160,13 +13181,16 @@
   desc: in sound settings
   user: core
   <source>
-    *: "64x"
+    *: none
+    cs4398: "64x"
   </source>
   <dest>
-    *: "64x"
+    *: none
+    cs4398: "64x"
   </dest>
   <voice>
-    *: "64 икс"
+    *: none
+    cs4398: "64 икс"
   </voice>
 </phrase>
 <phrase>
@@ -13174,13 +13198,16 @@
   desc: in sound settings
   user: core
   <source>
-    *: "32x"
+    *: none
+    cs4398: "32x"
   </source>
   <dest>
-    *: "32x"
+    *: none
+    cs4398: "32x"
   </dest>
   <voice>
-    *: "32 икс"
+    *: none
+    cs4398: "32 икс"
   </voice>
 </phrase>
 <phrase>
