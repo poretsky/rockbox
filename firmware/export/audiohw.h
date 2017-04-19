@@ -588,7 +588,7 @@ void audiohw_set_filter_roll_off(int val);
 #ifdef AUDIOHW_HAVE_FUNCTIONAL_MODE
 /**
  * Set DAC's functional mode.
- * @param val 0 - Sinfle-Speed, 1 - Double-Speed, 2 - Quad-Speed.
+ * @param val 0 - Single-Speed, 1 - Double-Speed, 2 - Quad-Speed.
  * NOTE: AUDIOHW_CAPS need to contain
  *          FUNCTIONAL_MODE_CAP
  */
