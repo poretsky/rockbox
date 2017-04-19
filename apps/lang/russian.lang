@@ -3391,37 +3391,43 @@
   </voice>
 </phrase>
 <phrase>
-  id: LANG_BATTERY_TYPE_ALKALINE
+  id: LANG_BATTERY_TYPE_1
   desc: in battery settings
   user: core
   <source>
     *: none
     battery_types: "Alkaline"
+    xduoox3: "Coke anode"
   </source>
   <dest>
     *: none
     battery_types: "Щелочной"
+    xduoox3: "Коксовый анод"
   </dest>
   <voice>
     *: none
     battery_types: "Щелочной"
+    xduoox3: "Коксовый анод"
   </voice>
 </phrase>
 <phrase>
-  id: LANG_BATTERY_TYPE_NIMH
+  id: LANG_BATTERY_TYPE_2
   desc: in battery settings
   user: core
   <source>
     *: none
     battery_types: "NiMH"
+    xduoox3: "Graphite anode"
   </source>
   <dest>
     *: none
     battery_types: "Никель-металгидридный"
+    xduoox3: "Графитовый анод"
   </dest>
   <voice>
     *: none
     battery_types: "Никель-металгидридный"
+    xduoox3: "Графитовый анод"
   </voice>
 </phrase>
 <phrase>
