@@ -3660,16 +3660,13 @@
   desc: select the time format of time in status bar
   user: core
   <source>
-    *: none
-    rtc: "Time Format"
+    *: "Time Format"
   </source>
   <dest>
-    *: none
-    rtc: "Ajan esitysmuoto"
+    *: "Ajan esitysmuoto"
   </dest>
   <voice>
-    *: none
-    rtc: "Ajan esitysmuoto"
+    *: "Ajan esitysmuoto"
   </voice>
 </phrase>
 <phrase>
@@ -3677,16 +3674,13 @@
   desc: option for 12 hour clock
   user: core
   <source>
-    *: none
-    rtc: "12 Hour Clock"
+    *: "12 Hour Clock"
   </source>
   <dest>
-    *: none
-    rtc: "12-tuntinen kello"
+    *: "12-tuntinen kello"
   </dest>
   <voice>
-    *: none
-    rtc: "12 tuntinen kello"
+    *: "12 tuntinen kello"
   </voice>
 </phrase>
 <phrase>
@@ -3694,16 +3688,13 @@
   desc: option for 24 hour clock
   user: core
   <source>
-    *: none
-    rtc: "24 Hour Clock"
+    *: "24 Hour Clock"
   </source>
   <dest>
-    *: none
-    rtc: "24-tuntinen kello"
+    *: "24-tuntinen kello"
   </dest>
   <voice>
-    *: none
-    rtc: "24 tuntinen kello"
+    *: "24 tuntinen kello"
   </voice>
 </phrase>
 <phrase>
@@ -5013,16 +5004,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sun"
+    *: "Sun"
   </source>
   <dest>
-    *: none
-    rtc: "Su"
+    *: "Su"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -5030,16 +5018,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Mon"
+    *: "Mon"
   </source>
   <dest>
-    *: none
-    rtc: "Ma"
+    *: "Ma"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -5047,16 +5032,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Tue"
+    *: "Tue"
   </source>
   <dest>
-    *: none
-    rtc: "Ti"
+    *: "Ti"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -5064,16 +5046,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Wed"
+    *: "Wed"
   </source>
   <dest>
-    *: none
-    rtc: "Ke"
+    *: "Ke"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -5081,16 +5060,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Thu"
+    *: "Thu"
   </source>
   <dest>
-    *: none
-    rtc: "To"
+    *: "To"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -5098,16 +5074,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Fri"
+    *: "Fri"
   </source>
   <dest>
-    *: none
-    rtc: "Pe"
+    *: "Pe"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -5115,16 +5088,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sat"
+    *: "Sat"
   </source>
   <dest>
-    *: none
-    rtc: "La"
+    *: "La"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -5132,16 +5102,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Jan"
+    *: "Jan"
   </source>
   <dest>
-    *: none
-    rtc: "Tam"
+    *: "Tam"
   </dest>
   <voice>
-    *: none
-    rtc: "Tammikuu"
+    *: "Tammikuu"
   </voice>
 </phrase>
 <phrase>
@@ -5149,16 +5116,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Feb"
+    *: "Feb"
   </source>
   <dest>
-    *: none
-    rtc: "Hel"
+    *: "Hel"
   </dest>
   <voice>
-    *: none
-    rtc: "Helmikuu"
+    *: "Helmikuu"
   </voice>
 </phrase>
 <phrase>
@@ -5166,16 +5130,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Mar"
+    *: "Mar"
   </source>
   <dest>
-    *: none
-    rtc: "Maa"
+    *: "Maa"
   </dest>
   <voice>
-    *: none
-    rtc: "Maaliskuu"
+    *: "Maaliskuu"
   </voice>
 </phrase>
 <phrase>
@@ -5183,16 +5144,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Apr"
+    *: "Apr"
   </source>
   <dest>
-    *: none
-    rtc: "Huh"
+    *: "Huh"
   </dest>
   <voice>
-    *: none
-    rtc: "Huhtikuu"
+    *: "Huhtikuu"
   </voice>
 </phrase>
 <phrase>
@@ -5200,16 +5158,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "May"
+    *: "May"
   </source>
   <dest>
-    *: none
-    rtc: "Tou"
+    *: "Tou"
   </dest>
   <voice>
-    *: none
-    rtc: "Toukokuu"
+    *: "Toukokuu"
   </voice>
 </phrase>
 <phrase>
@@ -5217,16 +5172,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Jun"
+    *: "Jun"
   </source>
   <dest>
-    *: none
-    rtc: "Kes"
+    *: "Kes"
   </dest>
   <voice>
-    *: none
-    rtc: "Kesäkuu"
+    *: "Kesäkuu"
   </voice>
 </phrase>
 <phrase>
@@ -5234,16 +5186,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Jul"
+    *: "Jul"
   </source>
   <dest>
-    *: none
-    rtc: "Hei"
+    *: "Hei"
   </dest>
   <voice>
-    *: none
-    rtc: "Heinäkuu"
+    *: "Heinäkuu"
   </voice>
 </phrase>
 <phrase>
@@ -5251,16 +5200,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Aug"
+    *: "Aug"
   </source>
   <dest>
-    *: none
-    rtc: "Elo"
+    *: "Elo"
   </dest>
   <voice>
-    *: none
-    rtc: "Elokuu"
+    *: "Elokuu"
   </voice>
 </phrase>
 <phrase>
@@ -5268,16 +5214,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Sep"
+    *: "Sep"
   </source>
   <dest>
-    *: none
-    rtc: "Syy"
+    *: "Syy"
   </dest>
   <voice>
-    *: none
-    rtc: "Syyskuu"
+    *: "Syyskuu"
   </voice>
 </phrase>
 <phrase>
@@ -5285,16 +5228,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Oct"
+    *: "Oct"
   </source>
   <dest>
-    *: none
-    rtc: "Lok"
+    *: "Lok"
   </dest>
   <voice>
-    *: none
-    rtc: "Lokakuu"
+    *: "Lokakuu"
   </voice>
 </phrase>
 <phrase>
@@ -5302,16 +5242,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Nov"
+    *: "Nov"
   </source>
   <dest>
-    *: none
-    rtc: "Mar"
+    *: "Mar"
   </dest>
   <voice>
-    *: none
-    rtc: "Marraskuu"
+    *: "Marraskuu"
   </voice>
 </phrase>
 <phrase>
@@ -5319,16 +5256,13 @@
   desc: Maximum 3-letter abbreviation for monthname
   user: core
   <source>
-    *: none
-    rtc: "Dec"
+    *: "Dec"
   </source>
   <dest>
-    *: none
-    rtc: "Jou"
+    *: "Jou"
   </dest>
   <voice>
-    *: none
-    rtc: "Joulukuu"
+    *: "Joulukuu"
   </voice>
 </phrase>
 <phrase>
@@ -10107,16 +10041,13 @@
   desc: spoken only, for wall clock announce
   user: core
   <source>
-    *: none
-    rtc: ""
+    *: ""
   </source>
   <dest>
-    *: none
-    rtc: ""
+    *: ""
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -10124,16 +10055,13 @@
   desc: spoken only, for wall clock announce
   user: core
   <source>
-    *: none
-    rtc: ""
+    *: ""
   </source>
   <dest>
-    *: none
-    rtc: ""
+    *: ""
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -10141,16 +10069,13 @@
   desc: spoken only, for wall clock announce
   user: core
   <source>
-    *: none
-    rtc: ""
+    *: ""
   </source>
   <dest>
-    *: none
-    rtc: ""
+    *: ""
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -10158,16 +10083,13 @@
   desc: spoken only, for wall clock announce
   user: core
   <source>
-    *: none
-    rtc: ""
+    *: ""
   </source>
   <dest>
-    *: none
-    rtc: ""
+    *: ""
   </dest>
   <voice>
-    *: none
-    rtc: "nolla"
+    *: "nolla"
   </voice>
 </phrase>
 <phrase>
