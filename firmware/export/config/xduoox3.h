@@ -113,12 +113,16 @@
 #define BATTERY_CAPACITY_MIN 500      /* min. capacity selectable */
 #define BATTERY_CAPACITY_MAX 2000     /* max. capacity selectable */
 #define BATTERY_CAPACITY_INC 100      /* capacity increment */
-#define BATTERY_TYPES_COUNT  1        /* only one type */
+#define BATTERY_TYPES_COUNT  2        /* Coke or Graphite anode */
 
 #define CONFIG_BATTERY_MEASURE VOLTAGE_MEASURE
 
 /* Hardware controlled charging with monitoring */
 #define CONFIG_CHARGING CHARGING_MONITOR
+
+/* define current usage levels */
+#define CURRENT_NORMAL       175      /* 2000 mAh / 11.36 h */
+#define CURRENT_BACKLIGHT    190      /* OLED approx. 15 mA */
 
 /* There is only USB charging */
 #define HAVE_USB_POWER
