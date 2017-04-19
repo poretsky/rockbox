@@ -81,7 +81,7 @@ void audiohw_preinit(void)
     cs4398_write_reg(0x04, CS4398_MUTEP_LOW);
     cs4398_write_reg(0x05, 0xff);
     cs4398_write_reg(0x06, 0xff);
-    cs4398_write_reg(0x07, 0);
+    cs4398_write_reg(0x07, CS4398_RMP_DN | CS4398_RMP_UP | CS4398_ZERO_CROSS);
     cs4398_write_reg(0x08, CS4398_CPEN);
 }
 
@@ -143,8 +143,11 @@ static int vol_tenthdb2hw(const int tdb)
 
 void audiohw_set_volume(int vol_l, int vol_r)
 {
+    uint8_t reg8_val = cs4398_read_reg(0x08);
+    cs4398_write_reg(0x08, reg8_val | CS4398_FREEZE);
     cs4398_write_reg(0x05, vol_tenthdb2hw(vol_l));
     cs4398_write_reg(0x06, vol_tenthdb2hw(vol_r));
+    cs4398_write_reg(0x08, reg8_val);
 }
 
 void audiohw_set_lineout_volume(int vol_l, int vol_r)
@@ -174,11 +177,29 @@ void audiohw_set_functional_mode(int value)
     /* 0 = Single-Speed Mode;
        1 = Double-Speed Mode;
        2 = Quad-Speed Mode; */
-    cs4398_write_reg(0x02, (cs4398_read_reg(0x02) & ~CS4398_FM_MASK) | value);
-    if (value == 2)
-        cs4398_write_reg(0x08, cs4398_read_reg(0x08) | CS4398_MCLKDIV2);
-    else
-        cs4398_write_reg(0x08, cs4398_read_reg(0x08) & ~CS4398_MCLKDIV2);
+    uint8_t reg2_val = cs4398_read_reg(0x02);
+    int prev_mode = reg2_val & CS4398_FM_MASK;
+    if (value != prev_mode)
+    {
+        reg2_val &= ~CS4398_FM_MASK;
+        reg2_val |= value;
+        ap_mute(true);
+        if (value == CS4398_FM_QUAD || prev_mode == CS4398_FM_QUAD)
+        {
+            uint8_t reg8_val = cs4398_read_reg(0x08);
+            cs4398_write_reg(0x08, reg8_val | CS4398_FREEZE);
+            cs4398_write_reg(0x02, reg2_val);
+            if (value == CS4398_FM_QUAD)
+                reg8_val |= CS4398_MCLKDIV2;
+            else
+                reg8_val &= ~CS4398_MCLKDIV2;
+            cs4398_write_reg(0x08, reg8_val);
+        }
+        else
+            cs4398_write_reg(0x02, reg2_val);
+        mdelay(20);
+        ap_mute(false);
+    }
 }
 
 void pll1_init(unsigned int freq);
@@ -252,13 +273,16 @@ void audiohw_set_frequency(int fsel)
         default:
             return;
     }
-    
+
+    ap_mute(true);
     __i2s_stop_bitclk();
     pll1_init(pll1_speed);
     __cpm_enable_pll_change();
     __cpm_set_i2sdiv(mclk_div-1);
     __i2s_set_i2sdiv(bclk_div-1);
     __i2s_start_bitclk();
+    mdelay(20);
+    ap_mute(false);
 }
 
 void audiohw_postinit(void)
