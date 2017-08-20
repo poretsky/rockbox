@@ -62,7 +62,7 @@ static int hw_eq_do_band_setting(void *param)
 {
     int band = HW_EQ_IDX_BAND(param);
     int setting = HW_EQ_IDX_SETTING(param);
-    char desc[MAX_PATH];
+    static char desc[MAX_PATH];
     struct menu_callback_with_desc cbwdesc =
     {
         .menu_callback = NULL,

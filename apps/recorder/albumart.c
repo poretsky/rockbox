@@ -141,8 +141,8 @@ static bool try_exts(char *path, int len)
 bool search_albumart_files(const struct mp3entry *id3, const char *size_string,
                            char *buf, int buflen)
 {
-    char path[MAX_PATH + 1];
-    char dir[MAX_PATH + 1];
+    static char path[MAX_PATH + 1];
+    static char dir[MAX_PATH + 1];
     bool found = false;
     int track_first = 1;
     int pass;
