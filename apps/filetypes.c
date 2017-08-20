@@ -312,7 +312,7 @@ static int find_extension(const char* extension)
  * load a colors file from a theme with:
  * filetype colours: filename.colours */
 void read_color_theme_file(void) {
-    char buffer[MAX_PATH];
+    static char buffer[MAX_PATH];
     int fd;
     char *ext, *color;
     int i;
@@ -350,7 +350,7 @@ void read_color_theme_file(void) {
 #endif
 void read_viewer_theme_file(void)
 {
-    char buffer[MAX_PATH];
+    static char buffer[MAX_PATH];
     int fd;
     char *ext, *icon;
     int i;
@@ -726,7 +726,7 @@ int filetype_list_viewers(const char* current_file)
 int filetype_load_plugin(const char* plugin, const char* file)
 {
     int i;
-    char plugin_name[MAX_PATH];
+    static char plugin_name[MAX_PATH];
     char *s;
 
     for (i=0;i<filetype_count;i++)

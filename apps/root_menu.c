@@ -116,7 +116,7 @@ static int browser(void* param)
     struct tree_context* tc = tree_get_context();
 #endif
     int filter = SHOW_SUPPORTED;
-    char folder[MAX_PATH] = "/";
+    static char folder[MAX_PATH] = "/";
     /* stuff needed to remember position in file browser */
     static char last_folder[MAX_PATH] = "/";
     /* and stuff for the database browser */

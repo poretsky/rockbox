@@ -1400,7 +1400,7 @@ static bool audio_get_track_metadata(int offset, struct mp3entry *id3)
     /* We didn't find the ID3 metadata, so we fill it with the little info we
        have and return that */
 
-    char path[MAX_PATH+1];
+    static char path[MAX_PATH+1];
     if (playlist_peek(offset, path, sizeof (path)))
     {
 #if defined(HAVE_TC_RAMCACHE) && defined(HAVE_DIRCACHE)
@@ -1715,7 +1715,7 @@ static int audio_load_albumart(struct track_info *infop,
         memset(&user_data, 0, sizeof(user_data));
         user_data.dim = &albumart_slots[i].dim;
 
-        char path[MAX_PATH];
+        static char path[MAX_PATH];
         if(global_settings.album_art == AA_PREFER_IMAGE_FILE)
         {
             if (find_albumart(track_id3, path, sizeof(path),
@@ -1815,7 +1815,7 @@ static bool audio_buffer_codec(struct track_info *track_infop,
     if (!codec_fn)
         return false;
 
-    char codec_path[MAX_PATH+1]; /* Full path to codec */
+    static char codec_path[MAX_PATH+1]; /* Full path to codec */
     codec_get_full_path(codec_path, codec_fn);
 
     track_infop->codec_hid = bufopen(codec_path, 0, TYPE_CODEC, NULL);

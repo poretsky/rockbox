@@ -601,7 +601,7 @@ static bool settings_write_config(const char* filename, int options)
     logf("%s\r\n", __func__);
     int i;
     int fd;
-    char value[MAX_PATH];
+    static char value[MAX_PATH];
     fd = open(filename,O_CREAT|O_TRUNC|O_WRONLY, 0666);
     if (fd < 0)
         return false;
@@ -926,7 +926,7 @@ void settings_apply(bool read_disk)
 
     if (read_disk)
     {
-        char buf[MAX_PATH];
+        static char buf[MAX_PATH];
         /* fonts need to be loaded before the WPS */
         if (global_settings.font_file[0]
             && global_settings.font_file[0] != '-') {

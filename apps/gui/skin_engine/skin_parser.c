@@ -1914,7 +1914,7 @@ static int load_skin_bmp(struct wps_data *wps_data, struct bitmap *bitmap, char*
 {
 
     (void)wps_data; /* only needed for remote targets */
-    char img_path[MAX_PATH];
+    static char img_path[MAX_PATH];
 
     get_image_filename(bitmap->data, bmpdir,
                        img_path, sizeof(img_path));
@@ -1987,7 +1987,7 @@ static bool load_skin_bitmaps(struct wps_data *wps_data, char *bmpdir)
             }
             else
             {
-                char path[MAX_PATH];
+                static char path[MAX_PATH];
                 int handle;
                 strcpy(path, img->bm.data);
                 handle = load_skin_bmp(wps_data, &img->bm, bmpdir);
@@ -2073,7 +2073,7 @@ static bool skin_load_fonts(struct wps_data *data)
          * multiple viewports use the same */
         if (font->id < 0)
         {
-            char path[MAX_PATH];
+            static char path[MAX_PATH];
             snprintf(path, sizeof path, FONT_DIR "/%s", font->name);
 #ifndef __PCTOOL__
             font->id = font_load_ex(path, 0, skinfonts[font_id-2].glyphs);
@@ -2545,7 +2545,7 @@ bool skin_data_load(enum screen_type screen, struct wps_data *wps_data,
         return false;
     }
 
-    char bmpdir[MAX_PATH];
+    static char bmpdir[MAX_PATH];
     if (isfile)
     {
         /* get the bitmap dir */

@@ -684,7 +684,7 @@ static long find_entry_disk(const char *filename_raw, bool localfd)
     const char *filename = filename_raw;
 
 #ifdef APPLICATION
-    char pathbuf[PATH_MAX]; /* Note: Don't use MAX_PATH here, it's too small */
+    static char pathbuf[PATH_MAX]; /* Note: Don't use MAX_PATH here, it's too small */
     if (realpath(filename, pathbuf) == pathbuf)
         filename = pathbuf;
 #endif /* APPLICATION */
@@ -1544,7 +1544,7 @@ static bool build_lookup_list(struct tagcache_search *tcs)
 static void remove_files(void)
 {
     int i;
-    char buf[MAX_PATH];
+    static char buf[MAX_PATH];
     const int bufsz = sizeof(buf);
     
     tc_stat.ready = false;
@@ -4606,7 +4606,7 @@ static bool check_deleted_files(void)
 static void NO_INLINE check_ignore(const char *dirname,
     int *ignore, int *unignore)
 {
-    char newpath[MAX_PATH];
+    static char newpath[MAX_PATH];
     const int bufsz = sizeof(newpath);
 
     /* check for a database.ignore file */
@@ -4658,7 +4658,7 @@ static bool add_search_root(const char *name)
     (void)name;
 #ifndef WIN32
     struct search_roots_ll *this, *prev = NULL;
-    char target[MAX_PATH];
+    static char target[MAX_PATH];
     const int target_bufsz = sizeof(target);
     /* Okay, realpath() is almost completely broken on android
      *

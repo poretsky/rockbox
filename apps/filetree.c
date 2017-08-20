@@ -765,7 +765,7 @@ int ft_enter(struct tree_context* c)
 int ft_exit(struct tree_context* c)
 {
     extern char lastfile[]; /* from tree.c */
-    char buf[MAX_PATH];
+    static char buf[MAX_PATH];
     int rc = 0;
     bool exit_func = false;
 

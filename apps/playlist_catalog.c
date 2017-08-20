@@ -151,7 +151,7 @@ static int display_playlists(char* playlist, enum catbrowse_status_flags status)
     static bool reopen_last_playlist = false;
     static int most_recent_selection = 0;
     int result = -1;
-    char selected_playlist[MAX_PATH];
+    static char selected_playlist[MAX_PATH];
     selected_playlist[0] = '\0';
 
     browser_status |= status;
@@ -395,7 +395,7 @@ bool catalog_add_to_a_playlist(const char* sel, int sel_attr,
                                void (*add_to_pl_cb))
 {
     int result;
-    char playlist[MAX_PATH + 7]; /* room for /.m3u8\0*/
+    static char playlist[MAX_PATH + 7]; /* room for /.m3u8\0*/
     if ((browser_status & CATBROWSE_PLAYLIST) == CATBROWSE_PLAYLIST)
         return false;
 

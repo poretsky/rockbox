@@ -2109,7 +2109,7 @@ static bool insert_all_playlist(struct tree_context *c,
     int i, n;
     int fd = -1;
     unsigned long last_tick;
-    char buf[MAX_PATH];
+    static char buf[MAX_PATH];
 
     cpu_boost(true);
     if (!tagcache_search(&tcs, tag_filename))
@@ -2215,7 +2215,7 @@ static void reset_tc_to_prev(int dirlevel, int selected_item)
 static bool tagtree_insert_selection(int position, bool queue,
                                      const char* playlist, bool new_playlist)
 {
-    char buf[MAX_PATH];
+    static char buf[MAX_PATH];
     int dirlevel = tc->dirlevel;
     int selected_item = tc->selected_item;
     int newtable;

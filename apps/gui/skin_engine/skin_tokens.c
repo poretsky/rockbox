@@ -606,7 +606,7 @@ static const char* NOINLINE get_lif_token_value(struct gui_wps *gwps,
             break;
         case CODE:
         {
-            char temp_buf[MAX_PATH];
+            static char temp_buf[MAX_PATH];
             const char *outb;
             struct skin_element *element = SKINOFFSETTOPTR(get_skin_buffer(gwps->data), lif->operand.data.code);
             if (!element) return NULL;
