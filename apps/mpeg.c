@@ -1022,7 +1022,7 @@ static int new_file(int steps)
     int start = 0;
     int i;
     struct trackdata *track;
-    char name_buf[MAX_PATH+1];
+    static char name_buf[MAX_PATH+1];
     const char *trackname;
 
     /* Find out how many steps to advance. The load_ahead_index field tells
@@ -2795,7 +2795,7 @@ void audio_play(unsigned long elapsed, unsigned long offset)
 {
     audio_reset_buffer();
 #ifdef SIMULATOR
-    char name_buf[MAX_PATH+1];
+    static char name_buf[MAX_PATH+1];
     const char* trackname;
     int steps=0;
 
@@ -2903,7 +2903,7 @@ void audio_next(void)
     queue_remove_from_head(&mpeg_queue, MPEG_NEED_DATA);
     queue_post(&mpeg_queue, MPEG_NEXT, 0);
 #else /* SIMULATOR */
-    char name_buf[MAX_PATH+1];
+    static char name_buf[MAX_PATH+1];
     const char* file;
     int steps = 1;
 
@@ -2931,7 +2931,7 @@ void audio_prev(void)
     queue_remove_from_head(&mpeg_queue, MPEG_NEED_DATA);
     queue_post(&mpeg_queue, MPEG_PREV, 0);
 #else /* SIMULATOR */
-    char name_buf[MAX_PATH+1];
+    static char name_buf[MAX_PATH+1];
     const char* file;
     int steps = -1;
 
