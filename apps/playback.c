@@ -1393,7 +1393,7 @@ static bool audio_get_track_metadata(int offset, struct mp3entry *id3)
     /* We didn't find the ID3 metadata, so we fill it with the little info we
        have and return that */
 
-    char path[MAX_PATH+1];
+    static char path[MAX_PATH+1];
     if (playlist_peek(offset, path, sizeof (path)))
     {
 #if defined(HAVE_TC_RAMCACHE) && defined(HAVE_DIRCACHE)
@@ -1714,7 +1714,7 @@ static bool audio_load_albumart(struct track_info *infop,
         if (hid < 0 && hid != ERR_BUFFER_FULL)
         {
             /* No embedded AA or it couldn't be loaded - try other sources */
-            char path[MAX_PATH];
+            static char path[MAX_PATH];
 
             if (find_albumart(track_id3, path, sizeof(path),
                               &albumart_slots[i].dim))
@@ -1787,7 +1787,7 @@ static bool audio_buffer_codec(struct track_info *track_infop,
     if (!codec_fn)
         return false;
 
-    char codec_path[MAX_PATH+1]; /* Full path to codec */
+    static char codec_path[MAX_PATH+1]; /* Full path to codec */
     codec_get_full_path(codec_path, codec_fn);
 
     track_infop->codec_hid = bufopen(codec_path, 0, TYPE_CODEC, NULL);
@@ -1863,7 +1863,7 @@ static int audio_load_track(void)
          playlist_peek_offset);
 
     /* Get track name from current playlist read position */
-    char path_buf[MAX_PATH + 1];
+    static char path_buf[MAX_PATH + 1];
     const char *path = playlist_peek(playlist_peek_offset,
                                      path_buf,
                                      sizeof (path_buf));

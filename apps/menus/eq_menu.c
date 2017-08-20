@@ -182,7 +182,7 @@ static int eq_do_simple_menu(void * param)
     (void)param;
     struct simplelist_info info;
     struct settings_list setting;
-    char title[MAX_PATH];
+    static char title[MAX_PATH];
 
     simplelist_info_init(&info, str(LANG_EQUALIZER_GAIN), EQ_NUM_BANDS, NULL);
     info.get_name = (list_get_name*)gainitem_get_name;
@@ -338,7 +338,7 @@ static int eq_do_advanced_menu(void * param)
     (void)param;
     struct simplelist_info info;
     struct settings_list setting;
-    char title[MAX_PATH];
+    static char title[MAX_PATH];
     int band, item;
     intptr_t selected_band = -1;
 

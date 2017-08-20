@@ -138,7 +138,7 @@ const char* catalog_get_directory(void)
 static int display_playlists(char* playlist, bool view)
 {
     struct browse_context browse;
-    char selected_playlist[MAX_PATH];
+    static char selected_playlist[MAX_PATH];
     int result = -1;
 
     browse_context_init(&browse, SHOW_M3U,
@@ -322,7 +322,7 @@ bool catalog_add_to_a_playlist(const char* sel, int sel_attr,
                                bool new_playlist, char *m3u8name)
 {
     int result;
-    char playlist[MAX_PATH];
+    static char playlist[MAX_PATH];
     if (in_add_to_playlist)
         return false;
 

@@ -284,7 +284,7 @@ static int talk_menu_item(int selected_item, void *data)
 void do_setting_screen(const struct settings_list *setting, const char * title,
                         struct viewport parent[NB_SCREENS])
 {
-    char padded_title[MAX_PATH];
+    static char padded_title[MAX_PATH];
     /* Pad the title string by repeating it. This is needed
        so the scroll settings title can actually be used to
        test the setting */
