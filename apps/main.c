@@ -177,7 +177,6 @@ int main(void)
 
 #ifdef AUTOROCK
     {
-        char filename[MAX_PATH];
         const char *file =
 #ifdef APPLICATION
                                 ROCKBOX_DIR
