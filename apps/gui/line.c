@@ -182,7 +182,7 @@ static void print_line(struct screen *display,
     int xpos = x;
     int icon_y, icon_h, icon_w;
     enum themable_icons icon;
-    char tempbuf[MAX_PATH+32];
+    static char tempbuf[MAX_PATH+32];
     unsigned int tempbuf_idx;
     int max_width = display->getwidth();
 

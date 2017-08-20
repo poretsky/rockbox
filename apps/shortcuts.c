@@ -208,7 +208,7 @@ static bool overwrite_shortcuts = false;
 static void shortcuts_ata_idle_callback(void)
 {
     int fd;
-    char buf[MAX_PATH];
+    static char buf[MAX_PATH];
     int current_idx = first_idx_to_writeback;
     int append = overwrite_shortcuts ? O_TRUNC : O_APPEND;
 
