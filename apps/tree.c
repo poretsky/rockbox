@@ -608,7 +608,7 @@ void set_current_file(const char *path)
 static int dirbrowse(void)
 {
     int numentries=0;
-    char buf[MAX_PATH];
+    static char buf[MAX_PATH];
     int button;
 #ifdef HAVE_LCD_BITMAP
     int oldbutton;
@@ -909,7 +909,7 @@ static int dirbrowse(void)
 
 bool create_playlist(void)
 {
-    char filename[MAX_PATH];
+    static char filename[MAX_PATH];
 
     if (tc.currdir[1])
         snprintf(filename, sizeof filename, "%s.m3u8", tc.currdir);
@@ -1096,7 +1096,7 @@ bool bookmark_play(char *resume_file, int index, unsigned long elapsed,
         lastdir[0]='\0';
         if (playlist_create(resume_file, NULL) != -1)
         {
-            char filename_buf[MAX_PATH + 1];
+            static char filename_buf[MAX_PATH + 1];
             const char* peek_filename;
             resume_directory(resume_file);
             if (global_settings.playlist_shuffle)
