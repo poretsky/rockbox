@@ -327,7 +327,7 @@ void list_draw(struct screen *display, struct gui_synclist *list)
         /* do the text */
         enum themable_icons icon;
         unsigned const char *s;
-        char entry_buffer[MAX_PATH];
+        static char entry_buffer[MAX_PATH];
         unsigned char *entry_name;
         const int text_pos = 0; /* UNUSED */
         int line = i - start;

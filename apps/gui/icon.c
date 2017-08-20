@@ -184,7 +184,7 @@ static void load_icons(const char* filename, enum Iconset iconset,
     ic->handle = 0;
     if (filename[0] && filename[0] != '-')
     {
-        char path[MAX_PATH];
+        static char path[MAX_PATH];
 
         snprintf(path, sizeof(path), ICON_DIR "/%s.bmp", filename);
         fd = open(path, O_RDONLY);

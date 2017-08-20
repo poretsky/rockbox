@@ -43,15 +43,15 @@
 /* load a screen to save the playlist passed in (or current playlist if NULL is passed) */
 int save_playlist_screen(struct playlist_info* playlist)
 {
-
-    char directoryonly[MAX_PATH+3];
+    static char directoryonly[MAX_PATH+3];
     char *filename;
 
     int resume_index;
     uint32_t resume_elapsed;
     uint32_t resume_offset;
 
-    char temp[MAX_PATH+1], *dot;
+    static char temp[MAX_PATH+1];
+    char *dot;
     int len;
 
     playlist_get_name(playlist, temp, sizeof(temp)-1);
