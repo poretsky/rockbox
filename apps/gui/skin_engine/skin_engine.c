@@ -166,7 +166,7 @@ static void skin_reset_buffers(int item, int screen)
 void settings_apply_skins(void)
 {
     int i;
-    char filename[MAX_PATH];
+    static char filename[MAX_PATH];
 
     if (audio_status() & AUDIO_STATUS_PLAY)
         audio_stop();
@@ -300,7 +300,7 @@ struct gui_wps *skin_get_gwps(enum skinnable_screens skin, enum screen_type scre
 
     if (skins[skin][screen].data.wps_loaded == false)
     {
-        char filename[MAX_PATH];
+        static char filename[MAX_PATH];
         char *buf = get_skin_filename(filename, MAX_PATH, skin, screen);
         cpu_boost(true);
         skin_load(skin, screen, buf, true);

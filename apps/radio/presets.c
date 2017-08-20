@@ -356,7 +356,7 @@ static int radio_delete_preset(void)
 
 int preset_list_load(void)
 {
-    char selected[MAX_PATH];
+    static char selected[MAX_PATH];
     snprintf(selected, sizeof(selected), "%s.%s", global_settings.fmr_file, "fmr");
 
     struct browse_context browse = {

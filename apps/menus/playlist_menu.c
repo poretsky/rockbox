@@ -45,14 +45,15 @@
 int save_playlist_screen(struct playlist_info* playlist)
 {
 
-    char directoryonly[MAX_PATH+3];
+    static char directoryonly[MAX_PATH+3];
     char *filename;
 
     int resume_index;
     uint32_t resume_elapsed;
     uint32_t resume_offset;
 
-    char temp[MAX_PATH+1], *p;
+    static char temp[MAX_PATH+1];
+    char *p;
     int len;
 
     catalog_get_directory(directoryonly, sizeof(directoryonly));
