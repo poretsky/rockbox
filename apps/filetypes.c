@@ -264,7 +264,7 @@ static void read_config(int fd);
  * load a colors file from a theme with:
  * filetype colours: filename.colours */
 void read_color_theme_file(void) {
-    char buffer[MAX_PATH];
+    static char buffer[MAX_PATH];
     int fd;
     char *ext, *color;
     int i;
@@ -300,7 +300,7 @@ void read_color_theme_file(void) {
 #ifdef HAVE_LCD_BITMAP
 void read_viewer_theme_file(void)
 {
-    char buffer[MAX_PATH];
+    static char buffer[MAX_PATH];
     int fd;
     char *ext, *icon;
     int i;
@@ -592,7 +592,7 @@ static int openwith_action_callback(int action, struct gui_synclist *lists)
     int i;
     if (action == ACTION_STD_OK)
     {
-        char plugin[MAX_PATH];
+        static char plugin[MAX_PATH];
         i = viewers_selection[gui_synclist_get_sel_pos(lists)];
         snprintf(plugin, MAX_PATH, "%s/%s.%s",
                     PLUGIN_DIR, filetypes[i].plugin, ROCK_EXTENSION);
@@ -651,7 +651,7 @@ int filetype_list_viewers(const char* current_file)
 int filetype_load_plugin(const char* plugin, const char* file)
 {
     int i;
-    char plugin_name[MAX_PATH];
+    static char plugin_name[MAX_PATH];
     char *s;
 
     for (i=0;i<filetype_count;i++)

@@ -66,7 +66,7 @@ static int find_oldest_image_index(void)
 static int load_radioart_image(struct radioart *ra, const char* preset_name, 
                                struct dim *dim)
 {
-    char path[MAX_PATH];
+    static char path[MAX_PATH];
     struct bufopen_bitmap_data user_data;
 #ifndef HAVE_NOISY_IDLE_MODE
     cpu_idle_mode(false);

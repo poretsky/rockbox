@@ -103,7 +103,7 @@ void skin_backdrop_init(void)
 int skin_backdrop_assign(char* backdrop, char *bmpdir,
                          enum screen_type screen)
 {
-    char filename[MAX_PATH];
+    static char filename[MAX_PATH];
     int i, free = -1;
     if (!backdrop)
         return -1;
