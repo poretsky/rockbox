@@ -45,7 +45,7 @@
 static bool search_for_cuesheet(const char *path, struct cuesheet_file *cue_file)
 {
     size_t len;
-    char cuepath[MAX_PATH];
+    static char cuepath[MAX_PATH];
     char *dot, *slash, *slash_cuepath;
 
     cue_file->pos = 0;
@@ -121,14 +121,14 @@ static char *get_string(const char *line)
 /* parse cuesheet "cue_file" and store the information in "cue" */
 bool parse_cuesheet(struct cuesheet_file *cue_file, struct cuesheet *cue)
 {
-    char line[MAX_PATH];
+    static char line[MAX_PATH];
     char *s;
     unsigned char char_enc = CHAR_ENC_ISO_8859_1;
     bool is_embedded = false;
     int line_len;
     int bytes_left = 0;
     int read_bytes = MAX_PATH;
-    unsigned char utf16_buf[MAX_PATH];
+    static unsigned char utf16_buf[MAX_PATH];
 
     int fd = open(cue_file->path, O_RDONLY, 0644);
     if(fd < 0)
@@ -360,7 +360,7 @@ void browse_cuesheet(struct cuesheet *cue)
     struct gui_synclist lists;
     int action;
     bool done = false;
-    char title[MAX_PATH];
+    static char title[MAX_PATH];
     int len;
 
     struct cuesheet_file cue_file;
@@ -412,7 +412,7 @@ void browse_cuesheet(struct cuesheet *cue)
 
                 /* check that this cue is the same one that would be found by
                    a search from playback */
-                char file[MAX_PATH];
+                static char file[MAX_PATH];
                 strlcpy(file, cue->file, MAX_PATH);
 
                 if (!strcmp(cue->path, file) || /* if embedded */

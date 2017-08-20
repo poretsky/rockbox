@@ -975,7 +975,7 @@ static int delete_file_dir(void)
     int rc = -1;
 
     if (selected_file_attr & ATTR_DIRECTORY) { /* true if directory */
-        struct dirrecurse_params parm;
+        static struct dirrecurse_params parm;
         parm.append = strlcpy(parm.path, selected_file, sizeof (parm.path));
 
         if (parm.append < sizeof (parm.path)) {
@@ -1004,7 +1004,7 @@ static int delete_file_dir(void)
 static int rename_file(void)
 {
     int rc = -1;
-    char newname[MAX_PATH];
+    static char newname[MAX_PATH];
     const char *oldbase, *selection = selected_file;
 
     path_basename(selection, &oldbase);
@@ -1048,7 +1048,7 @@ static int rename_file(void)
 static int create_dir(void)
 {
     int rc = -1;
-    char dirname[MAX_PATH];
+    static char dirname[MAX_PATH];
     size_t pathlen = path_append(dirname, getcwd(NULL, 0), PA_SEP_HARD,
                                  sizeof (dirname));
     char *basename = dirname + pathlen;
@@ -1321,7 +1321,7 @@ static int clipboard_paste(void)
 
     int rc = -1;
 
-    struct dirrecurse_params src, target;
+    static struct dirrecurse_params src, target;
     unsigned int flags = clipboard.flags;
 
     /* Figure out the name of the selection */
@@ -1524,7 +1524,7 @@ static bool onplay_add_to_shortcuts(void)
         size_t pathlen = strlen(selected_file);
         if (selected_file[pathlen - 1] != PATH_SEPCH)
         {
-            char dirpath[MAX_PATH];
+            static char dirpath[MAX_PATH];
             strcpy(dirpath, selected_file);
             dirpath[pathlen] = PATH_SEPCH;
             dirpath[pathlen + 1] = '\0';

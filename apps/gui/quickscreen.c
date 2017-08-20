@@ -169,7 +169,7 @@ static void gui_quickscreen_draw(const struct gui_quickscreen *qs,
                                  struct viewport *vp_icons)
 {
     int i;
-    char buf[MAX_PATH];
+    static char buf[MAX_PATH];
     unsigned const char *title, *value;
     int temp;
     display->set_viewport(parent);
@@ -189,7 +189,7 @@ static void gui_quickscreen_draw(const struct gui_quickscreen *qs,
 
         if (viewport_get_nb_lines(vp) < 2)
         {
-            char text[MAX_PATH];
+            static char text[MAX_PATH];
             snprintf(text, MAX_PATH, "%s: %s", title, value);
             display->puts_scroll(0, 0, text);
         }

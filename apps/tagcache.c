@@ -362,7 +362,7 @@ static ssize_t ecwrite_index_entry(int fd, struct index_entry *buf)
 static int open_tag_fd(struct tagcache_header *hdr, int tag, bool write)
 {
     int fd;
-    char buf[MAX_PATH];
+    static char buf[MAX_PATH];
     int rc;
     
     if (TAGCACHE_IS_NUMERIC(tag) || tag < 0 || tag >= TAG_COUNT)
@@ -513,7 +513,7 @@ static long find_entry_disk(const char *filename_raw, bool localfd)
 
     const char *filename = filename_raw;
 #ifdef APPLICATION
-    char pathbuf[PATH_MAX]; /* Note: Don't use MAX_PATH here, it's too small */
+    static char pathbuf[PATH_MAX]; /* Note: Don't use MAX_PATH here, it's too small */
     if (realpath(filename, pathbuf) == pathbuf)
         filename = pathbuf;
 #endif /* APPLICATION */
@@ -741,7 +741,7 @@ static bool open_files(struct tagcache_search *tcs, int tag)
 {
     if (tcs->idxfd[tag] < 0)
     {
-        char fn[MAX_PATH];
+        static char fn[MAX_PATH];
 
         snprintf(fn, sizeof fn, TAGCACHE_FILE_INDEX, tag);
         tcs->idxfd[tag] = open(fn, O_RDONLY);
@@ -1302,7 +1302,7 @@ static bool build_lookup_list(struct tagcache_search *tcs)
 static void remove_files(void)
 {
     int i;
-    char buf[MAX_PATH];
+    static char buf[MAX_PATH];
     
     tc_stat.ready = false;
     tc_stat.ramcache = false;
@@ -1462,7 +1462,7 @@ bool tagcache_search_add_clause(struct tagcache_search *tcs,
         
         if (!TAGCACHE_IS_NUMERIC(clause->tag) && tcs->idxfd[clause->tag] < 0)
         {
-            char buf[MAX_PATH];
+            static char buf[MAX_PATH];
             
             snprintf(buf, sizeof buf, TAGCACHE_FILE_INDEX, clause->tag);        
             tcs->idxfd[clause->tag] = open(buf, O_RDONLY);
@@ -4320,7 +4320,7 @@ static bool check_deleted_files(void)
 static void NO_INLINE check_ignore(const char *dirname,
     int *ignore, int *unignore)
 {
-    char newpath[MAX_PATH];
+    static char newpath[MAX_PATH];
 
     /* check for a database.ignore file */
     snprintf(newpath, MAX_PATH, "%s/database.ignore", dirname);
@@ -4371,7 +4371,7 @@ static bool add_search_root(const char *name)
     (void)name;
 #ifndef WIN32
     struct search_roots_ll *this, *prev = NULL;
-    char target[MAX_PATH];
+    static char target[MAX_PATH];
     /* Okay, realpath() is almost completely broken on android
      *
      * It doesn't accept NULL for resolved_name to dynamically allocate

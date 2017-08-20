@@ -1589,7 +1589,7 @@ static void on_record(const char *filename)
     logf("on_record: new file '%s'", filename);
 
     /* Copy path and let caller go */
-    char path[MAX_PATH];
+    static char path[MAX_PATH];
     strlcpy(path, filename, MAX_PATH);
 
     queue_reply(&audio_queue, 0);

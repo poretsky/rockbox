@@ -1896,7 +1896,7 @@ static bool insert_all_playlist(struct tree_context *c, int position, bool queue
 {
     struct tagcache_search tcs;
     int i;
-    char buf[MAX_PATH];
+    static char buf[MAX_PATH];
     int from, to, direction;
     int files_left = c->filesindir;
 
@@ -1960,7 +1960,7 @@ static bool insert_all_playlist(struct tree_context *c, int position, bool queue
 
 bool tagtree_insert_selection_playlist(int position, bool queue)
 {
-    char buf[MAX_PATH];
+    static char buf[MAX_PATH];
     int dirlevel = tc->dirlevel;
     int newtable;
 

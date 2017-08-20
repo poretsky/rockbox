@@ -417,7 +417,7 @@ static int check_control(struct playlist_info* playlist)
 static int recreate_control(struct playlist_info* playlist)
 {
     const char file_suffix[] = "_temp\0";
-    char temp_file[MAX_PATH + sizeof(file_suffix)];
+    static char temp_file[MAX_PATH + sizeof(file_suffix)];
     int  temp_fd = -1;
     int  i;
     int  result = 0;
@@ -476,7 +476,7 @@ static int recreate_control(struct playlist_info* playlist)
         if (playlist->indices[i] & PLAYLIST_INSERT_TYPE_MASK)
         {
             bool queue = playlist->indices[i] & PLAYLIST_QUEUE_MASK;
-            char inserted_file[MAX_PATH+1];
+            static char inserted_file[MAX_PATH+1];
 
             lseek(temp_fd, playlist->indices[i] & PLAYLIST_SEEK_MASK,
                 SEEK_SET);
@@ -622,7 +622,7 @@ exit:
  */
 static int create_and_play_dir(int direction, bool play_last)
 {
-    char dir[MAX_PATH + 1];
+    static char dir[MAX_PATH + 1];
     int res;
     int index = -1;
 
@@ -1371,8 +1371,8 @@ static int get_filename(struct playlist_info* playlist, int index, int seek,
 {
     int fd;
     int max = -1;
-    char tmp_buf[MAX_PATH+1];
-    char dir_buf[MAX_PATH+1];
+    static char tmp_buf[MAX_PATH+1];
+    static char dir_buf[MAX_PATH+1];
     bool utf8 = playlist->utf8;
 
     if (buf_length > MAX_PATH+1)
@@ -1502,7 +1502,7 @@ static int get_next_dir(char *dir, bool is_forward)
             read(fd,&folder_count,sizeof(int));
             if (folder_count)
             {
-                char buffer[MAX_PATH];
+                static char buffer[MAX_PATH];
                 /* give up looking for a directory after we've had four
                    times as many tries as there are directories. */
                 unsigned long allowed_tries = folder_count * 4;
@@ -3133,8 +3133,8 @@ int playlist_insert_playlist(struct playlist_info* playlist, const char *filenam
     int max;
     char *dir;
     unsigned char *count_str;
-    char temp_buf[MAX_PATH+1];
-    char trackname[MAX_PATH+1];
+    static char temp_buf[MAX_PATH+1];
+    static char trackname[MAX_PATH+1];
     int count = 0;
     int result = 0;
     bool utf8 = is_m3u8(filename);
@@ -3297,7 +3297,7 @@ int playlist_move(struct playlist_info* playlist, int index, int new_index)
     int idx_from; /* display index of the track we're moving */
     int idx_to; /* display index of the position we're moving to */
     bool displace_current = false;
-    char filename[MAX_PATH];
+    static char filename[MAX_PATH];
 
     if (!playlist)
         playlist = &current_playlist;
@@ -3579,8 +3579,8 @@ int playlist_save(struct playlist_info* playlist, char *filename,
     int fd;
     int i, index;
     int count = 0;
-    char path[MAX_PATH+1];
-    char tmp_buf[MAX_PATH+1];
+    static char path[MAX_PATH+1];
+    static char tmp_buf[MAX_PATH+1];
     int result = 0;
     int *seek_buf;
     bool reparse;

@@ -433,7 +433,7 @@ static void ft_load_font(char *file)
 int ft_enter(struct tree_context* c)
 {
     int rc = GO_TO_PREVIOUS;
-    char buf[MAX_PATH];
+    static char buf[MAX_PATH];
     struct entry* file = tree_get_entry_at(c, c->selected_item);
     int file_attr = file->attr;
     int len;
@@ -629,7 +629,8 @@ int ft_enter(struct tree_context* c)
             case FILE_ATTR_ROCK:
             case FILE_ATTR_LUA:
             {
-                char *plugin = buf, *argument = NULL, lua_path[MAX_PATH];
+                char *plugin = buf, *argument = NULL;
+                static char lua_path[MAX_PATH];
                 int ret;
 
                 if ((file_attr & FILE_ATTR_MASK) == FILE_ATTR_LUA) {
@@ -729,7 +730,7 @@ int ft_enter(struct tree_context* c)
 int ft_exit(struct tree_context* c)
 {
     extern char lastfile[]; /* from tree.c */
-    char buf[MAX_PATH];
+    static char buf[MAX_PATH];
     int rc = 0;
     bool exit_func = false;
 
