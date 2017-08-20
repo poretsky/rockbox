@@ -245,7 +245,7 @@ int codec_load_buf(int hid, struct codec_api *api)
 
 int codec_load_file(const char *plugin, struct codec_api *api)
 {
-    char path[MAX_PATH];
+    static char path[MAX_PATH];
 
     codec_get_full_path(path, plugin);
 

@@ -248,7 +248,7 @@ bool cfg_string_to_int(int setting_id, int* out, const char* str)
 {
     const char* start = settings[setting_id].cfg_vals;
     char* end = NULL;
-    char temp[MAX_PATH];
+    static char temp[MAX_PATH];
     int count = 0;
     while (1)
     {
@@ -347,7 +347,7 @@ bool settings_load_config(const char* file, bool apply)
                     case F_T_CHARPTR:
                     case F_T_UCHARPTR:
                     {
-                        char storage[MAX_PATH];
+                        static char storage[MAX_PATH];
                         if (settings[i].filename_setting->prefix)
                         {
                             const char *dir = settings[i].filename_setting->prefix;
@@ -549,7 +549,7 @@ static bool settings_write_config(const char* filename, int options)
 {
     int i;
     int fd;
-    char value[MAX_PATH];
+    static char value[MAX_PATH];
     fd = open(filename,O_CREAT|O_TRUNC|O_WRONLY, 0666);
     if (fd < 0)
         return false;
@@ -655,7 +655,7 @@ int settings_save(void)
 
 bool settings_save_config(int options)
 {
-    char filename[MAX_PATH];
+    static char filename[MAX_PATH];
     const char *folder, *namebase;
     switch (options)
     {
@@ -937,7 +937,7 @@ void settings_apply(bool read_disk)
 
     if (read_disk)
     {
-        char buf[MAX_PATH];
+        static char buf[MAX_PATH];
 #ifdef HAVE_LCD_BITMAP
         /* fonts need to be loaded before the WPS */
         if (global_settings.font_file[0]
