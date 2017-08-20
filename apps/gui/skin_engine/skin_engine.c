@@ -152,7 +152,7 @@ void skin_unload_all(void)
 void settings_apply_skins(void)
 {
     int i;
-    char filename[MAX_PATH];
+    static char filename[MAX_PATH];
     static bool first_run = true;
 
     skin_backdrop_init();
@@ -295,7 +295,7 @@ struct gui_wps *skin_get_gwps(enum skinnable_screens skin, enum screen_type scre
 
     if (skins[skin][screen].data.wps_loaded == false)
     {
-        char filename[MAX_PATH];
+        static char filename[MAX_PATH];
         char *buf = get_skin_filename(filename, MAX_PATH, skin, screen);
         cpu_boost(true);
         skin_load(skin, screen, buf, true);

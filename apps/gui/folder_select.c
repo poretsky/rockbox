@@ -126,7 +126,7 @@ static struct folder* load_folder(struct folder* parent, char *folder)
 {
     DIR *dir;
     char* path = get_full_path(parent);
-    char fullpath[MAX_PATH];
+    static char fullpath[MAX_PATH];
     struct dirent *entry;
     struct folder* this = (struct folder*)folder_alloc(sizeof(struct folder));
     int child_count = 0;
