@@ -425,7 +425,7 @@ static void format_name(char* dest, const char* src)
 static void format_line(const struct playlist_entry* track, char* str,
                         int len)
 {
-    char name[MAX_PATH];
+    static char name[MAX_PATH];
     char *skipped = "";
 
     format_name(name, track->name);
