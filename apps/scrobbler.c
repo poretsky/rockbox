@@ -100,7 +100,7 @@ static void write_cache(void)
     int i;
     int fd;
 
-    char scrobbler_file[MAX_PATH];
+    static char scrobbler_file[MAX_PATH];
     get_scrobbler_filename(scrobbler_file, MAX_PATH);
 
     /* If the file doesn't exist, create it.

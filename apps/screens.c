@@ -915,7 +915,7 @@ static const char* id3_get_info(int selected_item, void* data,
 
 static int id3_speak_item(int selected_item, void* data)
 {
-    char buffer[MAX_PATH];
+    static char buffer[MAX_PATH];
     selected_item &= ~1; /* Make sure it's even, to indicate the header */
     /* say field name */
     id3_get_or_speak_info(selected_item, data, buffer, MAX_PATH, true);

@@ -40,7 +40,8 @@
 
 int save_playlist_screen(struct playlist_info* playlist)
 {
-    char temp[MAX_PATH+1], *dot;
+    static char temp[MAX_PATH+1];
+    char *dot;
     int len;
     
     playlist_get_name(playlist, temp, sizeof(temp)-1);
