@@ -1164,7 +1164,7 @@ int talk_file(const char *root, const char *dir, const char *file,
               const char *ext, const long *prefix_ids, bool enqueue)
 /* Play a thumbnail file */
 {
-    char buf[MAX_PATH];
+    static char buf[MAX_PATH];
     /* Does root end with a slash */
     char *slash = (root && root[0]
                    && root[strlen(root)-1] != '/') ? "/" : "";
@@ -1184,7 +1184,7 @@ static int talk_spell_basename(const char *path,
         talk_idarray(prefix_ids, enqueue);
         enqueue = true;
     }
-    char buf[MAX_PATH];
+    static char buf[MAX_PATH];
     /* Spell only the path component after the last slash */
     strlcpy(buf, path, sizeof(buf));
     if(strlen(buf) >1 && buf[strlen(buf)-1] == '/')
@@ -1241,7 +1241,7 @@ int talk_fullpath(const char* path, bool enqueue)
         /* path ought to start with /... */
         return talk_spell(path, true);
     talk_id(VOICE_CHAR_SLASH, true);
-    char buf[MAX_PATH];
+    static char buf[MAX_PATH];
     strlcpy(buf, path, MAX_PATH);
     char *start = buf+1; /* start of current component */
     char *ptr = strchr(start, '/'); /* end of current component */
