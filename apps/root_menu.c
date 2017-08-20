@@ -116,7 +116,7 @@ static int browser(void* param)
 #endif
     struct browse_context browse;
     int filter = SHOW_SUPPORTED;
-    char folder[MAX_PATH] = "/";
+    static char folder[MAX_PATH] = "/";
     /* stuff needed to remember position in file browser */
     static char last_folder[MAX_PATH] = "/";
     /* and stuff for the database browser */
@@ -834,7 +834,7 @@ void root_menu(void)
                         break;
                 }
                 {
-                    char pf_path[MAX_PATH];
+                    static char pf_path[MAX_PATH];
                     snprintf(pf_path, sizeof(pf_path),
                             "%s/pictureflow.rock",
                             PLUGIN_DEMOS_DIR);
