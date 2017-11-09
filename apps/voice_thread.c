@@ -77,11 +77,11 @@
 
 /* Voice thread variables */
 static unsigned int voice_thread_id = 0;
-#ifdef CPU_COLDFIRE
+#if defined(CPU_COLDFIRE) || defined(CPU_MIPS)
 /* ISR uses any available stack - need a bit more room */
-#define VOICE_STACK_EXTRA   0x400
+#define VOICE_STACK_EXTRA   0x480
 #else
-#define VOICE_STACK_EXTRA   0x3c0
+#define VOICE_STACK_EXTRA   0x400
 #endif
 static long voice_stack[(DEFAULT_STACK_SIZE + VOICE_STACK_EXTRA)/sizeof(long)]
     IBSS_ATTR_VOICE_STACK;
