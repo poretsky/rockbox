@@ -1501,7 +1501,6 @@ void talk_setting(const void *global_settings_variable)
 }
 
 
-#if CONFIG_RTC
 void talk_date(const struct tm *tm, bool enqueue)
 {
     talk_id(LANG_MONTH_JANUARY + tm->tm_mon, enqueue);
@@ -1555,8 +1554,6 @@ void talk_time(const struct tm *tm, bool enqueue)
         }
     }
 }
-
-#endif /* CONFIG_RTC */
 
 bool talk_get_debug_data(struct talk_debug_data *data)
 {
