@@ -1953,11 +1953,9 @@ const struct settings_list settings[] = {
                    "off,on,force", NULL, 3, ID2P(LANG_SET_BOOL_NO),
                    ID2P(LANG_SET_BOOL_YES), ID2P(LANG_FORCE)),
 #endif
-#ifdef HAVE_USB_POWER
-#ifndef SIMULATOR
+#if defined(HAVE_USB_POWER) && !defined(USB_NONE) && !defined(SIMULATOR)
     OFFON_SETTING(0, usb_charge_only, LANG_USB_CHARGE_ONLY, false,
                   "usb charge only", usb_set_charge_setting),
-#endif
 #endif
     OFFON_SETTING(F_BANFROMQS,cuesheet,LANG_CUESHEET_ENABLE,false,"cuesheet support",
                   NULL),
