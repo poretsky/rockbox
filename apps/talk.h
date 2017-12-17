@@ -107,11 +107,11 @@ int talk_file(const char *root, const char *dir, const char *file,
 /* play file's thumbnail or spell name */
 int talk_file_or_spell(const char *dirname, const char* filename,
                        const long *prefix_ids, bool enqueue);
-#if CONFIG_CODEC == SWCODEC
+
 /* play dir's thumbnail or spell name */
 int talk_dir_or_spell(const char* filename,
                       const long *prefix_ids, bool enqueue);
-#endif
+
 /* play thumbnails for each components of full path, or spell */
 int talk_fullpath(const char* path, bool enqueue);
 int talk_number(long n, bool enqueue); /* say a number */
@@ -126,10 +126,8 @@ void talk_shutup(void); /* Interrupt voice, as when enqueue is false */
 /* helper function for speaking fractional numbers */
 void talk_fractional(char *tbuf, int value, int unit);
 
-#if CONFIG_RTC
 void talk_time(const struct tm *tm, bool enqueue);
 void talk_date(const struct tm *tm, bool enqueue);
-#endif /* CONFIG_RTC */
 
 /* This (otherwise invalid) ID signals the end of the array. */
 #define TALK_FINAL_ID LANG_LAST_INDEX_IN_ARRAY
