@@ -901,8 +901,8 @@ const struct settings_list settings[] = {
                   "pause between tracks", NULL),
 #ifdef HAVE_PLAY_FREQ
     STRINGCHOICE_SETTING(0, play_frequency, LANG_FREQUENCY, 0,
-        "playback frequency", "44.1 kHz,48 kHz", NULL, 2,
-        TALK_ID_DECIMAL(441, 1, UNIT_KHZ), TALK_ID(48, UNIT_KHZ)),
+        "playback frequency", "auto,44.1 kHz,48 kHz", NULL, 3,
+        LANG_AUTOMATIC, TALK_ID_DECIMAL(441, 1, UNIT_KHZ), TALK_ID(48, UNIT_KHZ)),
 #endif /* HAVE_PLAY_FREQ */
     /* LCD */
 #ifdef HAVE_LCD_CONTRAST
