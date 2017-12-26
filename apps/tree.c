@@ -362,7 +362,7 @@ static int update_dir(void)
 #endif
     {
         /* if the tc.currdir has been changed, reload it ...*/
-        if (strncmp(tc.currdir, lastdir, sizeof(lastdir)) || reload_dir)
+        if (strcmp(tc.currdir, lastdir) || reload_dir)
         {
             if (ft_load(&tc, NULL) < 0)
                 return -1;
@@ -582,7 +582,7 @@ void set_current_file(const char *path)
 
     /* If we changed dir we must recalculate the dirlevel
        and adjust the selected history properly */
-    if (strncmp(tc.currdir,lastdir,sizeof(lastdir)))
+    if (strcmp(tc.currdir, lastdir))
     {
         tc.dirlevel =  0;
         tc.selected_item_history[tc.dirlevel] = -1;
