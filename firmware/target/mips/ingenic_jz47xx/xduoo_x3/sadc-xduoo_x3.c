@@ -62,9 +62,12 @@ void button_init_device(void)
 
     __gpio_disable_pull(PIN_BTN_POWER);
     __gpio_disable_pull(PIN_BTN_HOLD);
-    
+
+#if 0
+    /* interrupt is unnecessary since this key is polled */
     __gpio_as_irq_fall_edge(PIN_KEY_INT);
     system_enable_irq(GPIO_IRQ(PIN_KEY_INT));
+#endif
 
     __gpio_set_pin(PIN_CHARGE_CON); /* 0.7 A */
     __gpio_as_output(PIN_CHARGE_CON);
