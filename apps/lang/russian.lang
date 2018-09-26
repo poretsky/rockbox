@@ -15781,7 +15781,7 @@ id: VOICE_BAT_BENCH_KEYS
   desc: Backlight behaviour setting
   user: core
   <source>
-    *: "Selective Backlight"
+    *: "Backlight Exemptions"
   </source>
   <dest>
     *: "Выбранные события не включают подсветку"
