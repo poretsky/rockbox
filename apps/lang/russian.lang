@@ -13164,3 +13164,20 @@
     *: "Цифровой фильтр ЦАП"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_USB_CHARGE_ONLY
+  desc: in Settings -> System Settings
+  user: core
+  <source>
+    *: none
+    usb_power: "Only charge on USB insert"
+  </source>
+  <dest>
+    *: none
+    usb_power: "Только зарядка по USB"
+  </dest>
+  <voice>
+    *: none
+    usb_power: "Только зарядка по Ю ЭС БИ"
+  </voice>
+</phrase>
