@@ -13787,3 +13787,20 @@
     *: "No viewers found"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_USB_CHARGE_ONLY
+  desc: in Settings -> System Settings
+  user: core
+  <source>
+    *: none
+    usb_power: "Only charge on USB insert"
+  </source>
+  <dest>
+    *: none
+    usb_power: "Only charge on USB insert"
+  </dest>
+  <voice>
+    *: none
+    usb_power: "Only charge on U S B insert"
+  </voice>
+</phrase>
