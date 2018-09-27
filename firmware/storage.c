@@ -679,8 +679,10 @@ long storage_last_disk_activity(void)
 int storage_spinup_time(void)
 {
     int max=0;
+#if (CONFIG_STORAGE & (STORAGE_ATA | STORAGE_MMC | STORAGE_NAND | STORAGE_RAMDISK))
     int t;
-    
+#endif
+
 #if (CONFIG_STORAGE & STORAGE_ATA)
     t=ata_spinup_time();
     if (t>max) max=t;
