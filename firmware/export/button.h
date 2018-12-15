@@ -48,6 +48,10 @@ bool button_hold(void);
 bool remote_button_hold(void);
 #endif
 
+#ifdef HAVE_BUTTONS_IN_HOLD_MODE
+void button_use_hold_buttons(bool yesno);
+#endif
+
 void button_init (void) INIT_ATTR;
 void button_close(void);
 int button_queue_count(void);
