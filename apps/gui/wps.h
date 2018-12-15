@@ -41,6 +41,8 @@ void pause_action(bool updatewps);
 void unpause_action(bool updatewps);
 void wps_do_playpause(bool updatewps);
 
+bool ffwd_rew(int button, bool seek_from_end);
+
 struct wps_state *get_wps_state(void);
 
 /* in milliseconds */

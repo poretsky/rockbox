@@ -193,7 +193,7 @@ static int skintouch_to_wps(void)
 }
 #endif /* HAVE_TOUCHSCREEN */
 
-static bool ffwd_rew(int button, bool seek_from_end)
+bool ffwd_rew(int button, bool seek_from_end)
 {
     unsigned int step = 0;     /* current ff/rewind step */
     unsigned int max_step = 0; /* maximum ff/rewind step */

@@ -199,6 +199,10 @@ MENUITEM_SETTING(album_art, &global_settings.album_art,
                  albumart_callback);
 #endif
 
+#ifdef HAVE_BUTTONS_IN_HOLD_MODE
+MENUITEM_SETTING(use_hold_buttons, &global_settings.use_hold_buttons, NULL);
+#endif
+
 MAKE_MENU(playback_settings,ID2P(LANG_PLAYBACK),0,
           Icon_Playback_menu,
           &shuffle_item, &repeat_mode, &play_selected,
@@ -226,6 +230,9 @@ MAKE_MENU(playback_settings,ID2P(LANG_PLAYBACK),0,
 
           ,&resume_rewind
           ,&pause_rewind
+#ifdef HAVE_BUTTONS_IN_HOLD_MODE
+          ,&use_hold_buttons
+#endif
 #ifdef HAVE_PLAY_FREQ
           ,&play_frequency
 #endif
