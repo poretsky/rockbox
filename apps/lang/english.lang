@@ -12089,6 +12089,23 @@
   </voice>
 </phrase>
 <phrase>
+  id: LANG_HOLD_PLAYBACK_CONTROL
+  desc: in the Playback settings menu
+  user: core
+  <source>
+    *: none
+    buttons_in_hold: "Playback Control in Hold Mode"
+  </source>
+  <dest>
+    *: none
+    buttons_in_hold: "Playback Control in Hold Mode"
+  </dest>
+  <voice>
+    *: none
+    buttons_in_hold: "Playback Control in Hold Mode"
+  </voice>
+</phrase>
+<phrase>
   id: LANG_AUTOTRACKSKIP
   desc: in crossfade settings
   user: core

@@ -42,6 +42,11 @@
 #include "appevents.h"
 #include "statusbar-skinned.h"
 
+#ifdef HAVE_PLAYBACK_CONTROL_IN_LIST
+#include "playback.h"
+#include "wps.h"        /* for ffwd_rew() */
+#endif
+
 /* The minimum number of pending button events in queue before starting
  * to limit list drawing interval.
  */
@@ -743,6 +748,40 @@ bool gui_synclist_do_button(struct gui_synclist * lists,
             setvol();
             return true;
 #endif
+#ifdef HAVE_PLAYBACK_CONTROL_IN_LIST
+        case ACTION_LIST_PLAY:
+            if (audio_status() & AUDIO_STATUS_PAUSE) {
+                audio_resume();
+            } else {
+                audio_pause();
+            }
+            return true;
+
+        case ACTION_LIST_SKIPPREV:
+            audio_prev();
+            return true;
+
+        case ACTION_LIST_SKIPNEXT:
+            audio_next();
+            return true;
+
+        case ACTION_LIST_NEXTDIR:
+            audio_next_dir();
+            return true;
+
+        case ACTION_LIST_SEEKFWD:
+            ffwd_rew(ACTION_WPS_SEEKFWD);
+            return true;
+
+        case ACTION_LIST_SEEKBACK:
+            ffwd_rew(ACTION_WPS_SEEKBACK);
+            return true;
+
+        case ACTION_LIST_STOPSEEK:
+            ffwd_rew(ACTION_WPS_STOPSEEK);
+            return true;
+#endif
+
         case ACTION_STD_PREV:
         case ACTION_STD_PREVREPEAT:
             gui_list_select_at_offset(lists, -next_item_modifier);

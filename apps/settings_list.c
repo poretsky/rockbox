@@ -2194,6 +2194,11 @@ const struct settings_list settings[] = {
     OFFON_SETTING(0, morse_input, LANG_MORSE_INPUT, false, "morse input", NULL),
 #endif
 
+#ifdef HAVE_BUTTONS_IN_HOLD_MODE
+    OFFON_SETTING(0, use_hold_buttons, LANG_HOLD_PLAYBACK_CONTROL, false,
+                  "buttons in hold mode", button_use_hold_buttons),
+#endif
+
 #ifdef HAVE_HOTKEY
     TABLE_SETTING(F_ALLOW_ARBITRARY_VALS, hotkey_wps,
         LANG_HOTKEY_WPS, HOTKEY_VIEW_PLAYLIST, "hotkey wps",

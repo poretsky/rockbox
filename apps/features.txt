@@ -288,3 +288,7 @@ play_frequency
 #if defined(HAVE_BOOTDATA)
 boot_data
 #endif
+
+#if defined(HAVE_BUTTONS_IN_HOLD_MODE)
+buttons_in_hold
+#endif

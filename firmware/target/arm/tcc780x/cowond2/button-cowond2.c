@@ -27,6 +27,13 @@
 #include "touchscreen-target.h"
 #include <stdlib.h>
 
+static bool use_hold_buttons = false;
+
+void button_use_hold_buttons(bool yesno)
+{
+    use_hold_buttons = yesno;
+}
+
 void button_init_device(void)
 {
     /* Configure GPIOA 4 (POWER) and 8 (HOLD) for input */
@@ -62,9 +69,6 @@ int button_read_device(int *data)
         backlight_hold_changed(hold_button);
 #endif
 
-    if (hold_button)
-        return BUTTON_NONE;
-
     if (GPIOB & 0x4)
     {
         adc = adc_read(ADC_BUTTONS);
@@ -85,6 +89,23 @@ int button_read_device(int *data)
         } else if (adc < 0x200) {
             btn |= BUTTON_MENU;
         }
+    }
+
+    /* Hold mode is software controlled so we can make combination buttons */
+    if (button_hold()) 
+    {
+#ifdef HAVE_BUTTONS_IN_HOLD_MODE
+        if (use_hold_buttons)
+        {
+            if (btn == BUTTON_MINUS)
+                return BUTTON_HOLDMINUS;
+            else if (btn == BUTTON_PLUS)
+                return BUTTON_HOLDPLUS;
+            else if (btn == BUTTON_MENU)
+                return BUTTON_HOLDMENU;
+        }
+#endif
+        return BUTTON_NONE;
     }
 
     btn |= touchscreen_read_device(data, &old_data);

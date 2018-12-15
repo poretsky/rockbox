@@ -819,6 +819,10 @@ struct user_settings
     bool morse_input; /* text input method setting */
 #endif
 
+#ifdef HAVE_BUTTONS_IN_HOLD_MODE
+    bool use_hold_buttons;
+#endif
+
 #ifdef HAVE_HOTKEY
     /* hotkey assignments - acceptable values are in
        hotkey_action enum in onplay.h */
