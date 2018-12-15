@@ -1038,6 +1038,10 @@ void settings_apply(bool read_disk)
     ibasso_set_governor(global_settings.governor);
 #endif
 
+#ifdef HAVE_BUTTONS_IN_HOLD_MODE
+    button_use_hold_buttons(global_settings.use_hold_buttons);
+#endif
+
     /* This should stay last */
 #if defined(HAVE_RECORDING)
     enc_global_settings_apply();
