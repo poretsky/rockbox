@@ -51,6 +51,15 @@
 /* define this if you would like tagcache to build on this target */
 #define HAVE_TAGCACHE
 
+/* define this if you have volume keys that can be used in lists */
+#define HAVE_VOLUME_IN_LIST
+
+/* define this if you have playback control keys that can be used in lists */
+#define HAVE_PLAYBACK_CONTROL_IN_LIST
+
+/* define this if you can make button combinations using the hold switch */
+#define HAVE_BUTTONS_IN_HOLD_MODE
+
 /* FM Tuner */
 #define CONFIG_TUNER LV24020LP
 #define HAVE_TUNER_PWR_CTRL
