@@ -13050,13 +13050,16 @@
   desc: in sound settings
   user: core
   <source>
-    *: "Slow"
+    *: none
+    filter_roll_off: "Slow"
   </source>
   <dest>
-    *: "Плавный"
+    *: none
+    filter_roll_off: "Плавный"
   </dest>
   <voice>
-    *: "Плавный"
+    *: none
+    filter_roll_off: "Плавный"
   </voice>
 </phrase>
 <phrase>
@@ -13064,13 +13067,16 @@
   desc: in sound settings
   user: core
   <source>
-    *: "Sharp"
+    *: none
+    filter_roll_off: "Sharp"
   </source>
   <dest>
-    *: "Крутой"
+    *: none
+    filter_roll_off: "Крутой"
   </dest>
   <voice>
-    *: "Крутой"
+    *: none
+    filter_roll_off: "Крутой"
   </voice>
 </phrase>
 <phrase>
@@ -13078,13 +13084,16 @@
   desc: in sound settings
   user: core
   <source>
-    *: "Short"
+    *: none
+    es9018: "Short"
   </source>
   <dest>
-    *: "Короткий"
+    *: none
+    es9018: "Короткий"
   </dest>
   <voice>
-    *: "Короткий"
+    *: none
+    es9018: "Короткий"
   </voice>
 </phrase>
 <phrase>
@@ -13092,13 +13101,16 @@
   desc: in sound settings
   user: core
   <source>
-    *: "Bypass"
+    *: none
+    es9018: "Bypass"
   </source>
   <dest>
-    *: "Обойти"
+    *: none
+    es9018: "Обойти"
   </dest>
   <voice>
-    *: "Обойти"
+    *: none
+    es9018: "Обойти"
   </voice>
 </phrase>
 <phrase>
@@ -13123,13 +13135,16 @@
   desc: in sound settings
   user: core
   <source>
-    *: "DAC's filter roll-off"
+    *: none
+    filter_roll_off: "DAC's filter roll-off"
   </source>
   <dest>
-    *: "Цифровой фильтр ЦАП"
+    *: none
+    filter_roll_off: "Цифровой фильтр ЦАП"
   </dest>
   <voice>
-    *: "Цифровой фильтр ЦАП"
+    *: none
+    filter_roll_off: "Цифровой фильтр ЦАП"
   </voice>
 </phrase>
 <phrase>
