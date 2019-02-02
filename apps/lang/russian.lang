@@ -16852,3 +16852,20 @@ id: VOICE_BAT_BENCH_KEYS
     *: "Сначала Файлы"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_LISTS_BEEP
+  desc: in playback settings
+  user: core
+  <source>
+    *: none
+    swcodec: "List Edges Beep"
+  </source>
+  <dest>
+    *: none
+    swcodec: "Сигнал на краях списка"
+  </dest>
+  <voice>
+    *: none
+    swcodec: "Сигнал на краях списка"
+  </voice>
+</phrase>

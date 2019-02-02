@@ -16525,3 +16525,20 @@
     *: "Files First"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_LISTS_BEEP
+  desc: in playback settings
+  user: core
+  <source>
+    *: none
+    swcodec: "List Edges Beep"
+  </source>
+  <dest>
+    *: none
+    swcodec: "List Edges Beep"
+  </dest>
+  <voice>
+    *: none
+    swcodec: "List Edges Beep"
+  </voice>
+</phrase>
