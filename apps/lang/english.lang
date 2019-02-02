@@ -16737,3 +16737,20 @@ id: VOICE_BAT_BENCH_KEYS
     lcd_bitmap: "Error writing config"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_LISTS_BEEP
+  desc: in playback settings
+  user: core
+  <source>
+    *: none
+    swcodec: "List Edges Beep"
+  </source>
+  <dest>
+    *: none
+    swcodec: "List Edges Beep"
+  </dest>
+  <voice>
+    *: none
+    swcodec: "List Edges Beep"
+  </voice>
+</phrase>
