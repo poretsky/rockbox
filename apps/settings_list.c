@@ -1543,6 +1543,10 @@ const struct settings_list settings[] = {
                    NULL, 4, ID2P(LANG_OFF), ID2P(LANG_WEAK),
                    ID2P(LANG_MODERATE), ID2P(LANG_STRONG)),
 
+    CHOICE_SETTING(0, lists_beep, LANG_LISTS_BEEP, 0, "lists_beep", "off,weak,moderate,strong",
+                   NULL, 4, ID2P(LANG_OFF), ID2P(LANG_WEAK),
+                   ID2P(LANG_MODERATE), ID2P(LANG_STRONG)),
+
 #ifdef HAVE_CROSSFADE
     /* crossfade */
     CHOICE_SETTING(F_SOUNDSETTING, crossfade, LANG_CROSSFADE_ENABLE, 0,
