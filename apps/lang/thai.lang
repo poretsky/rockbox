@@ -3975,16 +3975,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sun"
+    *: "Sun"
   </source>
   <dest>
-    *: none
-    rtc: "อาทิตย์"
+    *: "อาทิตย์"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -3992,16 +3989,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Mon"
+    *: "Mon"
   </source>
   <dest>
-    *: none
-    rtc: "จันทร์"
+    *: "จันทร์"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -4009,16 +4003,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Tue"
+    *: "Tue"
   </source>
   <dest>
-    *: none
-    rtc: "อังคาร"
+    *: "อังคาร"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -4026,16 +4017,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Wed"
+    *: "Wed"
   </source>
   <dest>
-    *: none
-    rtc: "พุธ"
+    *: "พุธ"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -4043,16 +4031,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Thu"
+    *: "Thu"
   </source>
   <dest>
-    *: none
-    rtc: "พฤหัส"
+    *: "พฤหัส"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -4060,16 +4045,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Fri"
+    *: "Fri"
   </source>
   <dest>
-    *: none
-    rtc: "ศุกร์"
+    *: "ศุกร์"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -4077,16 +4059,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sat"
+    *: "Sat"
   </source>
   <dest>
-    *: none
-    rtc: "เสาร์"
+    *: "เสาร์"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
