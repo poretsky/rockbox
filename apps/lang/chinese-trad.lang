@@ -5012,16 +5012,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sun"
+    *: "Sun"
   </source>
   <dest>
-    *: none
-    rtc: "日"
+    *: "日"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -5029,16 +5026,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Mon"
+    *: "Mon"
   </source>
   <dest>
-    *: none
-    rtc: "一"
+    *: "一"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -5046,16 +5040,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Tue"
+    *: "Tue"
   </source>
   <dest>
-    *: none
-    rtc: "二"
+    *: "二"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -5063,16 +5054,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Wed"
+    *: "Wed"
   </source>
   <dest>
-    *: none
-    rtc: "三"
+    *: "三"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -5080,16 +5068,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Thu"
+    *: "Thu"
   </source>
   <dest>
-    *: none
-    rtc: "四"
+    *: "四"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -5097,16 +5082,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Fri"
+    *: "Fri"
   </source>
   <dest>
-    *: none
-    rtc: "五"
+    *: "五"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -5114,16 +5096,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sat"
+    *: "Sat"
   </source>
   <dest>
-    *: none
-    rtc: "六"
+    *: "六"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
