@@ -234,6 +234,7 @@ sub file_is_newer {
 
 my %idmap;
 my %english;
+my $vidcount = 0x8000;
 if($english) {
     readenglish();
 }
@@ -254,8 +255,12 @@ sub readenglish {
             my ($user, $id, $value) = split ':', $_;
             $idmap[$user]{$id} = $value;
             $english{$id} = 1;
+            if ($value > $vidcount) {
+                $vidcount = $value;
+            }
         }
         close ENG;
+        $vidcount++;
 
         return;
     }
@@ -286,6 +291,7 @@ sub readenglish {
                     # Assign an ID number to this entry
                     $idmap[$user]{$id}=$vidnum[$user];
                     $vidnum[$user]++;
+                    $vidcount++;
                 }
                 else {
                     # Assign an ID number to this entry
@@ -819,6 +825,7 @@ elsif($binary || $binvoice) {
         close(OUTF);
     }
     if($binvoice) {
+        printf OUTV ("%c%c\x00", ($vidcount>>8), ($vidcount&0xff));
         close(OUTV);
     }
 }
