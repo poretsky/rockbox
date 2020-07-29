@@ -777,6 +777,8 @@ void root_menu(void)
             next_screen = GO_TO_RECSCREEN;
         }
 #endif
+        if (global_settings.alarm_timer)
+            set_sleeptimer_duration(global_settings.alarm_timer);
     }
 #endif /* HAVE_RTC_ALARM */
 
