@@ -98,7 +98,7 @@ int alarm_screen(void)
             screens[i].update_viewport();
             screens[i].set_viewport(last_vp);
         }
-        button = get_action(CONTEXT_SETTINGS,HZ);
+        button = get_action(CONTEXT_SETTINGS_TIME,HZ);
 
         switch(button) {
             case ACTION_STD_OK:
