@@ -14481,6 +14481,23 @@
   </voice>
 </phrase>
 <phrase>
+  id: LANG_ALARM_TIMER
+  desc: in alarm menu setting
+  user: core
+  <source>
+    *: none
+    alarm: "Alarm Timer"
+  </source>
+  <dest>
+    *: none
+    alarm: "Таймер будильника"
+  </dest>
+  <voice>
+    *: none
+    alarm: "Таймер будильника"
+  </voice>
+</phrase>
+<phrase>
   id: LANG_CHESSBOX_MENU_RESTART_GAME
   desc: in the chessbox menu
   user: core
