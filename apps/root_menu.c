@@ -829,6 +829,8 @@ static int root_menu_setup_screens(void)
                 new_screen = GO_TO_WPS;
                 break;
         } /* switch() */
+        if (global_settings.alarm_timer)
+            set_sleeptimer_duration(global_settings.alarm_timer);
     }
 #endif /* HAVE_RTC_ALARM */
 
