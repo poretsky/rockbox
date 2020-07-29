@@ -32,6 +32,7 @@
 #include "settings.h"
 #include "debug.h"
 #include "usb.h"
+#include "button.h"
 #include "backlight.h"
 #include "audio.h"
 #include "talk.h"
@@ -1037,6 +1038,7 @@ void settings_apply(bool read_disk)
 #if defined(DX50) || defined(DX90)
     ibasso_set_governor(global_settings.governor);
 #endif
+    set_button_long_press_duration(global_settings.btn_long_press_duration);
 
 #ifdef HAVE_BUTTONS_IN_HOLD_MODE
     button_use_hold_buttons(global_settings.use_hold_buttons);
