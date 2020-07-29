@@ -14777,6 +14777,20 @@
   </voice>
 </phrase>
 <phrase>
+  id: LANG_BTN_LONG_PRESS_DURATION
+  desc: Long button press duration in ticks
+  user: core
+  <source>
+    *: "Long Button Press Duration"
+  </source>
+  <dest>
+    *: "Длительность долгого нажатия"
+  </dest>
+  <voice>
+    *: "Длительность долгого нажатия"
+  </voice>
+</phrase>
+<phrase>
   id: LANG_CHANGE_REPEAT_MODE
   desc: in playback control menu
   user: core
