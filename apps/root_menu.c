@@ -318,6 +318,8 @@ static int wpsscrn(void* param)
                (unsigned long)global_status.resume_offset);
         if (playlist_resume() != -1)
         {
+            sound_set_pitch(global_status.resume_pitch);
+            dsp_set_timestretch(global_status.resume_speed);
             playlist_resume_track(global_status.resume_index,
                 global_status.resume_crc32,
                 global_status.resume_elapsed,
