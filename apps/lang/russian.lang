@@ -4664,16 +4664,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sun"
+    *: "Sun"
   </source>
   <dest>
-    *: none
-    rtc: "Вс"
+    *: "Вс"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Воскресенье"
   </voice>
 </phrase>
 <phrase>
@@ -4681,16 +4678,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Mon"
+    *: "Mon"
   </source>
   <dest>
-    *: none
-    rtc: "Пн"
+    *: "Пн"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Понедельник"
   </voice>
 </phrase>
 <phrase>
@@ -4698,16 +4692,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Tue"
+    *: "Tue"
   </source>
   <dest>
-    *: none
-    rtc: "Вт"
+    *: "Вт"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Вторник"
   </voice>
 </phrase>
 <phrase>
@@ -4715,16 +4706,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Wed"
+    *: "Wed"
   </source>
   <dest>
-    *: none
-    rtc: "Ср"
+    *: "Ср"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Среда"
   </voice>
 </phrase>
 <phrase>
@@ -4732,16 +4720,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Thu"
+    *: "Thu"
   </source>
   <dest>
-    *: none
-    rtc: "Чт"
+    *: "Чт"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Четверг"
   </voice>
 </phrase>
 <phrase>
@@ -4749,16 +4734,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Fri"
+    *: "Fri"
   </source>
   <dest>
-    *: none
-    rtc: "Пт"
+    *: "Пт"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Пятница"
   </voice>
 </phrase>
 <phrase>
@@ -4766,16 +4748,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sat"
+    *: "Sat"
   </source>
   <dest>
-    *: none
-    rtc: "Сб"
+    *: "Сб"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Суббота"
   </voice>
 </phrase>
 <phrase>
@@ -7856,7 +7835,7 @@
     *: ""
   </dest>
   <voice>
-    *: "До полудня"
+    *: "После полуночи"
   </voice>
 </phrase>
 <phrase>
