@@ -3670,16 +3670,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sun"
+    *: "Sun"
   </source>
   <dest>
-    *: none
-    rtc: "Dim"
+    *: "Dim"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -3687,16 +3684,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Mon"
+    *: "Mon"
   </source>
   <dest>
-    *: none
-    rtc: "Lun"
+    *: "Lun"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -3704,16 +3698,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Tue"
+    *: "Tue"
   </source>
   <dest>
-    *: none
-    rtc: "Mar"
+    *: "Mar"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -3721,16 +3712,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Wed"
+    *: "Wed"
   </source>
   <dest>
-    *: none
-    rtc: "Mer"
+    *: "Mer"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -3738,16 +3726,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Thu"
+    *: "Thu"
   </source>
   <dest>
-    *: none
-    rtc: "Jeu"
+    *: "Jeu"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -3755,16 +3740,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Fri"
+    *: "Fri"
   </source>
   <dest>
-    *: none
-    rtc: "Ven"
+    *: "Ven"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -3772,16 +3754,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sat"
+    *: "Sat"
   </source>
   <dest>
-    *: none
-    rtc: "Sam"
+    *: "Sam"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
