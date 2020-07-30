@@ -307,6 +307,9 @@ struct system_status
     uint32_t resume_crc32; /* crc32 of the name of the file */
     uint32_t resume_elapsed; /* elapsed time in last file */
     uint32_t resume_offset; /* byte offset in mp3 file */
+    int resume_pitch;
+    int resume_speed;
+
     int runtime;       /* current runtime since last charge */
     int topruntime;    /* top known runtime */
 #ifdef HAVE_DIRCACHE
