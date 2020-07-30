@@ -1482,6 +1482,9 @@ void talk_date(const struct tm *tm, bool enqueue)
 
     do_enqueue(enqueue); /* cut off all the pending stuff */
 
+    if (tm->tm_wday >= 0)
+        talk_id(LANG_WEEKDAY_SUNDAY + tm->tm_wday, true);
+
     for (ptr = format ; *ptr ; ptr++) {
         switch(*ptr) {
 	case 'Y':
