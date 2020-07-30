@@ -4816,15 +4816,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sun"
+    *: "Sun"
   </source>
   <dest>
-    *: none
-    rtc: "Su."
+    *: "Su."
   </dest>
   <voice>
-    *: none
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -4832,15 +4830,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Mon"
+    *: "Mon"
   </source>
   <dest>
-    *: none
-    rtc: "Må."
+    *: "Må."
   </dest>
   <voice>
-    *: none
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -4848,15 +4844,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Tue"
+    *: "Tue"
   </source>
   <dest>
-    *: none
-    rtc: "Ty."
+    *: "Ty."
   </dest>
   <voice>
-    *: none
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -4864,15 +4858,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Wed"
+    *: "Wed"
   </source>
   <dest>
-    *: none
-    rtc: "On."
+    *: "On."
   </dest>
   <voice>
-    *: none
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -4880,15 +4872,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Thu"
+    *: "Thu"
   </source>
   <dest>
-    *: none
-    rtc: "To."
+    *: "To."
   </dest>
   <voice>
-    *: none
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -4896,15 +4886,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Fri"
+    *: "Fri"
   </source>
   <dest>
-    *: none
-    rtc: "Fr."
+    *: "Fr."
   </dest>
   <voice>
-    *: none
+    *: ""
   </voice>
 </phrase>
 <phrase>
@@ -4912,15 +4900,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sat"
+    *: "Sat"
   </source>
   <dest>
-    *: none
-    rtc: "La."
+    *: "La."
   </dest>
   <voice>
-    *: none
+    *: ""
   </voice>
 </phrase>
 <phrase>
