@@ -3569,16 +3569,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Mon"
+    *: "Mon"
   </source>
   <dest>
-    *: none
-    rtc: "اثن"
+    *: "اثن"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: ""
   </voice>
 </phrase>
 <phrase>
