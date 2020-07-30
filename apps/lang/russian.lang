@@ -14406,6 +14406,23 @@
   </voice>
 </phrase>
 <phrase>
+  id: LANG_REMAINING
+  desc: for constructs such as number of tracks remaining etc
+  user: core
+  <source>
+    *: none
+    hotkey: "Remaining"
+  </source>
+  <dest>
+    *: none
+    hotkey: "Осталось"
+  </dest>
+  <voice>
+    *: none
+    hotkey: "Осталось"
+  </voice>
+</phrase>
+<phrase>
   id: LANG_PLAY_WORMLET
   desc: For wormlet menu
   user: core
@@ -14479,6 +14496,23 @@
   </dest>
   <voice>
     *: "В списке проиграно"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_ELAPSED
+  desc: prefix for elapsed playtime announcement
+  user: core
+  <source>
+    *: none
+    hotkey: "Elapsed"
+  </source>
+  <dest>
+    *: none
+    hotkey: "Проиграно"
+  </dest>
+  <voice>
+    *: none
+    hotkey: "Проиграно"
   </voice>
 </phrase>
 <phrase>
@@ -14595,6 +14629,20 @@
   </dest>
   <voice>
     *: "Управление с пульта"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_DATE
+  desc: for constructing time and date announcements
+  user: core
+  <source>
+    *: "Date"
+  </source>
+  <dest>
+    *: "Дата"
+  </dest>
+  <voice>
+    *: "Дата"
   </voice>
 </phrase>
 <phrase>
@@ -15398,6 +15446,23 @@ id: VOICE_BAT_BENCH_KEYS
   </voice>
 </phrase>
 <phrase>
+  id: LANG_WPS_ANNOUNCEMENT_FORMAT
+  desc: format for wps hotkey announcement
+  user: core
+  <source>
+    *: none
+    hotkey: "WPS Announcement"
+  </source>
+  <dest>
+    *: none
+    hotkey: "Сообщения в режиме воспроизведения"
+  </dest>
+  <voice>
+    *: none
+    hotkey: "Сообщения в режиме воспроизведения"
+  </voice>
+</phrase>
+<phrase>
   id: LANG_TONE_CONTROLS
   desc: in the mpegplayer settings menu
   user: core
@@ -15526,6 +15591,23 @@ id: VOICE_BAT_BENCH_KEYS
     *: none
     swcodec: "Недоступно"
     lowmem: none
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_VOICEINFO
+  desc: progressively voice information on the wps hotkey
+  user: core
+  <source>
+    *: none
+    hotkey: "Announce Information"
+  </source>
+  <dest>
+    *: none
+    hotkey: "Информационное сообщение"
+  </dest>
+  <voice>
+    *: none
+    hotkey: "Информационное сообщение"
   </voice>
 </phrase>
 <phrase>
@@ -15676,6 +15758,23 @@ id: VOICE_BAT_BENCH_KEYS
   <voice>
     *: none
     lcd_bitmap: "Король"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_TRACKONLY
+  desc: used in track x of y constructs
+  user: core
+  <source>
+    *: none
+    hotkey: "Track"
+  </source>
+  <dest>
+    *: none
+    hotkey: "Трек"
+  </dest>
+  <voice>
+    *: none
+    hotkey: "Трэк"
   </voice>
 </phrase>
 <phrase>
