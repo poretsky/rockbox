@@ -3640,16 +3640,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sun"
+    *: "Sun"
   </source>
   <dest>
-    *: none
-    rtc: "Sun"
+    *: "Sun"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Sunday"
   </voice>
 </phrase>
 <phrase>
@@ -3657,16 +3654,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Mon"
+    *: "Mon"
   </source>
   <dest>
-    *: none
-    rtc: "Mon"
+    *: "Mon"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Monday"
   </voice>
 </phrase>
 <phrase>
@@ -3674,16 +3668,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Tue"
+    *: "Tue"
   </source>
   <dest>
-    *: none
-    rtc: "Tue"
+    *: "Tue"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Tuesday"
   </voice>
 </phrase>
 <phrase>
@@ -3691,16 +3682,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Wed"
+    *: "Wed"
   </source>
   <dest>
-    *: none
-    rtc: "Wed"
+    *: "Wed"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Wednesday"
   </voice>
 </phrase>
 <phrase>
@@ -3708,16 +3696,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Thu"
+    *: "Thu"
   </source>
   <dest>
-    *: none
-    rtc: "Thu"
+    *: "Thu"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Thursday"
   </voice>
 </phrase>
 <phrase>
@@ -3725,16 +3710,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Fri"
+    *: "Fri"
   </source>
   <dest>
-    *: none
-    rtc: "Fri"
+    *: "Fri"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Friday"
   </voice>
 </phrase>
 <phrase>
@@ -3742,16 +3724,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sat"
+    *: "Sat"
   </source>
   <dest>
-    *: none
-    rtc: "Sat"
+    *: "Sat"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Saturday"
   </voice>
 </phrase>
 <phrase>
