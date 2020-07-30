@@ -882,6 +882,8 @@ const struct settings_list settings[] = {
                    ,ID2P(LANG_REPEAT_AB)
 #endif
                   ), /* CHOICE_SETTING( repeat_mode ) */
+    OFFON_SETTING(0, pause_between_tracks, LANG_PAUSE_BETWEEN_TRACKS, false,
+                  "pause between tracks", NULL),
 #ifdef HAVE_PLAY_FREQ
     STRINGCHOICE_SETTING(0, play_frequency, LANG_FREQUENCY, 0,
 #if HAVE_PLAY_FREQ >= 192
