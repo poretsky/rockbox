@@ -4557,16 +4557,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sun"
+    *: "Sun"
   </source>
   <dest>
-    *: none
-    rtc: "Zo"
+    *: "Zo"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Zondag"
   </voice>
 </phrase>
 <phrase>
@@ -4574,16 +4571,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Mon"
+    *: "Mon"
   </source>
   <dest>
-    *: none
-    rtc: "Ma"
+    *: "Ma"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Maandag"
   </voice>
 </phrase>
 <phrase>
@@ -4591,16 +4585,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Tue"
+    *: "Tue"
   </source>
   <dest>
-    *: none
-    rtc: "Di"
+    *: "Di"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Dinsdag"
   </voice>
 </phrase>
 <phrase>
@@ -4608,16 +4599,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Wed"
+    *: "Wed"
   </source>
   <dest>
-    *: none
-    rtc: "Wo"
+    *: "Wo"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Woensdag"
   </voice>
 </phrase>
 <phrase>
@@ -4625,16 +4613,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Thu"
+    *: "Thu"
   </source>
   <dest>
-    *: none
-    rtc: "Do"
+    *: "Do"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Donderdag"
   </voice>
 </phrase>
 <phrase>
@@ -4642,16 +4627,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Fri"
+    *: "Fri"
   </source>
   <dest>
-    *: none
-    rtc: "Vr"
+    *: "Vr"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Vrijdag"
   </voice>
 </phrase>
 <phrase>
@@ -4659,16 +4641,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sat"
+    *: "Sat"
   </source>
   <dest>
-    *: none
-    rtc: "Za"
+    *: "Za"
   </dest>
   <voice>
-    *: none
-    rtc: ""
+    *: "Zaterdag"
   </voice>
 </phrase>
 <phrase>
