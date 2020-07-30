@@ -4131,9 +4131,12 @@ int playlist_update_resume_info(const struct mp3entry* id3)
 
     if (id3)
     {
-        if (global_status.resume_index  != playlist->index ||
-            global_status.resume_elapsed != id3->elapsed ||
-            global_status.resume_offset != id3->offset)
+        if (global_status.resume_index  != playlist->index
+            || global_status.resume_elapsed != id3->elapsed
+            || global_status.resume_offset != id3->offset
+            || global_status.resume_pitch != sound_get_pitch()
+            || global_status.resume_speed != dsp_get_timestretch()
+           )
         {
             unsigned int crc = playlist_get_filename_crc32(playlist,
                                                            playlist->index);
@@ -4141,6 +4144,8 @@ int playlist_update_resume_info(const struct mp3entry* id3)
             global_status.resume_crc32 = crc;
             global_status.resume_elapsed = id3->elapsed;
             global_status.resume_offset = id3->offset;
+            global_status.resume_pitch = sound_get_pitch();
+            global_status.resume_speed = dsp_get_timestretch();
             status_save();
         }
     }
