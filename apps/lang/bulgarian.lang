@@ -4009,16 +4009,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sun"
+    *: "Sun"
   </source>
   <dest>
-    *: none
-    rtc: "Нед"
+    *: "Нед"
   </dest>
   <voice>
-    *: none
-    rtc: "Нед"
+    *: "Нед"
   </voice>
 </phrase>
 <phrase>
@@ -4026,16 +4023,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Mon"
+    *: "Mon"
   </source>
   <dest>
-    *: none
-    rtc: "Пон"
+    *: "Пон"
   </dest>
   <voice>
-    *: none
-    rtc: "Пон"
+    *: "Пон"
   </voice>
 </phrase>
 <phrase>
@@ -4043,16 +4037,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Tue"
+    *: "Tue"
   </source>
   <dest>
-    *: none
-    rtc: "Вт"
+    *: "Вт"
   </dest>
   <voice>
-    *: none
-    rtc: "Вт"
+    *: "Вт"
   </voice>
 </phrase>
 <phrase>
@@ -4060,16 +4051,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Wed"
+    *: "Wed"
   </source>
   <dest>
-    *: none
-    rtc: "Ср"
+    *: "Ср"
   </dest>
   <voice>
-    *: none
-    rtc: "Ср"
+    *: "Ср"
   </voice>
 </phrase>
 <phrase>
@@ -4077,16 +4065,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Thu"
+    *: "Thu"
   </source>
   <dest>
-    *: none
-    rtc: "Чет"
+    *: "Чет"
   </dest>
   <voice>
-    *: none
-    rtc: "Чет"
+    *: "Чет"
   </voice>
 </phrase>
 <phrase>
@@ -4094,16 +4079,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Fri"
+    *: "Fri"
   </source>
   <dest>
-    *: none
-    rtc: "Пет"
+    *: "Пет"
   </dest>
   <voice>
-    *: none
-    rtc: "Пет"
+    *: "Пет"
   </voice>
 </phrase>
 <phrase>
@@ -4111,16 +4093,13 @@
   desc: Maximum 3-letter abbreviation for weekday
   user: core
   <source>
-    *: none
-    rtc: "Sat"
+    *: "Sat"
   </source>
   <dest>
-    *: none
-    rtc: "Съб"
+    *: "Съб"
   </dest>
   <voice>
-    *: none
-    rtc: "Съб"
+    *: "Съб"
   </voice>
 </phrase>
 <phrase>
