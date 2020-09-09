@@ -109,7 +109,7 @@ void open_plugin_browse(const char *key)
     if (open_plugin_entry.path[0] == '\0')
         strcpy(open_plugin_entry.path, PLUGIN_DIR"/");
 
-    browse_context_init(&browse, SHOW_ALL, BROWSE_SELECTONLY, "",
+    browse_context_init(&browse, SHOW_PLUGINS_TREE, BROWSE_SELECTONLY, "",
                          Icon_Plugin, open_plugin_entry.path, NULL);
 
     browse.buf = tmp_buf;
