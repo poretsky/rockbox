@@ -387,7 +387,7 @@ void open_plugin_browse(const char *key)
         strcpy(op_entry->path, PLUGIN_DIR"/");
 
     struct browse_context browse = {
-        .dirfilter = SHOW_ALL,
+        .dirfilter = SHOW_PLUGINS_TREE,
         .flags = BROWSE_SELECTONLY | BROWSE_NO_CONTEXT_MENU | BROWSE_DIRFILTER,
         .title = str(LANG_OPEN_PLUGIN),
         .icon = Icon_Plugin,
