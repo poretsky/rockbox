@@ -990,7 +990,7 @@
   </dest>
   <voice>
     *: none
-    swcodec: "Фильтр пиков %d"
+    swcodec: "Фильтр пиков"
   </voice>
 </phrase>
 <phrase>

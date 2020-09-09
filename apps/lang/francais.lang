@@ -1125,7 +1125,7 @@
   </dest>
   <voice>
     *: none
-    swcodec: "Filtre crête %d"
+    swcodec: "Filtre crête"
   </voice>
 </phrase>
 <phrase>

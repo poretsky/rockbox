@@ -1004,7 +1004,7 @@
   </dest>
   <voice>
     *: none
-    swcodec: "Piekfilter %d"
+    swcodec: "Piekfilter"
   </voice>
 </phrase>
 <phrase>
