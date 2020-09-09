@@ -345,6 +345,10 @@ int ft_load(struct tree_context* c, const char* tempdir)
              file_attr != FILE_ATTR_M3U) ||
             ((*c->dirfilter == SHOW_MUSIC && file_attr != FILE_ATTR_AUDIO) &&
              file_attr != FILE_ATTR_M3U) ||
+            (*c->dirfilter == SHOW_PLUGINS_TREE &&
+             (dptr->attr & FILE_ATTR_MASK) != FILE_ATTR_ROCK &&
+             (dptr->attr & FILE_ATTR_MASK) != FILE_ATTR_LUA &&
+             (dptr->attr & FILE_ATTR_MASK) != FILE_ATTR_OPX) ||
             (*c->dirfilter == SHOW_SUPPORTED && !filetype_supported(dptr->attr)))) ||
             (*c->dirfilter == SHOW_WPS && file_attr != FILE_ATTR_WPS) ||
             (*c->dirfilter == SHOW_FONT && file_attr != FILE_ATTR_FONT) ||

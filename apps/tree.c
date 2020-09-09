@@ -970,7 +970,7 @@ int rockbox_browse(struct browse_context *browse)
     gui_synclist_init_display_settings(&tree_lists); /* grab updated settings */
 
     reload_dir = true;
-    if (*tc.dirfilter >= NUM_FILTER_MODES)
+    if (*tc.dirfilter >= NUM_FILTER_MODES && *tc.dirfilter != SHOW_PLUGINS_TREE)
     {
         int last_context;
         /* don't reset if its the same browse already loaded */
@@ -1001,11 +1001,14 @@ int rockbox_browse(struct browse_context *browse)
     }
     else
     {
-        if (dirfilter != SHOW_ID3DB)
-            tc.dirfilter = &global_settings.dirfilter;
         tc.browse = browse;
         strlcpy(current, browse->root, MAX_PATH);
         set_current_file(current);
+        if (dirfilter == SHOW_PLUGINS_TREE)
+            tc.dirlevel = 0; 
+        else if (dirfilter != SHOW_ID3DB)
+            tc.dirfilter = &global_settings.dirfilter;
+
         if (browse->flags&BROWSE_RUNFILE)
             ret_val = ft_enter(&tc);
         else
