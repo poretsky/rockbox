@@ -1007,7 +1007,7 @@
   </dest>
   <voice>
     *: none
-    swcodec: "피크 필터 %d"
+    swcodec: "피크 필터"
   </voice>
 </phrase>
 <phrase>

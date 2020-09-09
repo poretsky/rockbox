@@ -997,7 +997,7 @@
   </dest>
   <voice>
     *: none
-    swcodec: "带通滤波器%d"
+    swcodec: "带通滤波器"
   </voice>
 </phrase>
 <phrase>
