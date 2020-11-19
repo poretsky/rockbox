@@ -373,6 +373,7 @@ struct user_settings
 
     /* Misc. swcodec */
     int  beep;              /* system beep volume when changing tracks etc. */
+    int lists_beep;         /* beep on list edges volume */
     int  keyclick;          /* keyclick volume */
     int  keyclick_repeats;  /* keyclick on repeats */
     bool dithering_enabled;
