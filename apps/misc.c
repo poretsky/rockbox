@@ -900,10 +900,10 @@ void system_sound_play(enum system_sound sound)
         { &global_settings.beep,
           1000, 100, 1500 },
         [SOUND_LIST_EDGE_BEEP_NOWRAP] =
-        { &global_settings.keyclick,
+        { &global_settings.lists_beep,
           1000, 40, 1500 },
         [SOUND_LIST_EDGE_BEEP_WRAP] =
-        { &global_settings.keyclick,
+        { &global_settings.lists_beep,
           2000, 20, 1500 },
 
     };

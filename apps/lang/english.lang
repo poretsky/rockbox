@@ -16152,3 +16152,17 @@
     *: "Files First"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_LISTS_BEEP
+  desc: in playback settings
+  user: core
+  <source>
+    *: "List Edges Beep"
+  </source>
+  <dest>
+    *: "List Edges Beep"
+  </dest>
+  <voice>
+    *: "List Edges Beep"
+  </voice>
+</phrase>
