@@ -140,7 +140,7 @@ void gui_synclist_init_display_settings(struct gui_synclist * list)
     list->scrollbar = gs->scrollbar;
     list->show_icons = gs->show_icons;
     list->scroll_paginated = gs->scroll_paginated;
-    list->keyclick = gs->keyclick;
+    list->lists_beep = gs->lists_beep;
     list->talk_menu = gs->talk_menu;
     list->wraparound = gs->list_wraparound;
     list->cursor_style = gs->cursor_style;
@@ -312,7 +312,7 @@ static void gui_list_put_selection_on_screen(struct gui_synclist * gui_list,
 
 static void edge_beep(struct gui_synclist * gui_list, bool wrap)
 {
-    if (gui_list->keyclick)
+    if (gui_list->lists_beep)
     {
         list_speak_item *cb = gui_list->callback_speak_item;
         if (!wrap) /* a bounce */

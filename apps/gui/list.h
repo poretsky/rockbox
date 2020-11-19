@@ -151,7 +151,7 @@ struct gui_synclist
     int scrollbar;
     int cursor_style;
     bool show_icons;
-    bool keyclick;
+    bool lists_beep;
     bool talk_menu;
     bool wraparound;
     bool scroll_paginated;
