@@ -16396,3 +16396,17 @@
     *: "Сначала Файлы"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_LISTS_BEEP
+  desc: in playback settings
+  user: core
+  <source>
+    *: "List Edges Beep"
+  </source>
+  <dest>
+    *: "Сигнал на краях списка"
+  </dest>
+  <voice>
+    *: "Сигнал на краях списка"
+  </voice>
+</phrase>

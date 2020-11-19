@@ -327,13 +327,14 @@ MAKE_MENU(limits_menu, ID2P(LANG_LIMITS_MENU), 0, Icon_NOICON,
 /* Keyclick menu */
 MENUITEM_SETTING(keyclick, &global_settings.keyclick, NULL);
 MENUITEM_SETTING(keyclick_repeats, &global_settings.keyclick_repeats, NULL);
+MENUITEM_SETTING(lists_beep, &global_settings.lists_beep, NULL);
 #ifdef HAVE_HARDWARE_CLICK
 MENUITEM_SETTING(keyclick_hardware, &global_settings.keyclick_hardware, NULL);
 MAKE_MENU(keyclick_menu, ID2P(LANG_KEYCLICK), 0, Icon_NOICON,
-           &keyclick, &keyclick_hardware, &keyclick_repeats);
+           &keyclick, &keyclick_hardware, &keyclick_repeats, &lists_beep);
 #else
 MAKE_MENU(keyclick_menu, ID2P(LANG_KEYCLICK), 0, Icon_NOICON,
-           &keyclick, &keyclick_repeats);
+           &keyclick, &keyclick_repeats, &lists_beep);
 #endif
 
 MENUITEM_SETTING(btn_long_press_duration,
