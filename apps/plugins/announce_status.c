@@ -31,6 +31,10 @@
 #include "lib/kbd_helper.h"
 #include "lib/configfile.h"
 
+#ifdef MAX_ANNOUNCE_WPS
+#undef MAX_ANNOUNCE_WPS
+#endif
+
 /****************** constants ******************/
 #define MAX_GROUPS 7
 #define MAX_ANNOUNCE_WPS 63
