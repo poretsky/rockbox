@@ -14529,6 +14529,23 @@
   </voice>
 </phrase>
 <phrase>
+  id: LANG_VOICEINFO
+  desc: progressively voice information on the wps hotkey
+  user: core
+  <source>
+    *: none
+    hotkey: "Announce Information"
+  </source>
+  <dest>
+    *: none
+    hotkey: "Информационное сообщение"
+  </dest>
+  <voice>
+    *: none
+    hotkey: "Информационное сообщение"
+  </voice>
+</phrase>
+<phrase>
   id: LANG_MENU_RESUME_OPTIONS
   desc: in mpegplayer menus
   user: core

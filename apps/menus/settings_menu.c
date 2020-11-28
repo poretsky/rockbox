@@ -715,10 +715,26 @@ MENUITEM_SETTING(talk_filetype_item, &global_settings.talk_filetype, NULL);
 MENUITEM_SETTING(talk_battery_level_item,
                  &global_settings.talk_battery_level, NULL);
 MENUITEM_SETTING(talk_mixer_amp_item, &global_settings.talk_mixer_amp, NULL);
+
+#ifdef HAVE_HOTKEY
+static void edit_wps_announce_format(void)
+{
+    kbd_input(global_settings.wps_announcement_format, MAX_ANNOUNCE_WPS, NULL);
+}
+MENUITEM_FUNCTION(wps_announce_item, 0, ID2P(LANG_ANNOUNCEMENT_FMT),
+                    (int(*)(void))edit_wps_announce_format,
+                    NULL, NULL, Icon_NOICON);
+#endif
+
 MAKE_MENU(voice_settings_menu, ID2P(LANG_VOICE), 0, Icon_Voice,
           &talk_menu_item, &talk_dir_item, &talk_dir_clip_item,
           &talk_file_item, &talk_file_clip_item, &talk_filetype_item,
-          &talk_battery_level_item, &talk_mixer_amp_item);
+          &talk_battery_level_item, &talk_mixer_amp_item
+#ifdef HAVE_HOTKEY
+          , &wps_announce_item
+#endif
+          );
+
 /*    VOICE MENU                   */
 /***********************************/
 
