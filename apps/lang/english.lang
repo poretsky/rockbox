@@ -16610,3 +16610,20 @@
     perceptual_volume: "Perceptual"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_VOICEINFO
+  desc: progressively voice information on the wps hotkey
+  user: core
+  <source>
+    *: none
+    hotkey: "Announce Information"
+  </source>
+  <dest>
+    *: none
+    hotkey: "Announce Information"
+  </dest>
+  <voice>
+    *: none
+    hotkey: "Announce Information"
+  </voice>
+</phrase>
