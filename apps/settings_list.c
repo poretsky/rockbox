@@ -1327,6 +1327,9 @@ const struct settings_list settings[] = {
                   "talk filetype", NULL),
     OFFON_SETTING(F_TEMPVAR, talk_battery_level, LANG_TALK_BATTERY_LEVEL, false,
                   "Announce Battery Level", NULL),
+#ifdef HAVE_HOTKEY
+    TEXT_SETTING(0, wps_announcement_format, "wps announcement format", "", NULL, NULL),
+#endif
 
 #ifdef HAVE_RECORDING
      /* recording */
@@ -2122,10 +2125,10 @@ const struct settings_list settings[] = {
 #ifdef HAVE_HOTKEY
     TABLE_SETTING(F_ALLOW_ARBITRARY_VALS | F_CB_ON_SELECT_ONLY, hotkey_wps,
         LANG_HOTKEY_WPS, HOTKEY_VIEW_PLAYLIST, "hotkey wps",
-        "off,view playlist,show track info,pitchscreen,open with,delete,bookmark,plugin"
-        ,UNIT_INT, hotkey_formatter, hotkey_getlang, hotkey_callback,8, HOTKEY_OFF,
+        "off,view playlist,show track info,pitchscreen,open with,delete,bookmark,plugin,voiceinfo"
+        ,UNIT_INT, hotkey_formatter, hotkey_getlang, hotkey_callback, 9, HOTKEY_OFF,
         HOTKEY_VIEW_PLAYLIST, HOTKEY_SHOW_TRACK_INFO, HOTKEY_PITCHSCREEN,
-        HOTKEY_OPEN_WITH, HOTKEY_DELETE, HOTKEY_BOOKMARK, HOTKEY_PLUGIN),
+        HOTKEY_OPEN_WITH, HOTKEY_DELETE, HOTKEY_BOOKMARK, HOTKEY_PLUGIN, HOTKEY_VOICEINFO),
     TABLE_SETTING(F_ALLOW_ARBITRARY_VALS, hotkey_tree,
         LANG_HOTKEY_FILE_BROWSER, HOTKEY_OFF, "hotkey tree",
         "off,open with,delete,insert,insert shuffled",
