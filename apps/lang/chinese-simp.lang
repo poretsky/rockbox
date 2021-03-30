@@ -3880,18 +3880,21 @@
   user: core
   <source>
     *: none
-    multivolume: "HD1"
+    hibylinux: "USB:"
+    multivolume: "HD1:"
     sansac200*,sansaclipplus,sansae200*,sansafuze*: "mSD:"
     xduoox3: "mSD2:"
   </source>
   <dest>
     *: none
-    multivolume: "磁盘1"
+    hibylinux: "USB:"
+    multivolume: "磁盘1:"
     sansac200*,sansaclipplus,sansae200*,sansafuze*: "mSD:"
     xduoox3: "mSD2:"
   </dest>
   <voice>
     *: none
+    hibylinux: "U S B"
     multivolume: "磁盘1"
     sansac200*,sansaclipplus,sansae200*,sansafuze*: "mSD卡"
     xduoox3: "mSD卡2"

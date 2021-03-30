@@ -6313,12 +6313,10 @@
   <source>
     *: "Battery: %d%% %dh %dm"
     ipodmini1g,ipodmini2g,iriverh10: "Batt: %d%% %dh %dm"
-    iriverifp7xx: "%d%% %dh %dm"
   </source>
   <dest>
     *: "%d%% %dh %dm"
     ipodmini1g,ipodmini2g,iriverh10: "Μπάτ: %d%% %dh %dm"
-    iriverifp7xx: "%d%% %dh %dm"
   </dest>
   <voice>
     *: "Επίπεδο μπαταρίας"
@@ -6376,20 +6374,23 @@
   <source>
     *: none
     archosondio*: "MMC:"
-    multivolume: "HD1"
+    hibylinux: "USB:"
+    multivolume: "HD1:"
     sansac200*,sansaclipplus,sansae200*,sansafuze*: "mSD:"
     xduoox3: "mSD2:"
   </source>
   <dest>
     *: none
     archosondio*: "MMC:"
-    multivolume: "HD1"
+    hibylinux: "USB:"
+    multivolume: "HD1:"
     sansac200*,sansaclipplus,sansae200*,sansafuze*: "mSD:"
     xduoox3: "mSD2:"
   </dest>
   <voice>
     *: none
     archosondio*: "Εμ Εμ Σι"
+    hibylinux: "U S B"
     multivolume: "Έιτς Ντι 1"
     sansac200*,sansaclipplus,sansae200*,sansafuze*: "μάικρο Ες Ντι"
     xduoox3: "μάικρο Ες Ντι 2"
@@ -12111,7 +12112,7 @@
   desc: Selective Actions
   user: core
   <source>
-    *: "Play"
+    *: "Exempt Play"
   </source>
   <dest>
     *: "Αναπαραγωγή"
@@ -12463,7 +12464,7 @@
   desc: Softlock behaviour setting
   user: core
   <source>
-    *: "Disable Notify"
+    *: "Disable Locked Reminders"
   </source>
   <dest>
     *: "Απενεργοποίηση ειδοποίησης"
@@ -12536,7 +12537,7 @@
   desc: Selective Actions
   user: core
   <source>
-    *: "Seek"
+    *: "Exempt Seek"
   </source>
   <dest>
     *: "Μεταπήδηση"
@@ -12632,7 +12633,7 @@
   desc: Selective Actions
   user: core
   <source>
-    *: "Skip"
+    *: "Exempt Skip"
   </source>
   <dest>
     *: "Παράκαμψη"

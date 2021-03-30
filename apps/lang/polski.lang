@@ -6050,7 +6050,7 @@
   <dest>
     *: none
     hibylinux: "USB:"
-    multivolume: "HD1"
+    multivolume: "HD1:"
     sansac200*,sansaclipplus,sansae200*,sansafuze*: "mSD:"
     xduoox3: "mSD2:"
   </dest>
