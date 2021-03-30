@@ -6036,12 +6036,10 @@
   <source>
     *: "Battery: %d%% %dh %dm"
     ipodmini1g,ipodmini2g,iriverh10: "Batt: %d%% %dh %dm"
-    iriverifp7xx: "%d%% %dh %dm"
   </source>
   <dest>
     *: "Batterie: %d%% %dh %dm"
     ipodmini1g,ipodmini2g,iriverh10: "Batt: %d%% %dh %dm"
-    iriverifp7xx: "%d%% %dh %dm"
   </dest>
   <voice>
     *: "Niveau de la batterie"
@@ -12296,7 +12294,7 @@
   desc: Selective Actions
   user: core
   <source>
-    *: "Seek"
+    *: "Exempt Seek"
   </source>
   <dest>
     *: "Chercher"
@@ -12310,7 +12308,7 @@
   desc: Selective Actions
   user: core
   <source>
-    *: "Play"
+    *: "Exempt Play"
   </source>
   <dest>
     *: "Jouer"
@@ -12352,7 +12350,7 @@
   desc: Softlock behaviour setting
   user: core
   <source>
-    *: "Disable Notify"
+    *: "Disable Locked Reminders"
   </source>
   <dest>
     *: "Désactiver les notifications"
@@ -12422,7 +12420,7 @@
   desc: Selective Actions
   user: core
   <source>
-    *: "Skip"
+    *: "Exempt Skip"
   </source>
   <dest>
     *: "Passer"
