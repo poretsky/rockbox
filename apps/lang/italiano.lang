@@ -6044,7 +6044,7 @@
   <dest>
     *: none
     hibylinux: "USB:"
-    multivolume: "HD1"
+    multivolume: "HD1:"
     sansac200*,sansaclipplus,sansae200*,sansafuze*: "MSD:"
     xduoox3: "MSD2:"
   </dest>
