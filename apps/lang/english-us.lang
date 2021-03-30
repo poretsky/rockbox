@@ -15596,7 +15596,7 @@
     *: "Clear List & Play Next"
   </dest>
   <voice>
-    *: "Clear List & Play Next"
+    *: "Clear List and Play Next"
   </voice>
 </phrase>
 <phrase>
@@ -15666,7 +15666,7 @@
     *: "Clear List & Play Shuffled"
   </dest>
   <voice>
-    *: "Clear List & Play Shuffled"
+    *: "Clear List and Play Shuffled"
   </voice>
 </phrase>
 <phrase>
