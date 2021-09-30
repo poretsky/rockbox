@@ -48,6 +48,11 @@ char str_frequency[32];
 
 unsigned nseconds;
 unsigned long nsize;
+int ndisc;
+int ntrack;
+int nyear;
+unsigned int nbitrate;
+unsigned long nfreq;
 int32_t size_unit;
 struct tm tm;
 
@@ -143,6 +148,11 @@ static bool file_properties(const char* selected_file)
                     rb->get_metadata(&id3, fd, selected_file))
                 {
                     long dur = id3.length / 1000;           /* seconds */
+                    nyear = id3.year;
+                    ndisc = id3.discnum;
+                    ntrack = id3.tracknum;
+                    nbitrate = id3.bitrate;
+                    nfreq = id3.frequency;
                     rb->snprintf(str_composer, sizeof str_composer,
                                  "%s", id3.composer ? id3.composer : "");
                     rb->snprintf(str_artist, sizeof str_artist,
@@ -164,9 +174,9 @@ static bool file_properties(const char* selected_file)
                     rb->snprintf(str_tracknum, sizeof str_tracknum,
                                  "%s", id3.track_string ? id3.track_string : "");
                     rb->snprintf(str_bitrate, sizeof str_bitrate,
-                                 "%d kbps", id3.bitrate ? : 0);
+                                 "%d kbps", nbitrate ? : 0);
                     rb->snprintf(str_frequency, sizeof str_frequency,
-                                 "%ld Hz", id3.frequency ? : 0);
+                                 "%ld Hz", nfreq ? : 0);
                     num_properties += 12;
 
                     if (dur > 0)
@@ -385,6 +395,24 @@ static int speak_property_selection(int selected_item, void *data)
         break;
     case LANG_PROPERTIES_FILES:
         rb->talk_number(dps->fc, true);
+        break;
+    case LANG_PROPERTIES_YEAR:
+        if (nyear)
+            rb->talk_number(nyear, true);
+        break;
+    case LANG_PROPERTIES_DISCNUM:
+        if (ndisc)
+            rb->talk_number(ndisc, true);
+        break;
+    case LANG_PROPERTIES_TRACKNUM:
+        if (ntrack)
+            rb->talk_number(ntrack, true);
+        break;
+    case LANG_PROPERTIES_BITRATE:
+        rb->talk_value_decimal(nbitrate, UNIT_KBIT, 0, true);
+        break;
+    case LANG_PROPERTIES_FREQUENCY:
+        rb->talk_value_decimal(nfreq, UNIT_HERTZ, 0, true);
         break;
     default:
         rb->talk_spell(props_file[selected_item + 1], true);
