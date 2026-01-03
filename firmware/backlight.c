@@ -387,7 +387,8 @@ static void backlight_setup_fade_up(void)
 
 static void backlight_setup_fade_down(void)
 {
-    if (bl_fade_out_step > 0)
+    /* Start fading display if it's not dimmed yet */
+    if (bl_fade_out_step > 0 && bl_dim_current > 0)
     {
         backlight_dim(0);
     }
