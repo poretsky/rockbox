@@ -43,6 +43,13 @@ static inline void nvic_disable_irq(int nr)
     reg_var(CM_NVIC_ICER(reg)) = BIT_N(bit);
 }
 
+static inline void nvic_disable_irq_sync(int nr)
+{
+    nvic_disable_irq(nr);
+    arm_dsb();
+    arm_isb();
+}
+
 static inline void nvic_set_pending_irq(int nr)
 {
     int reg = nr / 32;
