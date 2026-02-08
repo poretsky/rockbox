@@ -58,10 +58,10 @@ __vectors_platform:
     .word   UIE                         /* [ 28] */
     .word   UIE                         /* [ 29] */
     .word   UIE                         /* [ 30] */
-    .word   i2c_irq_handler             /* [ 31] I2C1 event */
-    .word   i2c_irq_handler             /* [ 32] I2C1 error */
-    .word   i2c_irq_handler             /* [ 33] I2C2 event */
-    .word   i2c_irq_handler             /* [ 34] I2C2 error */
+    .word   i2c1_irq_handler            /* [ 31] I2C1 event */
+    .word   i2c1_irq_handler            /* [ 32] I2C1 error */
+    .word   i2c2_irq_handler            /* [ 33] I2C2 event */
+    .word   i2c2_irq_handler            /* [ 34] I2C2 error */
     .word   spi1_irq_handler            /* [ 35] SPI1 */
     .word   spi2_irq_handler            /* [ 36] SPI2 */
     .word   UIE                         /* [ 37] */
@@ -99,8 +99,8 @@ __vectors_platform:
     .word   dma2_ch6_irq_handler        /* [ 69] DMA2 Stream6 */
     .word   dma2_ch7_irq_handler        /* [ 70] DMA2 Stream7 */
     .word   UIE                         /* [ 71] */
-    .word   i2c_irq_handler             /* [ 72] I2C3 event */
-    .word   i2c_irq_handler             /* [ 73] I2C3 error */
+    .word   i2c3_irq_handler            /* [ 72] I2C3 event */
+    .word   i2c3_irq_handler            /* [ 73] I2C3 error */
     .word   UIE                         /* [ 74] */
     .word   UIE                         /* [ 75] */
     .word   UIE                         /* [ 76] */
@@ -122,8 +122,8 @@ __vectors_platform:
     .word   UIE                         /* [ 92] */
     .word   UIE                         /* [ 93] */
     .word   UIE                         /* [ 94] */
-    .word   i2c_irq_handler             /* [ 95] I2C4 event */
-    .word   i2c_irq_handler             /* [ 96] I2C4 error */
+    .word   i2c4_irq_handler            /* [ 95] I2C4 event */
+    .word   i2c4_irq_handler            /* [ 96] I2C4 error */
     .word   UIE                         /* [ 97] */
     .word   UIE                         /* [ 98] */
     .word   UIE                         /* [ 99] */

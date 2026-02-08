@@ -1401,3 +1401,111 @@ block DMAMUX {
 
 DMAMUX1 @ 0x40020800 : DMAMUX
 DMAMUX2 @ 0x58025800 : DMAMUX
+
+// I2C controller
+block I2C {
+    CR1 @ 0x00 : reg {
+        -- 23 PECEN
+        -- 22 ALERTEN
+        -- 21 SMBDEN
+        -- 20 SMBHEN
+        -- 19 GCEN
+        -- 18 WUPEN
+        -- 17 NOSTRETCH
+        -- 16 SBC
+        -- 15 RXDMAEN
+        -- 14 TXDMAEN
+        -- 12 ANFOFF
+        11 08 DNF
+        -- 07 ERRIE
+        -- 06 TCIE
+        -- 05 STOPIE
+        -- 04 NACKIE
+        -- 03 ADDRIE
+        -- 02 RXIE
+        -- 01 TXIE
+        -- 00 PE
+    }
+
+    CR2 @ 0x04 : reg {
+        -- 26 PECBYTE
+        -- 25 AUTOEND
+        -- 24 RELOAD
+        23 16 NBYTES
+        -- 15 NACK
+        -- 14 STOP
+        -- 13 START
+        -- 12 HEAD10R
+        -- 11 ADD10
+        -- 10 RD_WRN
+        09 00 SADD
+    }
+
+    OAR1 @ 0x08 : reg {
+        -- 15 OA1EN
+        -- 10 OA1MODE
+        09 00 OA1
+    }
+
+    OAR2 @ 0x0c : reg {
+        -- 15 OA2EN
+        10 08 OA2MSK
+        07 01 OA2
+    }
+
+    TIMINGR @ 0x10 : reg {
+        31 28 PRESC
+        23 20 SCLDEL
+        19 16 SDADEL
+        15 08 SCLH
+        07 00 SCLL
+    }
+
+    TIMEOUTR @ 0x14 : reg {
+        -- 31 TEXTEN
+        27 16 TIMEOUTB
+        -- 15 TIMOUTEN
+        -- 12 TIDLE
+        11 00 TIMEOUTA
+    }
+
+    ISR @ 0x18 : reg {
+        23 17 ADDCODE
+        -- 16 DIR
+        -- 15 BUSY
+        -- 14 ALERT
+        -- 12 TIMEOUT
+        -- 11 PECERR
+        -- 10 OVR
+        -- 09 ARLO
+        -- 08 BERR
+        -- 07 TCR
+        -- 06 TC
+        -- 05 STOPF
+        -- 04 NACKF
+        -- 03 ADDR
+        -- 02 RXNE
+        -- 01 TXIS
+        -- 00 TXE
+    }
+
+    ICR @ 0x1c : reg {
+        -- 13 ALERTCF
+        -- 12 TIMOUTCF
+        -- 11 PECCF
+        -- 10 OVRCF
+        -- 09 ARLOCF
+        -- 08 BERRCF
+        -- 05 STOPCF
+        -- 04 NACKCF
+        -- 03 ADDRCF
+    }
+
+    RXDR @ 0x24 : reg
+    TXDR @ 0x28 : reg
+}
+
+I2C1 @ 0x40005400 : I2C
+I2C2 @ 0x40005800 : I2C
+I2C3 @ 0x40005C00 : I2C
+I2C4 @ 0x58001C00 : I2C
