@@ -306,8 +306,3 @@ void stm32_i2c_irq_handler(struct stm32_i2c_controller *ctl)
         }
     }
 }
-
-/* TODO: move to target */
-void i2c_init(void)
-{
-}

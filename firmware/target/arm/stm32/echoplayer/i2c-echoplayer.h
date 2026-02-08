@@ -7,7 +7,7 @@
  *                     \/            \/     \/    \/            \/
  * $Id$
  *
- * Copyright (C) 2026 Aidan MacDonald
+ * Copyright (C) 2026 by Aidan MacDonald
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,16 +18,11 @@
  * KIND, either express or implied.
  *
  ****************************************************************************/
-#ifndef __CLOCK_ECHOPLAYER_H__
-#define __CLOCK_ECHOPLAYER_H__
+#ifndef __I2C_ECHOPLAYER_H__
+#define __I2C_ECHOPLAYER_H__
 
-#include "clock-stm32h7.h"
+#include "i2c-stm32h7.h"
 
-void echoplayer_clock_init(void) INIT_ATTR;
+extern struct stm32_i2c_controller i2c1_ctl;
 
-extern struct stm32_clock sdmmc1_ker_clock;
-extern struct stm32_clock ltdc_ker_clock;
-extern struct stm32_clock spi5_ker_clock;
-extern struct stm32_clock i2c1_ker_clock;
-
-#endif /* __CLOCK_ECHOPLAYER_H__ */
+#endif /* __I2C_ECHOPLAYER_H__ */

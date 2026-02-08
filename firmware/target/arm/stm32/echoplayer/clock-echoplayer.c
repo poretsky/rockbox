@@ -165,6 +165,7 @@ INIT_ATTR static void init_periph_clock(void)
 {
     reg_writef(RCC_D1CCIPR, SDMMCSEL_V(PLL1Q));
     reg_writef(RCC_D2CCIP1R, SPI45SEL_V(HSE));
+    reg_writef(RCC_D2CCIP2R, I2C123SEL_V(HSI));
 
     /* Enable AXI SRAM in sleep mode to allow DMA'ing out of it */
     reg_writef(RCC_AHB3LPENR, AXISRAMEN(1));
@@ -202,4 +203,12 @@ const struct stm32_clock spi5_ker_clock = {
     .en_bit = BM_RCC_APB2ENR_SPI5EN,
     .lpen_reg = ITA_RCC_APB2LPENR,
     .lpen_bit = BM_RCC_APB2ENR_SPI5EN,
+};
+
+const struct stm32_clock i2c1_ker_clock = {
+    .frequency = STM32_HSI_FREQ,
+    .en_reg = ITA_RCC_APB1LENR,
+    .en_bit = BM_RCC_APB1LENR_I2C1EN,
+    .lpen_reg = ITA_RCC_APB1LLPENR,
+    .lpen_bit = BM_RCC_APB1LENR_I2C1EN,
 };

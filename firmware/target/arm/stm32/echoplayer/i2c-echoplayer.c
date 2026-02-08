@@ -7,7 +7,7 @@
  *                     \/            \/     \/    \/            \/
  * $Id$
  *
- * Copyright (C) 2026 Aidan MacDonald
+ * Copyright (C) 2026 by Aidan MacDonald
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,16 +18,33 @@
  * KIND, either express or implied.
  *
  ****************************************************************************/
-#ifndef __CLOCK_ECHOPLAYER_H__
-#define __CLOCK_ECHOPLAYER_H__
+#include "i2c-stm32h7.h"
+#include "clock-echoplayer.h"
+#include "nvic-arm.h"
+#include "regs/stm32h743/i2c.h"
 
-#include "clock-stm32h7.h"
+static const struct stm32_i2c_config i2c1_conf INITDATA_ATTR = {
+    .instance = ITA_I2C1,
+    .ker_clock = &i2c1_ker_clock,
+    .bus_freq_hz = 400000,
+    .scl_low_min_ns = 1300,
+    .scl_high_min_ns = 600,
+    .t_vd_dat_max_ns = 900,
+    .t_su_dat_max_ns = 100,
+    .rise_time_max_ns = 300,
+    .fall_time_max_ns = 300,
+};
 
-void echoplayer_clock_init(void) INIT_ATTR;
+struct stm32_i2c_controller i2c1_ctl;
 
-extern struct stm32_clock sdmmc1_ker_clock;
-extern struct stm32_clock ltdc_ker_clock;
-extern struct stm32_clock spi5_ker_clock;
-extern struct stm32_clock i2c1_ker_clock;
+void i2c_init(void)
+{
+    stm32_i2c_init(&i2c1_ctl, &i2c1_conf);
+    nvic_enable_irq(NVIC_IRQN_I2C1_EV);
+    nvic_enable_irq(NVIC_IRQN_I2C1_ER);
+}
 
-#endif /* __CLOCK_ECHOPLAYER_H__ */
+void i2c1_irq_handler(void)
+{
+    stm32_i2c_irq_handler(&i2c1_ctl);
+}
