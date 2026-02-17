@@ -585,6 +585,8 @@ drivers/audio/cs42l55.c
 drivers/audio/rk27xx_codec.c
 #elif defined(HAVE_AIC3X)
 drivers/audio/aic3x.c
+#elif defined(HAVE_AIC310X)
+drivers/audio/aic310x.c
 #elif defined (HAVE_DUMMY_CODEC)
 drivers/audio/dummy_codec.c
 #elif defined (HAVE_DF1704_CODEC)
