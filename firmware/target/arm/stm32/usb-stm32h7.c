@@ -172,8 +172,7 @@ void usb_dw_target_enable_irq(void)
 
 void usb_dw_target_disable_irq(void)
 {
-    nvic_disable_irq(IRQN_USB);
-    arm_dsb();
+    nvic_disable_irq_sync(IRQN_USB);
 }
 
 void usb_dw_target_clear_irq(void)
