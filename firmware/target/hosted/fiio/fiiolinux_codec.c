@@ -95,21 +95,21 @@ void audiohw_set_volume(int vol_l, int vol_r)
     if (ak_hw < 0)
        return;
 
-    vol[0] = vol_l / 20;
-    vol[1] = vol_r / 20;
+    vol[0] = vol_l;
+    vol[1] = vol_r;
 
     for (int i = 0; i < 2; i++)
     {
-        if (vol[i] > -56)
+        if (vol[i] > -1120)
         {
-            if (vol[i] < -12)
+            if (vol[i] < -240)
             {
                 vol_hw[i] = 1;
-                vol_sw[i] = vol[i] + 12;
+                vol_sw[i] = vol[i] + 240;
             }
             else
             {
-                vol_hw[i] = 25 - (-vol[i] * 2);
+                vol_hw[i] = 25 - (-vol[i] / 10);
                 vol_sw[i] = 0;
             }
         }

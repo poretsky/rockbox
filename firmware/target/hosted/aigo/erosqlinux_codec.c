@@ -204,7 +204,7 @@ static void audiohw_set_volume_v1(int vol_l, int vol_r)
 
     int sw_volume_l = l <= min_pcm ? min_pcm : MIN(l, max_pcm);
     int sw_volume_r = r <= min_pcm ? min_pcm : MIN(r, max_pcm);
-    pcm_set_mixer_volume(sw_volume_l / 20, sw_volume_r / 20);
+    pcm_set_mixer_volume(sw_volume_l, sw_volume_r);
 }
 
 static void audiohw_set_volume_v2(int vol_l, int vol_r)
@@ -236,7 +236,7 @@ static void audiohw_set_volume_v2(int vol_l, int vol_r)
     alsa_controls_set_ints("Right Playback Volume", 1, &r);
 
     /* Dial back PCM mixer to avoid compression */
-    pcm_set_mixer_volume(global_settings.volume_limit / 2, global_settings.volume_limit / 2);
+    pcm_set_mixer_volume(global_settings.volume_limit, global_settings.volume_limit);
 }
 
 void audiohw_set_volume(int vol_l, int vol_r)
@@ -274,7 +274,7 @@ void audiohw_set_lineout_volume(int vol_l, int vol_r)
             } else {
                 int sw_volume_l = l <= min_pcm ? min_pcm : MIN(l, max_pcm);
                 int sw_volume_r = r <= min_pcm ? min_pcm : MIN(r, max_pcm);
-                pcm_set_mixer_volume(sw_volume_l / 20, sw_volume_r / 20);
+                pcm_set_mixer_volume(sw_volume_l, sw_volume_r);
             }
         }
     }

@@ -50,6 +50,7 @@
 #include "pcm_sampr.h"
 #include "audiohw.h"
 #include "pcm-alsa.h"
+#include "fixedpoint.h"
 
 #include "logf.h"
 
@@ -267,46 +268,14 @@ error:
 }
 
 #if defined(HAVE_ALSA_32BIT)
-/* Digital volume explanation:
- * with very good approximation (<0.1dB) the convertion from dB to multiplicative
- * factor, for dB>=0, is 2^(dB/3). We can then notice that if we write dB=3*k+r
- * then this is 2^k*2^(r/3) so we only need to look at r=0,1,2. For r=0 this is
- * 1, for r=1 we have 2^(1/3)~=1.25 so we approximate by 1+1/4, and 2^(2/3)~=1.5
- * so we approximate by 1+1/2. To go from negative to nonnegative we notice that
- * 48 dB => 63095 factor ~= 2^16 so we virtually pre-multiply everything by 2^(-16)
- * and add 48dB to the input volume. We cannot go lower -43dB because several
- * values between -48dB and -43dB would require a fractional multiplier, which is
- * stupid to implement for such very low volume. */
-static int dig_vol_mult_l = 2 << 16; /* multiplicative factor to apply to each sample */
-static int dig_vol_mult_r = 2 << 16; /* multiplicative factor to apply to each sample */
+/* Multiplicative factors applied to each sample */
+static int32_t dig_vol_mult_l = 0;
+static int32_t dig_vol_mult_r = 0;
+
 void pcm_set_mixer_volume(int vol_db_l, int vol_db_r)
 {
-    if(vol_db_l > 0 || vol_db_r > 0 || vol_db_l < -43 || vol_db_r < -43)
-        panicf("invalid pcm alsa volume %d %d",   vol_db_l, vol_db_r);
-    if(format != SND_PCM_FORMAT_S32_LE)
-        panicf("this function assumes 32-bit sample size");
-    vol_db_l += 48; /* -42dB .. 0dB => 5dB .. 48dB */
-    vol_db_r += 48; /* -42dB .. 0dB => 5dB .. 48dB */
-    /* NOTE if vol_dB = 5 then vol_shift = 1 but r = 1 so we do vol_shift - 1 >= 0
-     * otherwise vol_dB >= 0 implies vol_shift >= 2 so vol_shift - 2 >= 0 */
-    int vol_shift_l = vol_db_l / 3;
-    int vol_shift_r = vol_db_r / 3;
-    int r_l = vol_db_l % 3;
-    int r_r = vol_db_r % 3;
-    if(r_l == 0)
-        dig_vol_mult_l = 1 << vol_shift_l;
-    else if(r_l == 1)
-        dig_vol_mult_l = 1 << vol_shift_l | 1 << (vol_shift_l - 2);
-    else
-        dig_vol_mult_l = 1 << vol_shift_l | 1 << (vol_shift_l - 1);
-    logf("l: %d dB -> factor = %d", vol_db_l - 48, dig_vol_mult_l);
-    if(r_r == 0)
-        dig_vol_mult_r = 1 << vol_shift_r;
-    else if(r_r == 1)
-        dig_vol_mult_r = 1 << vol_shift_r | 1 << (vol_shift_r - 2);
-    else
-        dig_vol_mult_r = 1 << vol_shift_r | 1 << (vol_shift_r - 1);
-    logf("r: %d dB -> factor = %d", vol_db_r - 48, dig_vol_mult_r);
+    dig_vol_mult_l = fp_factor(fp_div(vol_db_l, 10, 16), 16);
+    dig_vol_mult_r = fp_factor(fp_div(vol_db_r, 10, 16), 16);
 }
 #endif
 
