@@ -18,12 +18,14 @@
  * KIND, either express or implied.
  *
  ****************************************************************************/
+#ifndef __ECHOPLAYER_CODEC_H__
+#define __ECHOPLAYER_CODEC_H__
 
-#ifndef __TLV320AIC3104_CODEC__
-#define __TLV320AIC3104_CODEC__
+/* -79 to 0 dB in 0.5 dB steps; software volume control
+ * is used because the hardware volume controls "click"
+ * when changing the volume */
+AUDIOHW_SETTING(VOLUME, "dB", 1, 5, -790, 0, -200);
 
-// FIXME: range
-AUDIOHW_SETTING(VOLUME, "dB", 0,  2, -74, -2, -40)
-AUDIOHW_SETTING(MIC_GAIN, "dB", 0, 1, 0, 63, 12)
+AUDIOHW_SETTING(MIC_GAIN, "dB", 0, 1, 0, 63, 12);
 
-#endif /* __TLV320AIC3104_CODEC__ */
+#endif /* __ECHOPLAYER_CODEC_H__ */

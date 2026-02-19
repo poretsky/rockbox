@@ -241,8 +241,8 @@ struct sound_settings_info
 #include "fiiolinux_codec.h"
 #elif defined(HAVE_EROSQ_LINUX_CODEC)
 #include "erosqlinux_codec.h"
-#elif defined(HAVE_TLV320AIC3104)
-#include "tlv320aic3104_codec.h"
+#elif defined(HAVE_ECHOPLAYER_CODEC)
+#include "echoplayer_codec.h"
 #elif defined(HAVE_HIBY_LINUX_CODEC)
 #include "hibylinux_codec.h"
 #endif
