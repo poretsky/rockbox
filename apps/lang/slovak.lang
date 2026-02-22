@@ -6374,10 +6374,10 @@
     *: "Bitrate"
   </source>
   <dest>
-    *: "Počet bitov"
+    *: "Bitová rýchlosť"
   </dest>
   <voice>
-    *: "Počet bitov"
+    *: "Bitová rýchlosť"
   </voice>
 </phrase>
 <phrase>
@@ -11375,7 +11375,7 @@
     *: "Jednoduché (Meier)"
   </dest>
   <voice>
-    *: "Jednoduché"
+    *: "Jednoduché zátvorka Meier koniec zátvorky"
   </voice>
 </phrase>
 <phrase>
