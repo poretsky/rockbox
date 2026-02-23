@@ -4920,11 +4920,11 @@
   </source>
   <dest>
     *: none
-    recording: "Počet bitov"
+    recording: "Bitová rýchlosť"
   </dest>
   <voice>
     *: none
-    recording: "Počet bitov"
+    recording: "Bitová rýchlosť"
   </voice>
 </phrase>
 <phrase>
