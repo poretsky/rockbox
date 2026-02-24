@@ -260,6 +260,7 @@ int stm32h7_sdmmc_submit_command(void *controller,
     uint32_t maskr = CMD_ERROR_BITS;
     uint32_t cmdr = __reg_orf(SDMMC_CMDR, CPSMEN(1), CMDINDEX(cmd->command));
     uint32_t cmd_wait = WAIT_CMD;
+    uint32_t dctrl = 0, dtimer = 0, dlenr = 0;
 
     void *buff_addr = cmd->buffer;
     size_t buff_size = cmd->nr_blocks * cmd->block_len;
@@ -317,7 +318,6 @@ int stm32h7_sdmmc_submit_command(void *controller,
             panicf("%s: buffer too big", __func__);
 
         /* Set block size */
-        uint32_t dctrl = 0;
         uint32_t dblocksize = find_first_set_bit(cmd->block_len);
         if (dblocksize > 14 || (cmd->block_len & (cmd->block_len - 1)))
             panicf("%s: incorrect block size", __func__);
@@ -341,11 +341,8 @@ int stm32h7_sdmmc_submit_command(void *controller,
         reg_assignlf(ctl->regs, SDMMC_IDMACTRLR, IDMAEN(1));
 
         /* Use a 10 second timeout (DTIMER is in units of bus clocks) */
-        reg_varl(ctl->regs, SDMMC_DTIMER) = 10 * ctl->bus_freq;
-        reg_varl(ctl->regs, SDMMC_DLENR) = buff_size;
-
-        /* DCTRL must be written last */
-        reg_varl(ctl->regs, SDMMC_DCTRL) = dctrl;
+        dtimer = 10 * ctl->bus_freq;
+        dlenr = buff_size;
 
         /* Enable data phase */
         reg_vwritef(cmdr, SDMMC_CMDR, CMDTRANS(1));
@@ -356,15 +353,16 @@ int stm32h7_sdmmc_submit_command(void *controller,
     {
         /* Disable data transfer */
         reg_assignlf(ctl->regs, SDMMC_IDMACTRLR, IDMAEN(0));
-        reg_varl(ctl->regs, SDMMC_DLENR) = 0;
-        reg_varl(ctl->regs, SDMMC_DCTRL) = 0;
 
         /* DTIMER is the wait time for the busy signal */
         if (cmd->flags & SDMMC_RESP_BUSY)
-            reg_varl(ctl->regs, SDMMC_DTIMER) = 1 * ctl->bus_freq;
-        else
-            reg_varl(ctl->regs, SDMMC_DTIMER) = 0;
+            dtimer = 1 * ctl->bus_freq;
     }
+
+    /* Set data transfer registers */
+    reg_varl(ctl->regs, SDMMC_DLENR)  = dlenr;
+    reg_varl(ctl->regs, SDMMC_DTIMER) = dtimer;
+    reg_varl(ctl->regs, SDMMC_DCTRL)  = dctrl;
 
     /*
      * Set CMDSTOP bit for CMD12 (stop transmission) command;
