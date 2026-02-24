@@ -554,7 +554,7 @@ static const char * id3_get_or_speak_info(int selected_item, void* data,
                 {
                     val = id3->disc_string;
                     if(say_it)
-                        say_number_and_spell(val, true);
+                        say_number_and_spell(val, false);
                 }
                 else if (id3->discnum)
                 {
@@ -569,7 +569,7 @@ static const char * id3_get_or_speak_info(int selected_item, void* data,
                 {
                     val = id3->track_string;
                     if(say_it)
-                        say_number_and_spell(val, true);
+                        say_number_and_spell(val, false);
                 }
                 else if (id3->tracknum >= 0)
                 {
