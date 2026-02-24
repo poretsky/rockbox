@@ -74,6 +74,28 @@ static size_t abs_diff(size_t a, size_t b)
     return a > b ? a - b : b - a;
 }
 
+/*
+ * The CLKCR and CMDR registers must not be written twice
+ * within 7 AHB clock cycles. If this is not respected the
+ * hardware seems to misbehave, for example updating the
+ * clock divider in CLKCR can fail (the register field is
+ * updated, but the actual clock output is not).
+ *
+ * Reading a peripheral register should require at least
+ * two cycles on the AHB bus (1 address + 1 data cycle),
+ * assuming they are single transfers and no pipelining
+ * can take place. Doing four reads of an SDMMC register
+ * should therefore be enough to add the correct number
+ * of wait states.
+ */
+static void stm32h7_sdmmc_regwrite_delay(struct stm32h7_sdmmc_controller *ctl)
+{
+    reg_readl(ctl->regs, SDMMC_STAR);
+    reg_readl(ctl->regs, SDMMC_STAR);
+    reg_readl(ctl->regs, SDMMC_STAR);
+    reg_readl(ctl->regs, SDMMC_STAR);
+}
+
 static bool stm32h7_sdmmc_is_powered_off(struct stm32h7_sdmmc_controller *ctl)
 {
     uint32_t pwrctrl = reg_readlf(ctl->regs, SDMMC_POWER, PWRCTRL);
@@ -131,6 +153,7 @@ void stm32h7_sdmmc_set_power_enabled(void *controller, bool enabled)
 
         /* Automatically stop clock when bus is not in use */
         reg_writelf(ctl->regs, SDMMC_CLKCR, PWRSAV(1), HWFC_EN(1));
+        stm32h7_sdmmc_regwrite_delay(ctl);
     }
     else
     {
@@ -173,6 +196,8 @@ void stm32h7_sdmmc_set_bus_width(void *controller, uint32_t width)
         reg_writelf(ctl->regs, SDMMC_CLKCR, WIDBUS_V(8BIT));
     else
         panicf("%s", __func__);
+
+    stm32h7_sdmmc_regwrite_delay(ctl);
 }
 
 void stm32h7_sdmmc_set_bus_clock(void *controller, uint32_t clock)
@@ -222,6 +247,8 @@ void stm32h7_sdmmc_set_bus_clock(void *controller, uint32_t clock)
                 DDR(0),
                 NEGEDGE(0),
                 CLKDIV(div[idx] / 2));
+
+    stm32h7_sdmmc_regwrite_delay(ctl);
 }
 
 int stm32h7_sdmmc_submit_command(void *controller,
@@ -360,6 +387,7 @@ int stm32h7_sdmmc_submit_command(void *controller,
     reg_varl(ctl->regs, SDMMC_MASKR) = maskr;
     reg_varl(ctl->regs, SDMMC_ARGR) = cmd->argument;
     reg_varl(ctl->regs, SDMMC_CMDR) = cmdr;
+    stm32h7_sdmmc_regwrite_delay(ctl);
 
     /* Wait for command completion */
     semaphore_wait(&ctl->sem, TIMEOUT_BLOCK);
