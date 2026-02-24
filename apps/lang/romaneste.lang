@@ -14787,7 +14787,7 @@
   user: core
   <source>
     *: "Press LEFT to cancel."
-    android,hifietma*,zenvision: "Press BACK to cancel."
+    android,hifietma*: "Press BACK to cancel."
     cowond2,creativezenxfi2,ibassodx50,ibassodx90,mrobe500,ondavx747: "Press POWER to cancel."
     ihifi760,ihifi960: "Double tap RETURN to cancel."
     ihifi770,ihifi770c,ihifi800: "Press HOME to cancel."
@@ -14802,7 +14802,7 @@
   </source>
   <dest>
     *: "Apasă STÂNGA pentru a anula."
-    android,hifietma*,zenvision: "Apasă ÎNAPOI pentru a anula."
+    android,hifietma*: "Apasă ÎNAPOI pentru a anula."
     cowond2,creativezenxfi2,ibassodx50,ibassodx90,mrobe500,ondavx747: "Apasă PORNIRE pentru a anula."
     ihifi760,ihifi960: "Atinge de 2 ori ÎNAPOI pentru a anula."
     ihifi770,ihifi770c,ihifi800: "Apasă ACASĂ pentru a anula."
@@ -14817,7 +14817,7 @@
   </dest>
   <voice>
     *: "Apasă STÂNGA pentru a anula."
-    android,hifietma*,zenvision: "Apasă ÎNAPOI pentru a anula."
+    android,hifietma*: "Apasă ÎNAPOI pentru a anula."
     cowond2,creativezenxfi2,ibassodx50,ibassodx90,mrobe500,ondavx747: "Apasă PORNIRE pentru a anula."
     ihifi760,ihifi960: "Atinge de 2 ori ÎNAPOI pentru a anula."
     ihifi770,ihifi770c,ihifi800: "Apasă ACASĂ pentru a anula."
@@ -16949,5 +16949,19 @@
   <voice>
     *: none
     general_purpose_led: "Folosește indicatori led"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_ANNOUNCE_STATUS
+  desc: announnnce_status plugin
+  user: core
+  <source>
+    *: "Announce Status"
+  </source>
+  <dest>
+    *: "Anunțare stare"
+  </dest>
+  <voice>
+    *: "Anunțare stare"
   </voice>
 </phrase>
