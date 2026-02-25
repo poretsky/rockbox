@@ -11531,11 +11531,11 @@
   </source>
   <dest>
     *: none
-    filter_roll_off: "roll-off DAC filtra "
+    filter_roll_off: "Pokles filtra digitálno-analógového prevodníka"
   </dest>
   <voice>
     *: none
-    filter_roll_off: "roll-off DAC filtra "
+    filter_roll_off: "Pokles filtra digitálno-analógového prevodníka"
   </voice>
 </phrase>
 <phrase>
@@ -14646,10 +14646,10 @@
     *: "Single Mode"
   </source>
   <dest>
-    *: "Single režim"
+    *: "Singlový režim"
   </dest>
   <voice>
-    *: "Single režim"
+    *: "Singlový režim"
   </voice>
 </phrase>
 <phrase>
@@ -14676,11 +14676,11 @@
   </source>
   <dest>
     *: none
-    filter_roll_off: "Krátky ostrý"
+    filter_roll_off: "Krátky výrazný"
   </dest>
   <voice>
     *: none
-    filter_roll_off: "Krátky ostrý"
+    filter_roll_off: "Krátky výrazný"
   </voice>
 </phrase>
 <phrase>
@@ -16871,11 +16871,11 @@
   </source>
   <dest>
     *: none
-    usbdac: "~USB-DAC"
+    usbdac: "USB digitálno-analógový prevodník"
   </dest>
   <voice>
     *: none
-    usbdac: "~USB-DAC"
+    usbdac: "USB digitálno-analógový prevodník"
   </voice>
 </phrase>
 <phrase>
@@ -16922,11 +16922,11 @@
   </source>
   <dest>
     *: none
-    usbdac: "USB-DAC aktívny"
+    usbdac: "USB digitálno-analógový prevodník aktívny"
   </dest>
   <voice>
     *: none
-    usbdac: "USB-DAC aktívny"
+    usbdac: "USB digitálno-analógový prevodník aktívny"
   </voice>
 </phrase>
 <phrase>
