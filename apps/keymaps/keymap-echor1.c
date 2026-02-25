@@ -33,7 +33,7 @@ static const struct button_mapping button_context_standard[] = {
     {ACTION_STD_PREVREPEAT,     BUTTON_UP|BUTTON_REPEAT,            BUTTON_NONE},
     {ACTION_STD_NEXT,           BUTTON_DOWN,                        BUTTON_NONE},
     {ACTION_STD_NEXTREPEAT,     BUTTON_DOWN|BUTTON_REPEAT,          BUTTON_NONE},
-    {ACTION_STD_OK,             BUTTON_RIGHT,                       BUTTON_NONE},
+    {ACTION_STD_OK,             BUTTON_RIGHT|BUTTON_REL,            BUTTON_RIGHT},
     {ACTION_STD_CANCEL,         BUTTON_LEFT,                        BUTTON_NONE},
     {ACTION_STD_CONTEXT,        BUTTON_RIGHT|BUTTON_REPEAT,         BUTTON_NONE},
     {ACTION_STD_QUICKSCREEN,    BUTTON_B,                           BUTTON_NONE},
