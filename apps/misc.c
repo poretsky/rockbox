@@ -2018,4 +2018,27 @@ void clear_screen_buffer(bool update)
     }
 }
 
+void validate_start_directory_init(void) /* INIT_ATTR */
+{
+    char * const dirpath = global_settings.start_directory;
+    char *slash = strrchr(dirpath, PATH_SEPCH);
+
+    if (!slash)
+    {
+        path_append(dirpath, PATH_ROOTSTR, PA_SEP_HARD,
+                    sizeof(global_settings.start_directory));
+        return; /* if this doesn't exist we have bigger issues */
+    }
+    else if(slash[1] != '\0') /* ending slash required */
+    {
+        path_append(dirpath, dirpath, PA_SEP_HARD,
+                    sizeof(global_settings.start_directory));
+    }
+    if (slash != dirpath && !dir_exists(dirpath))
+    {
+        path_append(dirpath, PATH_ROOTSTR,
+            PA_SEP_HARD, sizeof(global_settings.start_directory));
+    }
+}
+
 #endif /* ndef __PCTOOL__ */

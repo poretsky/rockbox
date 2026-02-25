@@ -128,7 +128,7 @@ long default_event_handler_ex(long event, void (*callback)(void *), void *parame
 long default_event_handler(long event);
 bool list_stop_handler(void);
 void car_adapter_mode_init(void) INIT_ATTR;
-
+void validate_start_directory_init(void) INIT_ATTR;
 /* Unicode byte order mark sequences and lengths */
 #define BOM_UTF_8 "\xef\xbb\xbf"
 #define BOM_UTF_8_SIZE 3

@@ -241,6 +241,7 @@ int main(void)
 #endif /* #ifdef AUTOROCK */
 
     global_status.last_volume_change = 0;
+    validate_start_directory_init();
     /* no calls INIT_ATTR functions after this point anymore!
      * see definition of INIT_ATTR in config.h */
     CHART(">root_menu");
