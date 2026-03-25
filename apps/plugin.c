@@ -892,7 +892,8 @@ int plugin_load(const char* plugin, const void* parameter)
                                    !strcmp("playing_time.rock", sepch + 1) ||
                                    !strcmp("main_menu_config.rock", sepch + 1) ||
                                    !strcmp("text_viewer.rock", sepch + 1) ||
-                                   !strcmp("disktidy.rock", sepch + 1));
+                                   !strcmp("disktidy.rock", sepch + 1) ||
+                                   !strcmp("open_plugins.rock", sepch + 1));
 
     if (current_plugin_handle)
     {
