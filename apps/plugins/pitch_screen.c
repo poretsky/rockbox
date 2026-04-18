@@ -1106,6 +1106,7 @@ int gui_syncpitchscreen_run(void)
             /* when needed                                         */
             new_speed = 0;
         }
+        rb->yield();
     }
 
     //rb->pcmbuf_set_low_latency(false);
