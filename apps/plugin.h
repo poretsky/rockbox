@@ -1024,6 +1024,7 @@ struct plugin_api {
 
     /* new stuff at the end, sort into place next time
        the API gets incompatible */
+    void (*panicf)(const char *msg, ...);
 };
 
 /* plugin header */
