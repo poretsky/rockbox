@@ -361,12 +361,6 @@ static int show_menu(void) /* return 1 to quit */
         }
     }
 #endif
-#if LCD_DEPTH > 1
-    rb->lcd_set_backdrop(NULL);
-    rb->lcd_set_foreground(LCD_WHITE);
-    rb->lcd_set_background(LCD_BLACK);
-#endif
-    rb->lcd_clear_display();
     return 0;
 }
 
@@ -776,8 +770,21 @@ static int scroll_bmp(struct image_info *info, bool initial_frame)
 #ifdef USEGSLIB
             grey_show(false); /* switch off greyscale overlay */
 #endif
-            if (show_menu() == 1)
+            FOR_NB_SCREENS(i)
+                rb->viewportmanager_theme_enable(i, true, NULL);
+            int ret = show_menu();
+            FOR_NB_SCREENS(i)
+                rb->viewportmanager_theme_undo(i, false);
+
+            if (ret == 1)
                 return PLUGIN_OK;
+
+#if LCD_DEPTH > 1
+            rb->lcd_set_backdrop(NULL);
+            rb->lcd_set_foreground(LCD_WHITE);
+            rb->lcd_set_background(LCD_BLACK);
+#endif
+            rb->lcd_clear_display();
 
 #ifdef USEGSLIB
             grey_show(true); /* switch on greyscale overlay */
