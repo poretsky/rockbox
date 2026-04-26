@@ -163,7 +163,7 @@ void skinlist_get_scrollbar(int* nb_item, int* first_shown, int* last_shown)
     {
         *nb_item = current_item;
         *first_shown = 0;
-        *last_shown = current_nbitems;
+        *last_shown = current_nbitems - 1;
     }
 }
 
