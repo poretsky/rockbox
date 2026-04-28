@@ -1025,6 +1025,17 @@ struct plugin_api {
     /* new stuff at the end, sort into place next time
        the API gets incompatible */
     void (*panicf)(const char *msg, ...);
+    void (*gui_synclist_scroll_stop)(struct gui_synclist *lists);
+    bool (*add_event_ex)(unsigned short id, bool oneshot,
+                         void (*handler)(unsigned short id,
+                                         void *event_data,
+                                         void *user_data),
+                         void *user_data);
+    void (*remove_event_ex)(unsigned short id,
+                            void (*handler)(unsigned short id,
+                                            void *event_data,
+                                            void *user_data),
+                            void *user_data);
 };
 
 /* plugin header */

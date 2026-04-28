@@ -872,6 +872,9 @@ static const struct plugin_api rockbox_api = {
     /* new stuff at the end, sort into place next time
        the API gets incompatible */
     panicf,
+    gui_synclist_scroll_stop,
+    add_event_ex,
+    remove_event_ex,
 };
 
 static int plugin_buffer_handle;
@@ -892,6 +895,7 @@ int plugin_load(const char* plugin, const void* parameter)
                                    !strcmp("playing_time.rock", sepch + 1) ||
                                    !strcmp("main_menu_config.rock", sepch + 1) ||
                                    !strcmp("text_viewer.rock", sepch + 1) ||
+                                   !strcmp("view_text.rock", sepch + 1) ||
                                    !strcmp("disktidy.rock", sepch + 1) ||
                                    !strcmp("open_plugins.rock", sepch + 1));
 
