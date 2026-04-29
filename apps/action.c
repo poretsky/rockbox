@@ -1440,6 +1440,9 @@ bool is_keys_locked(void)
 void set_selective_softlock_actions(bool selective, unsigned int mask)
 {
     action_last.keys_locked = false;
+#if defined(HAVE_TOUCHPAD) || defined(HAVE_TOUCHSCREEN)
+    button_enable_touch(true);
+#endif
     if (selective)
     {
         action_last.softlock_mask = mask | SEL_ACTION_ENABLED;
